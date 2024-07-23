@@ -4,6 +4,10 @@
 - type: github
   icon: "fab fa-github"
 
+- type: matrix
+  icon: "fa-solid fa-comments"
+  url: "https://matrix.to/#/@leleat:matrix.org"
+
 - type: mastodon
   icon: "fab fa-mastodon"
   url: "https://mastodon.social/@leleat"
