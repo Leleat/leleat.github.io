@@ -11,7 +11,9 @@ I thought to myself, "Oh, that's nice, let's ~~steal~~ be inspired by the idea,"
 
 ## What is create-gnome-extension?
 
-Currently, getting started with developing GNOME Shell extensions can be a bit cumbersome. You either manually create the project structure from scratch or use GNOME Shell's built-in `gnome-extensions create` command. However, this command doesn't offer much convenience as it places the files in `~/.local/share/gnome-shell/extensions/`, which is the install directory for extensions, and only includes the mandatory files.
+Let's first define what GNOME extensions are. GNOME extensions – or a bit more accurately "GNOME Shell extensions" – are community written software that modify GNOME Shell, the graphical interface for the [GNOME](https://www.gnome.org/) desktop.
+
+Currently, getting started with developing GNOME extensions can be a bit cumbersome. You either manually create the project structure from scratch or use GNOME Shell's built-in `gnome-extensions create` command. However, this command doesn't offer much convenience as it places the files in `~/.local/share/gnome-shell/extensions/`, which is the install directory for user extensions, and only creates the mandatory files. Developer tools or other conveniences are not included.
 
 `create-gnome-extension` – similar to other create-XXX scaffolding tools – follows a "batteries included" philosophy for developing GNOME Shell extensions. Here's a short rundown in case you don't know how tools like this work. If you run:
 
@@ -23,13 +25,13 @@ npm will look up the (latest) `create-gnome-extension` package, temporarily inst
 
 ## Developing create-gnome-extension
 
-Now, I'd like to talk about how it was developing the npm package because there are some things to say. Developing `create-gnome-extension` itself was pretty straightforward. It's basically just a Node script that copies and writes some files.
+Now, I'd like to talk about how it was developing the npm package because there are some things to say. Developing `create-gnome-extension` itself was pretty straightforward. It's just a simple script that copies and writes some files.
 
-However, I did have a bit of trouble with testing and publishing the package. Well, maybe not trouble... it just wasn't a great experience.
+However, I did have a bit of trouble with testing and publishing the package. It was not a great experience.
 
 The only ways I found to actually test a package are to either publish it on npm or use `npm link`. Both aren't particularly great options. The first option is obviously not ideal, and the second option is just kind of slow. If you know of a better way to test a package, please let me know.
 
-Another issue I encountered is about how files are included in an npm package. Some files, like the `README` or `LICENSE`, are always included, while most files need to be manually included. Other files are always excluded with no way to force-include them (like `.gitignore`)[^2]. You need to work around it by renaming those files. In the end, you have to read the documentation on the file patterns carefully to see how each file may be handled to avoid surprises.
+Another issue I encountered is about how files are included in an npm package. Some files, like the `README` or `LICENSE`, are always included, while most files need to be manually included. Other files are always excluded with no way to force-include them (like `.gitignore`)[^2]. You need to work around it by renaming those files. There is `npm pack --dry-run` that will tell you which files will be included in the package but manually checking that dozens or hundreds of files are actually part of the packge doesn't seem like a good developer experience. In the end, you have to read the documentation on the file patterns carefully to see how each file may be handled to avoid surprises.
 
 ## New Project, New Ideas
 
@@ -39,7 +41,7 @@ I switched from ESLint and Prettier to Biome. Biome combines a formatter and lin
 
 I also started using `conventional-changelog` and `conventional-recommended-bump`, which are based on the [Angular commit convention](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines), to automatically bump the version number and generate the `CHANGELOG`. This works quite well so far. Although, I am unsure about what happens if one type of work needs to be split into multiple commits, e.g., one feature implemented via multiple commits. I believe, if you prefix all commits of a merge request  with `feat`, each commit would appear in the changelog, which is undesirable.
 
-Related to the usage of `conventional-XXX`: I experimented with git hooks to ensure that commit messages follow the Angular convention or at least warn if the convention is obviously not adhered to. The idea was to avoid the need to push to a merge request and wait for feedback from the CI. The problem with git hooks is that they are only local to repos and won't be included when pushed to remotes. So, I put the hooks in s `.githooks` directory and added a `postinstall` npm script that runs
+Related to the usage of `conventional-XXX`: I experimented with git hooks to ensure that commit messages follow the Angular convention or at least warn if the convention is obviously not adhered to. The idea was to avoid the need to push to a merge request and wait for feedback from the CI. The problem with git hooks is that they are only local to repos and won't be included when pushed to remotes. So, I put the hooks in a `.githooks` directory and added a `postinstall` npm script that runs
 
 ```sh
 git config --local core.hooksPath .githooks
@@ -47,7 +49,7 @@ git config --local core.hooksPath .githooks
 
 so that the hooks are automatically set up when you work on the project. However, this led to an error when running `npm create gnome-extension@latest` since the package wouldn't be initialized as a git repo. So, I turned the `postinstall` script into an optional `hookup` script for now. Maybe using `husky` would solve this issue.
 
-Finally, I also created some GitHub actions. The [most interesting action](https://github.com/Leleat/create-gnome-extension/blob/main/.github/workflows/link-and-merge-pr.yml) appends the URL of the merge request to all commits of the merge request before initiating a merge. This is inspired by the [Part-of trailer of marge-bot](https://gitlab.com/marge-org/marge-bot#adding-reviewed-by-tested-and-part-of-to-commit-messages) for GitLab.
+Finally, I also created some GitHub actions. The [most interesting action](https://github.com/Leleat/create-gnome-extension/blob/main/.github/workflows/link-and-merge-pr.yml) appends the URL of the merge request (MR) to all commits before initiating a merge. This allows you to easily open the MR from a terminal on your local machine to look at the discussion that surrounded an MR. This is inspired by the [Part-of trailer of marge-bot](https://gitlab.com/marge-org/marge-bot#adding-reviewed-by-tested-and-part-of-to-commit-messages) for GitLab.
 
 ## Final Thoughts
 
