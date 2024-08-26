@@ -433,15 +433,19 @@ export { disable, enable, SINGLETON as Shortcuts };
 
 There is also some code on the `prefs.js` side that handles the UI, sets the gsettings if the user changed the shortcuts, and keeps the gsettings for the prefixes in sync with the gsettings for the shortcut sequences. But that is a bit too much to share here and fairly straightforward.
 
-And that's it. It wasn't really hard to implement. That said, the current implementation has some issues, which I am not sure are fixable. But they are not that big of a deal, so I might actually ship this in an extension some day.
+And that's it. It wasn't really hard to implement. That said, the current implementation has some issues, which I am not sure are fixable. But they are not _that big_ of a deal, so I might actually ship this in an extension some day.
 
 ## Limitations
 
-So what are the limitations?
+So what are the limitations? The biggest issues are:
 
 1. `Super` + `non-modifier key` as a non-prefix key combination doesn't register on the initial press. For example, if the shortcut sequence is `Super` + `a` `Super` + `a`, and you press `Super` + `a`, let get of the `Super` key, and press `Super` + `a` again, it won't work. You need to keep holding `Super` after activating the prefix or press `Super` + `a` twice after activating the prefix. I believe this is related to `Super` being used for the overview and not reaching `MutliStageShortcutManager::vfunc_key_press_event` on the first press. If I set the overview key to the right `Super` key, it works fine with the left `Super` key.
-2. When opening the shortcut editor in the preference window, I disable all prefix shortcuts so that the shortcut editor can capture the keyboard events, otherwise a keyboard shortcut sequence will be triggered if a prefix is activated. Then, when the shortcut editor closes I re-set the prefixes. This is – at least in theory – problematic if the preference window crashes or is killed, since the prefixes won't be re-enabled. But that should be a rare case and the prefixes will be re-enabled the next time the preference window is opened or the extension is re-enabled.
-3. And lastly, since a keyboard shortcut sequence consists of 2 gsettings, things may break if a user manipulates the gsettings directly via CLI or dconf editor instead of going through the prefs window where I do some settings syncing. I don't expect this to be big issue though since it's not a common thing to do.
+2. Some popups may be closed when the widget initiates the grab.
+
+Unimportant issues are:
+
+1. When opening the shortcut editor in the preference window, I disable all prefix shortcuts so that the shortcut editor can capture the keyboard events, otherwise a keyboard shortcut sequence will be triggered if a prefix is activated. Then, when the shortcut editor closes I re-set the prefixes. This is – at least in theory – problematic if the preference window crashes or is killed, since the prefixes won't be re-enabled. But that should be a rare case and the prefixes will be re-enabled the next time the preference window is opened or the extension is re-enabled.
+2. And lastly, since a keyboard shortcut sequence consists of 2 gsettings, things may break if a user manipulates the gsettings directly via CLI or dconf editor instead of going through the prefs window where I do some settings syncing. I don't expect this to be big issue though since it's not a common thing to do.
 
 There might be more issues, but I haven't found them yet. I will update this post if I do.
 
