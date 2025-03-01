@@ -100,13 +100,6 @@ import "../../global.js";
             transition: opacity 0.5s;
         }
 
-        &:hover > .play-button {
-            display: flex;
-            background-color: oklch(
-                from var(--color-background-button) calc(l + 0.1) c h
-            );
-        }
-
         &:focus-visible {
             mask: none;
         }
@@ -151,6 +144,15 @@ import "../../global.js";
 
         .play-button .play-icon {
             fill: oklch(from currentColor calc(l - 0.3) c h);
+        }
+    }
+
+    @media (hover: hover) {
+        .marquee:hover > .play-button {
+            display: flex;
+            background-color: oklch(
+                from var(--color-background-button) calc(l + 0.1) c h
+            );
         }
     }
 </style>
