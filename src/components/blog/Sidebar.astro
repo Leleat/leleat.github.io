@@ -1,0 +1,121 @@
+---
+import { getPublicPostsWithNewestFirst, getTagData } from "../../global.js";
+
+const showRecentPostsAmount = 5;
+const publicPosts = getPublicPostsWithNewestFirst();
+const tags = [
+    ...new Set(publicPosts.flatMap((p: any) => p.frontmatter.tags)),
+].toSorted();
+---
+
+<aside>
+    <section class="rss-feed">
+        <a href="/rss.xml" target="_blank" rel="noreferrer">
+            <!-- https://icons.getbootstrap.com/icons/rss-fill/ -->
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+            >
+                <path
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2m0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2m.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
+                ></path>
+            </svg>
+            <span>RSS Feed</span>
+        </a>
+    </section>
+    <section class="recent-posts">
+        <h3>Recent Posts</h3>
+        <div role="list">
+            {
+                publicPosts
+                    .slice(0, showRecentPostsAmount + 1)
+                    .map((post: any) => (
+                        <a href={post.url} role="listitem">
+                            {post.frontmatter.title}
+                        </a>
+                    ))
+            }
+        </div>
+    </section>
+    <section class="tags">
+        <h3>Tags</h3>
+        <div role="list">
+            {
+                tags.map((tag) => (
+                    <a
+                        href={`/blog/tags/${getTagData(tag).slug}/`}
+                        role="listitem"
+                    >
+                        {tag}
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+</aside>
+
+<style>
+    aside {
+        display: none;
+    }
+
+    @media (min-width: 80rem) {
+        * {
+            --sidebar-itemspacing: 0.75rem;
+
+            margin: 0;
+            font-size: small;
+        }
+
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            border-inline-end: 1px solid var(--color-text-dark);
+            padding: 0 var(--content-hpadding);
+            margin: var(--content-vpadding) 0;
+            height: fit-content;
+        }
+
+        [role="list"] a {
+            display: block;
+            margin-block-end: var(--sidebar-itemspacing);
+            color: var(--color-text);
+            text-decoration: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover {
+                color: var(--color-yellow);
+                text-decoration: dotted underline;
+            }
+        }
+
+        h3 {
+            color: oklch(from var(--color-text) calc(l - 0.25) c h);
+            text-transform: uppercase;
+            margin-block-end: calc(var(--sidebar-itemspacing));
+        }
+
+        .rss-feed {
+            & a {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 0.75rem;
+                color: var(--color-text);
+                text-decoration: none;
+                width: fit-content;
+
+                &:hover {
+                    color: var(--color-yellow);
+                    text-decoration: dotted underline;
+                }
+            }
+        }
+    }
+</style>

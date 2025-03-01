@@ -1,0 +1,250 @@
+---
+import "../global.js";
+---
+
+<footer>
+    <small>
+        Copyright © {new Date().getFullYear()} Anh Tuan Le. &nbsp;
+        <a href="/#contact" class="contact-details"> Contact details </a>.
+        &nbsp;
+        <input type="checkbox" id="checkbox" />
+        <span class="credits-container">
+            <label
+                class="credits-button"
+                for="checkbox"
+                role="button"
+                aria-label="Credits"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-controls="credits-popup"
+                tabindex="0"
+            >
+                <span class="credits-label">Credits</span>
+            </label>
+            <ul id="credits-popup" class="credits-popup" role="menu">
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/asterisk/"
+                        target="_blank"
+                        rel="noreferer">Asterisk icon (Bootsrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/mastodon/"
+                        target="_blank"
+                        rel="noreferer">Mastodon icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/github/"
+                        target="_blank"
+                        rel="noreferer">GitHub icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/calendar/"
+                        target="_blank"
+                        rel="noreferer">Calendar icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/tags-fill/"
+                        target="_blank"
+                        rel="noreferer">Tags icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/chat-square-dots/"
+                        >Chat icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/rss-fill/"
+                        target="_blank"
+                        rel="noreferer">RSS icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/envelope-fill/"
+                        >Envelope icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a href="https://icons.getbootstrap.com/icons/chevron-up/"
+                        >Chevron-up icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://upload.wikimedia.org/wikipedia/commons/7/7c/Matrix_icon.svg"
+                        >Matrix icon (wikimedia)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a href="https://icons.getbootstrap.com/icons/play-fill/"
+                        >Play icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a href="https://icons.getbootstrap.com/icons/pause-fill/"
+                        >Pause icon (Bootstrap)</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        href="https://icons.getbootstrap.com/icons/exclamation-triangle-fill/"
+                        >Exclamation Triangle icon (Bootstrap)</a
+                    >
+                </li>
+            </ul>
+        </span>
+    </small>
+</footer>
+
+<style>
+    footer {
+        color: #999;
+        border-block-start: 1px solid var(--color-text-dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--footer-height);
+    }
+
+    small {
+        display: flex;
+        align-items: center;
+    }
+
+    .credits-container {
+        position: relative;
+    }
+
+    #checkbox {
+        display: none;
+    }
+
+    #checkbox:checked {
+        & + span .credits-button {
+            color: var(--color-yellow);
+        }
+
+        & + span .credits-button .credits-label {
+            text-decoration: none;
+
+            &::after {
+                transform: rotate(-90deg);
+            }
+        }
+
+        & + span .credits-button + .credits-popup {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+    }
+
+    .credits-button {
+        color: #999;
+        position: relative;
+
+        &:hover {
+            color: var(--color-yellow);
+        }
+    }
+
+    .credits-label {
+        text-decoration: dotted underline;
+
+        &::after {
+            content: "🢒";
+            margin-inline-start: 1ch;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+    }
+
+    .credits-popup {
+        display: none;
+        position: absolute;
+        right: 0;
+        bottom: 1rem;
+        color: var(--color-text);
+        background-color: var(--color-background);
+        border: 1px solid var(--color-text-dark);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        z-index: 10;
+        white-space: nowrap;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+
+        & li {
+            list-style: none;
+        }
+
+        & li::after {
+            content: " 🡕";
+            color: var(--color-yellow);
+            margin-inline-start: 1ch;
+        }
+    }
+
+    .contact-details {
+        color: var(--color-text-dim);
+
+        &:hover {
+            color: var(--color-yellow);
+        }
+    }
+</style>
+
+<script>
+    const creditsButton = document.querySelector(
+        ".credits-button",
+    ) as HTMLLabelElement;
+
+    creditsButton.addEventListener("click", (e) => {
+        creditsButton.setAttribute(
+            "aria-expanded",
+            creditsButton.getAttribute("aria-expanded") === "true" ?
+                "false"
+            :   "true",
+        );
+    });
+
+    creditsButton.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            creditsButton.click();
+        } else if (
+            event.key === "Escape" &&
+            creditsButton.getAttribute("aria-expanded") === "true"
+        ) {
+            event.preventDefault();
+            creditsButton.click();
+        }
+    });
+
+    const links = document.querySelectorAll(
+        " .credits-popup a",
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    links.forEach((link) => {
+        link.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Escape" &&
+                creditsButton.getAttribute("aria-expanded") === "true"
+            ) {
+                event.preventDefault();
+                creditsButton.click();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,121 @@
+---
+import "../global.js";
+
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.svg" />
+        <title>Not Found | Anh Tuan Le (@Leleat)"</title>
+    </head>
+    <body>
+        <main class="main">
+            <h1>
+                <span class="four-o-four">404</span>
+                <span class="not-found">Not Found</span>
+            </h1>
+            <div class="error">
+                <p>
+                    Path <button
+                        type="button"
+                        id="copy-path-error-button"
+                        disabled
+                    >
+                        (<code>{path}</code>)
+                    </button> not found.
+                </p>
+                <p>
+                    Please report this issue on
+                    <a href="https://github.com/Leleat/leleat.github.io/issues">
+                        GitHub</a
+                    >, if you think it is a bug.
+                </p>
+            </div>
+            <a href="/">Go to home page</a>
+        </main>
+    </body>
+</html>
+
+<style>
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .error {
+        color: var(--color-text-dim);
+        border-radius: 0.75rem;
+        padding: 0.25rem 1.5rem;
+        margin: 1rem;
+        max-width: 24rem;
+    }
+
+    button {
+        margin-inline-end: 0.25rem;
+        white-space: nowrap;
+
+        & code::after {
+            content: " 📋";
+        }
+
+        &.code-copied code::after {
+            content: " ✅";
+        }
+
+        &[disabled] {
+            pointer-events: none;
+            user-select: text;
+
+            & code::after {
+                content: "";
+            }
+        }
+    }
+
+    h1 {
+        border: 2px dashed var(--color-text-dark);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .four-o-four,
+    .not-found {
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+
+    .four-o-four {
+        color: var(--color-rose);
+    }
+</style>
+
+<script>
+    const button = document.getElementById("copy-path-error-button");
+
+    if (!button) {
+        throw new Error("copy-path-error-button not found.");
+    }
+
+    let timeout = 0;
+
+    button.removeAttribute("disabled");
+    button.addEventListener("click", () => {
+        navigator.clipboard.writeText(location.href);
+
+        clearTimeout(timeout);
+        button.classList.add("code-copied");
+
+        timeout = setTimeout(() => {
+            timeout = 0;
+            button.classList.remove("code-copied");
+        }, 1000);
+    });
+</script>

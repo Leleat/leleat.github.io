@@ -1,0 +1,44 @@
+---
+import PostCard from "../../../components/blog/PostCard.astro";
+import BlogBaseLayout from "../../../layouts/BlogBaseLayout.astro";
+import { getPublicPostsWithNewestFirst, getTagData } from "../../../global.js";
+
+export async function getStaticPaths() {
+    const publicPosts = getPublicPostsWithNewestFirst();
+    const tags = [
+        ...new Set(publicPosts.flatMap((post: any) => post.frontmatter.tags)),
+    ].map((tag) => getTagData(tag));
+
+    return tags.map((tag) => {
+        const filteredPosts = publicPosts.filter((post: any) =>
+            post.frontmatter.tags.includes(tag.raw),
+        );
+
+        return {
+            params: { tag: tag.slug },
+            props: {
+                posts: filteredPosts,
+                rawTag: tag.raw,
+                tagDescription: tag.description,
+            },
+        };
+    });
+}
+
+const { posts, rawTag, tagDescription } = Astro.props;
+---
+
+<BlogBaseLayout title={`Posts tagged with ${rawTag} | Anh Tuan Le (@Leleat)`}>
+    <h1 aria-describedby={tagDescription ? `tag-description` : undefined}>
+        Posts tagged with <code>{rawTag}</code>
+    </h1>
+    {tagDescription && <p id="tag-description">{tagDescription}</p>}
+    {posts.map((post) => <PostCard {post} />)}
+</BlogBaseLayout>
+
+<style>
+    p {
+        color: var(--color-text-dim);
+        margin-block: 0.5rem;
+    }
+</style>

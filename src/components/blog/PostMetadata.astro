@@ -1,0 +1,56 @@
+---
+interface Props {
+    pubDate: string;
+    editDate?: string;
+    author: string;
+    class: string;
+}
+
+const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
+---
+
+<div class={className} {...rest}>
+    <div class="dates">
+        <dl>
+            <dt>Published</dt>
+            <dd>
+                {new Date(pubDate).toLocaleDateString()}
+            </dd>
+        </dl>
+        {
+            editDate && (
+                <dl>
+                    <dt>Edited</dt>
+                    <dd>{new Date(editDate).toLocaleDateString()}</dd>
+                </dl>
+            )
+        }
+    </div>
+    <dl class="author">
+        <dt>By</dt>
+        <dd>{author}</dd>
+    </dl>
+</div>
+
+<style>
+    dl {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--color-text-dim);
+    }
+
+    dd {
+        font-weight: bold;
+        color: var(--color-text);
+    }
+
+    .dates {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .author {
+        margin-block-start: 0.5rem;
+    }
+</style>

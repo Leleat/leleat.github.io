@@ -1,0 +1,97 @@
+---
+import "../../global.js";
+
+const { prevPost, nextPost } = Astro.props;
+---
+
+<div class="post-buttons">
+    {
+        prevPost ?
+            <a class="prev-post-button" href={prevPost.url}>
+                <div class="prev-label">Previous</div>
+                <div>{prevPost.frontmatter.title}</div>
+            </a>
+        :   null
+    }
+    {
+        nextPost ?
+            <a class="next-post-button" href={nextPost.url}>
+                <div class="next-label">Next</div>
+                <div>{nextPost.frontmatter.title}</div>
+            </a>
+        :   null
+    }
+</div>
+
+<style>
+    .prev-label::before {
+        content: "⮜";
+        margin-inline-end: 0.75rem;
+    }
+
+    .next-label::after {
+        content: "⮞";
+        margin-inline-start: 0.75rem;
+    }
+
+    .post-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .prev-post-button,
+    .next-post-button {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        font-weight: 600;
+        background-color: var(--color-background-button);
+        border: 1px solid var(--color-background-button);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        color: var(--color-text);
+        text-decoration: none;
+        cursor: default;
+
+        & :nth-child(2) {
+            font-weight: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &:hover {
+            color: var(--color-yellow);
+            border: 1px solid var(--color-yellow);
+            background-color: transparent;
+
+            & :nth-child(2) {
+                color: var(--color-yellow);
+            }
+        }
+    }
+
+    .next-post-button {
+        align-items: end;
+        text-align: right;
+    }
+
+    @media (min-width: 80rem) {
+        .post-buttons {
+            flex-direction: row;
+        }
+
+        .prev-post-button,
+        .next-post-button {
+            flex: 1 0 0;
+            max-width: 50%;
+        }
+
+        .next-post-button {
+            margin-inline-start: auto;
+        }
+    }
+</style>

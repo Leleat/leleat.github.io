@@ -1,0 +1,69 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Sidebar from "../components/blog/Sidebar.astro";
+import "../global.js";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={`Lele's blog. ${title}`} />
+        <link rel="icon" href="/favicon.svg" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={title}
+            href={new URL("rss.xml", Astro.site)}
+        />
+        <title>{title}</title>
+    </head>
+    <body>
+        <Navbar />
+        <div class="content">
+            <Sidebar />
+            <main class="main">
+                <slot />
+            </main>
+            <slot name="right-sidebar" />
+        </div>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    .content {
+        display: grid;
+        gap: 3.25rem;
+        justify-items: center;
+        min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0 auto;
+        padding: var(--content-vpadding) var(--content-hpadding);
+        width: 100%;
+        max-width: var(--max-width-post-content);
+        overflow-x: auto;
+    }
+
+    @media (min-width: 80rem) {
+        .content {
+            grid-template-columns: 15rem 1fr 15rem;
+        }
+
+        .main {
+            padding: var(--content-vpadding)
+                calc(var(--focus-outline-size) + var(--focus-outline-offset));
+        }
+    }
+</style>

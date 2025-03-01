@@ -1,0 +1,136 @@
+---
+import Footer from "../components/Footer.astro";
+import ContactDetails from "../components/home/ContactDetails.astro";
+import BackToTopButton from "../components/home/BackToTopButton.astro";
+import Hero from "../components/home/Hero.astro";
+import ProjectShowcase from "../components/home/ProjectShowcase.astro";
+import SkillSet from "../components/home/SkillSet.astro";
+import Vita from "../components/home/Vita.astro";
+import Navbar from "../components/Navbar.astro";
+import "../global.js";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Lele's personal website" />
+        <link rel="icon" href="/favicon.svg" />
+        <title>Anh Tuan Le (@Leleat)</title>
+    </head>
+    <body>
+        <Navbar id="navbar" />
+        <main class="main">
+            <Hero class="hero-section" />
+            <ContactDetails class="contact-details-section" />
+            <SkillSet />
+            <ProjectShowcase />
+            <Vita />
+            <BackToTopButton />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    :root {
+        background: linear-gradient(
+            180deg,
+            oklch(from var(--color-background) calc(l - 0.05) c h) 0%,
+            var(--color-background) 100vh
+        );
+    }
+
+    #navbar {
+        border-block-end: none;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        height: 100%;
+        margin: 0 auto;
+        padding: var(--content-vpadding) var(--content-hpadding);
+        width: 100%;
+        min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+    }
+
+    @keyframes slide-down {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-up {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: 40rem) {
+        .main {
+            max-width: var(--max-width-post-content);
+        }
+    }
+
+    @media (min-width: 80rem) {
+        .main {
+            max-width: var(--max-width);
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .borderless-navbar {
+            animation: slide-down 0.2s ease-out both;
+        }
+
+        .hero-section {
+            animation: slide-up 0.3s ease-out both;
+        }
+
+        .contact-details-section {
+            animation: slide-up 0.45s ease-out both;
+        }
+    }
+</style>
+
+<script>
+    if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+        const items = document.querySelectorAll(
+            "main .animate-on-scroll",
+        ) as NodeListOf<HTMLElement>;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("reveal-on-scroll");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.6,
+            },
+        );
+
+        items.forEach((item) => {
+            item.style.opacity = "0";
+            observer.observe(item);
+        });
+    }
+</script>

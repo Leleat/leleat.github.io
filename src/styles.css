@@ -1,0 +1,226 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+:root {
+    --color-background: #181719;
+    --color-background-button: #252525;
+    --color-rose: #d0316e;
+    --color-yellow: #ffee6c;
+    --color-text: #ddd;
+    --color-text-dark: #333;
+    --color-text-dim: #9d9d97;
+    --focus-outline-size: 3px;
+    --focus-outline-offset: 2px;
+    --max-width: 80rem;
+    --max-width-post-content: 90ch;
+    --navbar-height: 3.875rem;
+    --footer-height: 3.75rem;
+    --content-hpadding: 1.5rem;
+    --content-vpadding: 3.75rem;
+
+    background-color: var(--color-background);
+    color: var(--color-text);
+
+    & :focus-visible {
+        outline: var(--focus-outline-size) solid var(--color-rose);
+        outline-offset: var(--focus-outline-offset);
+    }
+}
+
+a {
+    color: var(--color-yellow);
+    text-decoration: dotted underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+:not(pre.astro-code) > code {
+    font-family: 'Fira Code', monospace;
+    color: #ff498f;
+    background-color: #30252a;
+    padding: 0 0.25rem;
+    margin: 0 0.125rem;
+    border-radius: 0.25rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-block-end: 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-block-start: 1.5rem;
+    margin-block-end: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-block-start: 1.5rem;
+    margin-block-end: 1rem;
+}
+
+h4, h5, h6 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-block-start: 1.5rem;
+    margin-block-end: 1rem;
+}
+
+h1:has( > a),
+h2:has( > a),
+h3:has( > a),
+h4:has( > a),
+h5:has( > a),
+h6:has( > a) {
+    position: relative;
+
+    & > a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover::after {
+            content: '#';
+            margin-inline-start: 1ch;
+            color: oklch(from currentColor calc(l - 0.45) c h);
+        }
+    }
+}
+
+ul > li {
+    list-style-type: "‣  ";
+    margin-inline-start: 1rem;
+}
+
+ol > li {
+    margin-inline-start: 1rem;
+}
+
+p {
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+}
+
+pre.astro-code {
+    margin: 1rem 0;
+    counter-reset: step;
+    position: relative;
+    max-height: 85vh;
+
+    & > code {
+        padding: 1rem;
+        display: block;
+    }
+
+    & > code .line::before {
+        display: inline-block;
+        color: #555;
+        content: counter(step);
+        counter-increment: step;
+        width: 3ch;
+        margin-inline-end: 2ch;
+        text-align: right;
+    }
+
+    & .code-copy-button {
+        position: sticky;
+        top: 0;
+        left: 0;
+        padding: 0.75rem;
+        width: 100%;
+        background-color: inherit;
+        border-block-start: 3px solid transparent;
+        border-inline-start: 3px solid transparent;
+        border-inline-end: 3px solid transparent;
+        border-block-end: 2px solid var(--color-text-dark);
+        color: var(--color-text);
+        font-weight: 600;
+
+        &::before {
+            content: '📋';
+            margin-inline-end: 0.5rem;
+        }
+
+        &::after {
+            content: 'Copy';
+        }
+
+        &:focus-visible {
+            outline: none;
+            border-color: var(--color-rose);
+        }
+
+        &:hover {
+            background-color: var(--color-text-dark);
+        }
+
+        &[disabled] {
+            color: oklch(from var(--color-text) calc(l - 0.5) c h);
+            pointer-events: none;
+
+            &::before {
+                content: "❌";
+                opacity: 0.4;
+            }
+
+            &::after {
+                content: 'Copy button requires JavaScript';
+            }
+        }
+
+        &.code-copied {
+            &::before {
+                content: '✅';
+            }
+
+            &::after {
+                content: 'Copied';
+            }
+        }
+    }
+}
+
+:where(main ol, main ul) {
+    margin-block: 1rem;
+    padding-inline-start: 2rem;
+}
+
+@keyframes reveal-from-side {
+    0% {
+        opacity: 0;
+        transform: translateX(var(--reveal-from-side-offset, 3rem));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        scroll-behavior: smooth;
+    }
+}

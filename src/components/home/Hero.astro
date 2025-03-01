@@ -1,0 +1,138 @@
+---
+import "../../global.js";
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<section class={className} {...rest}>
+    <h1 class="title">Anh Tuan Le<div class="background-gradient"></div></h1>
+    <p>
+        I'm a (web) developer based in <b>Berlin</b> with a love for open-source
+        software. Explore my <a href="/#showcase" class="hash-link">Projects</a
+        >, discover my <a href="/#skills" class="hash-link">Skills</a>, or check
+        out my code and contributions on <a
+            href="https://github.com/leleat"
+            target="_blank"
+            rel="noreferrer">GitHub</a
+        >. If you'd like to know more about me, check out my still-pretty-short <a
+            href="/#vita"
+            class="hash-link">Vita</a
+        >.
+    </p>
+</section>
+
+<style>
+    @keyframes breathe {
+        0% {
+            transform: scale(1.1);
+            opacity: 0.3;
+        }
+
+        50% {
+            transform: scale(0.7);
+            opacity: 0.6;
+        }
+
+        100% {
+            transform: scale(1.1);
+            opacity: 0.3;
+        }
+    }
+
+    a.hash-link {
+        color: var(--color-yellow);
+
+        &::before {
+            content: "#";
+        }
+    }
+
+    h1 + p {
+        text-align: justify;
+        max-width: 80ch;
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        min-height: calc(
+            100vh - var(--navbar-height) - var(--content-vpadding) * 2
+        );
+    }
+
+    .background-gradient {
+        --bg-size: 32rem;
+
+        content: "";
+        position: absolute;
+        display: block;
+        z-index: -100;
+        top: calc(-1 * var(--bg-size) / 2 + 150px);
+        left: calc(-1 * var(--bg-size) / 2 + 50% + 50px);
+        width: var(--bg-size);
+        height: var(--bg-size);
+        filter: blur(99px);
+        opacity: 0.3;
+        background: conic-gradient(#e95f5f, #181719, #8b56d9);
+    }
+
+    .title {
+        position: relative;
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--color-background);
+        margin-block-start: 2rem;
+        margin-block-end: 2rem;
+        width: fit-content;
+    }
+
+    .title::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 120%;
+        height: 110%;
+        top: -22%;
+        left: -10%;
+        background-color: var(--color-yellow);
+        margin: 0.75rem auto;
+        z-index: -1;
+        box-shadow: 0 0 3rem var(--color-rose);
+    }
+
+    @media (min-width: 60rem) {
+        .title::after {
+            transform: skewY(-2deg) skewX(-25deg);
+        }
+
+        section {
+            /* HACK: 21rem is roughly the size of the Contact Details element */
+            min-height: calc(
+                100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
+                    21rem
+            );
+        }
+    }
+
+    @media (min-width: 80rem) {
+        .title::after {
+            transform: skewY(-2deg) skewX(-25deg);
+        }
+
+        section {
+            /* HACK: 18rem is roughly the size of the Contact Details element */
+            min-height: calc(
+                100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
+                    18rem
+            );
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .background-gradient {
+            animation: 4s linear 0.5s infinite breathe both;
+        }
+    }
+</style>

@@ -1,0 +1,83 @@
+---
+import { getTagData } from "../../global.js";
+
+interface Props {
+    tags: string[];
+    class: string;
+}
+
+const { tags, class: className, ...rest } = Astro.props;
+---
+
+<section class={className} {...rest}>
+    <!-- https://icons.getbootstrap.com/icons/tags-fill/ -->
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+    >
+        <path
+            d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"
+        >
+        </path>
+        <path
+            d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043z"
+        >
+        </path>
+    </svg>
+    <span class={tags.length > 0 ? "tags" : "no-tags"}>
+        {
+            tags.length > 0 ?
+                tags
+                    .toSorted()
+                    .map((tag) => (
+                        <a href={`/blog/tags/${getTagData(tag).slug}/`}>
+                            {tag}
+                        </a>
+                    ))
+            :   "Post has no tags"
+        }
+    </span>
+</section>
+
+<style>
+    section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    svg {
+        fill: var(--color-text-dim);
+        min-width: 1rem;
+        min-height: 1rem;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        & a {
+            color: var(--color-text-dim);
+            border: 1px solid var(--color-text-dim);
+            border-radius: 0.5rem;
+            font-size: smaller;
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            cursor: default;
+
+            &:hover {
+                color: var(--color-yellow);
+                border: 1px solid var(--color-yellow);
+            }
+        }
+    }
+
+    .no-tags {
+        color: var(--color-text-dim);
+        font-weight: bold;
+        font-size: smaller;
+    }
+</style>

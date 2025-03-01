@@ -1,0 +1,110 @@
+---
+import "../../global.js";
+---
+
+<section>
+    <a href="#" aria-label="Go to top">
+        <!-- https://icons.getbootstrap.com/icons/chevron-up/ -->
+        <svg
+            class="button-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+        >
+            <path
+                fill-rule="evenodd"
+                d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
+            ></path>
+        </svg>
+        <div class="button-bg"></div>
+    </a>
+</section>
+
+<style>
+    @keyframes bounce {
+        0% {
+            transform: scale(1) translateY(0);
+        }
+
+        10% {
+            transform: scale(1.2, 0.6);
+        }
+
+        40% {
+            transform: scale(0.8, 1.1)
+                translateY(
+                    calc(-1 * var(--back-to-top-button-bouncing-distance))
+                );
+        }
+
+        80% {
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @keyframes bounce-light {
+        0% {
+            transform: scale(1) translateY(0);
+        }
+
+        10% {
+            transform: scale(1.2, 0.6);
+        }
+
+        40% {
+            transform: scale(0.8, 1.1)
+                translateY(
+                    calc(-1 * var(--back-to-top-button-bouncing-distance))
+                );
+        }
+
+        80% {
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        margin-block-start: 4rem;
+    }
+
+    a {
+        border-radius: calc(infinity * 1px);
+        position: relative;
+    }
+
+    a .button-icon {
+        position: absolute;
+        top: calc(50% - 8px);
+        left: calc(50% - 8px);
+        fill: var(--color-text);
+        z-index: 1;
+    }
+
+    .button-bg {
+        color: var(--color-text);
+        border-radius: calc(infinity * 1px);
+        background-color: var(--color-background-button);
+        height: 3rem;
+        width: 3rem;
+        box-shadow: 0 1px 0.25rem rgba(0, 0, 0, 0.1);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        a:hover .button-icon {
+            --back-to-top-button-bouncing-distance: 1.2rem;
+
+            animation: bounce-light 1s infinite;
+        }
+
+        a:hover .button-bg {
+            --back-to-top-button-bouncing-distance: 1.5rem;
+
+            animation: bounce 1s 0.1s infinite;
+        }
+    }
+</style>

@@ -1,0 +1,160 @@
+---
+import "../../global.js";
+---
+
+<section>
+    <h2 id="vita"><a href="#vita">Vita</a></h2>
+    <ul class="timeline">
+        <li class="timeline-item animate-on-scroll">
+            <h3 class="timeline-item-title">
+                <span class="timeline-item-date">04/2024</span> Technical Tax Office
+                Berlin
+            </h3>
+            <span class="timeline-item-body"
+                ><p>
+                    After completing my studies, I joined the Technical Tax
+                    Office (TFA) Berlin, where I was responsible for the
+                    development and maintenance of internal websites. During
+                    this time, I gained hands-on experience in frontend
+                    development with Vue.js and TailwindCSS, as well as backend
+                    development using Node.js, Express, and SQLite.
+                    Additionally, we started to switch to React for our
+                    projects, broadening my technical expertise even further.
+                </p></span
+            >
+        </li>
+        <li class="timeline-item animate-on-scroll">
+            <h3 class="timeline-item-title">
+                <span class="timeline-item-date">03/2024</span> Bachelor's Degree
+                at HWR Berlin
+            </h3>
+            <span class="timeline-item-body"
+                ><p>
+                    In March 2024, I completed my degree in Administrative
+                    Informatics at the HWR Berlin, graduating as the top of my
+                    class with honors. This achievement earned me the
+                    <a
+                        href="https://www.hwr-berlin.de/hwr-berlin/fachbereiche-und-bps/fb-3-allgemeine-verwaltung/studieren-am-fachbereich/auszeichnungen#:~:text=Anh%20Tuan%20Le"
+                        target="_blank"
+                        rel="noreferrer">Margrit-Falck Memorial Award</a
+                    >, which recognizes outstanding academic performance.
+                </p><p>
+                    Alongside my studies, I actively participated in the
+                    open-source software community, gaining valuable practical
+                    experience. I primarily focused on developing GNOME
+                    extensions, with my most successful project being <a
+                        href="https://github.com/Leleat/Tiling-Assistant"
+                        target="_blank"
+                        rel="noreferrer">Tiling Assistant</a
+                    >. This extension has garnered significant attention and is
+                    even included by default in Ubuntu.
+                </p></span
+            >
+        </li>
+        <li class="timeline-item animate-on-scroll">
+            <h3 class="timeline-item-title">
+                <span class="timeline-item-date">09/2015</span> Apprenticeship and
+                employment as a tax accountant assistant
+            </h3>
+            <span class="timeline-item-body">
+                The apprenticeship I completed at the tax consultancy firm of
+                Mrs. Anka Anders in Mannheim. After the apprenticeship, I was
+                employed at her office for some time before I decided to move
+                back to my hometown, Magdeburg, where I also worked as a tax
+                accountant assistant. Eventually, I decided to pursue a degree
+                in Administrative Informatics at the HWR Berlin since my passion
+                for technology was still going strong.
+            </span>
+        </li>
+        <li class="timeline-item animate-on-scroll">
+            <h3 class="timeline-item-title">
+                <span class="timeline-item-date">10/2012</span> Computer Science
+                Studies
+            </h3>
+            <span class="timeline-item-body">
+                After finishing school, I started studying computer science at
+                the Otto-von-Guericke University in Magdeburg because computers
+                always fascinated me. However, I didn't complete my studies
+                there, as I was too young, too inexperienced, and too lazy. The
+                studies were too theoretical for me. So I decided switch to
+                something more practical and started an apprenticeship as a tax
+                accountant assistant.
+            </span>
+        </li>
+    </ul>
+</section>
+
+<style>
+    .timeline {
+        --timeline-width: 2px;
+        --timeline-padding-inline-start: 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        padding-block: 3rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: var(--timeline-width);
+            background-color: var(--color-text-dark);
+            top: 0;
+            bottom: 0;
+            left: var(--timeline-padding-inline-start);
+            mask: linear-gradient(
+                to bottom,
+                transparent 0%,
+                black 4rem,
+                black calc(100% - 4rem),
+                transparent 100%
+            );
+            z-index: -1;
+        }
+    }
+
+    .timeline-item {
+        list-style-type: none;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        margin-inline-start: calc(2rem + var(--timeline-padding-inline-start));
+    }
+
+    .timeline-item-date {
+        color: var(--color-rose);
+    }
+
+    .timeline-item-title {
+        position: sticky;
+        top: 0;
+        padding-block: 0.5rem;
+        margin-block: 0;
+        background-color: var(--color-background);
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            background-color: var(--color-text);
+            border-radius: 50%;
+            outline: 0.75rem solid var(--color-background);
+            top: 1.25rem;
+            left: -2.25rem;
+        }
+    }
+
+    .reveal-on-scroll {
+        animation: reveal-from-side 0.3s ease-out forwards;
+    }
+
+    @media (min-width: 80rem) {
+        .timeline {
+            --timeline-padding-inline-start: 1.5rem;
+        }
+    }
+</style>

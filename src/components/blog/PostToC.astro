@@ -1,0 +1,113 @@
+---
+interface Props {
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+---
+
+<aside>
+    <h3>On This Page</h3>
+    <div class="content" role="list">
+        {
+            headings.map(({ slug, text }) => (
+                <a class="toc-item" href={`#${slug}`} role="listitem">
+                    {text}
+                </a>
+            ))
+        }
+    </div>
+</aside>
+
+<script>
+    const tocItems = Array.from(document.querySelectorAll(".toc-item"));
+    const observer = new IntersectionObserver((entries) => {
+        const visibleHeadings = entries.filter((e) => e.isIntersecting);
+
+        if (visibleHeadings.length > 0) {
+            tocItems.forEach((item) => item.classList.remove("active"));
+
+            const tocItem = tocItems.find((item) =>
+                visibleHeadings.some(
+                    (h) => item.getAttribute("href") === `#${h.target.id}`,
+                ),
+            );
+
+            tocItem!.classList.add("active");
+        }
+    });
+
+    const headings = document.querySelectorAll(
+        "main h2, main h3, main h4, main h5, main h6",
+    );
+
+    headings.forEach((h) => observer.observe(h));
+</script>
+
+<style>
+    aside {
+        display: none;
+    }
+
+    @media (min-width: 80rem) {
+        * {
+            --toc-hpadding: 2rem;
+            --toc-itemspacing: 1.125rem;
+
+            margin: 0;
+            font-size: small;
+        }
+
+        aside {
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 2.25rem;
+            height: fit-content;
+            max-width: 100%;
+            padding: var(--content-vpadding) 0;
+        }
+
+        h3 {
+            color: oklch(from var(--color-text) calc(l - 0.25) c h);
+            text-transform: uppercase;
+            padding-inline-start: var(--toc-hpadding);
+            margin-block-end: calc(var(--toc-itemspacing) * 1.5);
+        }
+
+        .content {
+            border-inline-start: 1px solid var(--color-text-dark);
+            display: flex;
+            flex-direction: column;
+            gap: var(--toc-itemspacing);
+            padding-inline-start: var(--toc-hpadding);
+        }
+
+        .toc-item {
+            color: var(--color-text);
+            text-decoration: none;
+            position: relative;
+
+            &:hover {
+                color: var(--color-yellow);
+
+                &::before {
+                    content: "#";
+                    position: absolute;
+                    left: calc(-1 * var(--toc-hpadding) / 2);
+                }
+            }
+
+            &.active::after {
+                content: "";
+                background-color: var(--color-yellow);
+                border-radius: calc(infinity * 1px);
+                position: absolute;
+                top: -25%;
+                left: calc(-2rem - 2px);
+                width: 3px;
+                height: 150%;
+            }
+        }
+    }
+</style>

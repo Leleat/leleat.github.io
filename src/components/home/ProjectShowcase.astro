@@ -1,0 +1,254 @@
+---
+import ConstructionIcon from "./ProjectShowcaseConstructionIcon.astro";
+import "../../global.js";
+---
+
+<section class="animate-on-scroll">
+    <h2 id="showcase"><a href="#showcase">Project Showcase</a></h2>
+    <p>
+        Here's a collection of some of my favorite projects I am or have been
+        working on. From fun experiments to things I'm actually using right now.
+    </p>
+    <div class="view-switcher" role="tablist" aria-labelledby="showcase">
+        <label role="tab" aria-selected="true">
+            <input type="radio" name="tabs" value="web" checked />Web
+        </label>
+        <label role="tab">
+            <input type="radio" name="tabs" value="ext" />GNOME Extensions
+        </label>
+        <label role="tab">
+            <input type="radio" name="tabs" value="misc" />Misc
+        </label>
+    </div>
+    <div class="select-container">
+        <select
+            aria-controls="showcase-content"
+            aria-labelledby="showcase"
+            role="tablist"
+        >
+            <option role="tab" value="web">Web</option>
+            <option role="tab" value="ext">GNOME Extensions</option>
+            <option role="tab" value="misc">Miscellaneous</option>
+        </select>
+    </div>
+    <div id="showcase-content">
+        <div class="showcase-project showcase-web" role="tabpanel">
+            <ConstructionIcon />
+            <p>
+                I am still working on making this showcase look good... for now
+                I can only showcase is this very <a
+                    href="https://github.com/Leleat/leleat.github.io">website</a
+                >. It's build with Astro as a SSG and written (almost)
+                exclusively with HTML and CSS while being fully responsive with
+                a lot of animations and functionality! Try disabling JavaScript
+                and see if you can spot the difference. Spoiler: you'll probably
+                have a hard time without looking at the code 🙃.
+            </p>
+        </div>
+        <div class="showcase-project showcase-ext" role="tabpanel">
+            <ConstructionIcon /><p>
+                Fancy presentation coming soon... for now just checkout my
+                GitHub repos. <a
+                    href="https://github.com/Leleat/Tiling-Assistant"
+                    target="_blank"
+                    rel="noreferer">Tiling Assistant</a
+                > is a popular extension that adds advanced tiling features to the
+                GNOME desktop environment similiar to Windows. <a
+                    href="https://github.com/Leleat/floating-scroll"
+                    target="_blank"
+                    rel="noreferer">Floating Scroll</a
+                > implements an innovative window management concept (although, it
+                is still not in a every-day-usable state).
+            </p>
+        </div>
+        <div class="showcase-project showcase-misc" role="tabpanel">
+            <ConstructionIcon /><p>
+                Some interesting ideas for apps I had can be found at my <a
+                    href="/blog/tags/concept">blog (tags/concept)</a
+                >
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    h2 + p {
+        text-align: justify;
+    }
+
+    section {
+        --showcase-border-radius: 0.5rem;
+        --showcase-border-color: var(--color-text-dark);
+        --showcase-background-color: var(--color-background);
+    }
+
+    .view-switcher {
+        display: none;
+        gap: 2rem;
+        justify-content: center;
+        background-color: var(--showcase-background-color);
+        border: 1px solid var(--showcase-border-color);
+        border-start-start-radius: var(--showcase-border-radius);
+        border-start-end-radius: var(--showcase-border-radius);
+        font-weight: bold;
+        font-size: smaller;
+        padding: 0.5rem 0;
+        margin-block-start: 2rem;
+
+        & input[type="radio"] {
+            display: none;
+        }
+
+        & label {
+            padding: 0.25rem 1.25rem;
+            border-radius: calc(infinity * 1px);
+            color: var(--color-text-dim);
+        }
+
+        & label:hover {
+            background-color: oklch(
+                from var(--showcase-background-color) calc(l + 0.08) c h
+            );
+        }
+
+        & label:has(input:checked) {
+            color: var(--color-text);
+            background-color: oklch(from white l c h / 0.1);
+        }
+    }
+
+    select {
+        appearance: none;
+        background-color: var(--showcase-background-color);
+        border: 1px solid var(--showcase-border-color);
+        border-start-start-radius: var(--showcase-border-radius);
+        border-start-end-radius: var(--showcase-border-radius);
+        color: var(--color-text);
+        padding: 0.75rem 1rem;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+
+        &:hover {
+            background-color: oklch(
+                from var(--showcase-background-color) calc(l + 0.05) c h
+            );
+        }
+    }
+
+    .select-container {
+        position: relative;
+        margin-block-start: 2rem;
+
+        &::after {
+            --size: 6px;
+
+            position: absolute;
+            content: "";
+            top: calc(50% - var(--size) / 2);
+            right: 1.25rem;
+            border: var(--size) solid transparent;
+            border-color: var(--color-text) transparent transparent transparent;
+        }
+    }
+
+    .select-container:has(option[value="web"]:checked)
+        ~ #showcase-content
+        > .showcase-web,
+    .select-container:has(option[value="ext"]:checked)
+        ~ #showcase-content
+        > .showcase-ext,
+    .select-container:has(option[value="misc"]:checked)
+        ~ #showcase-content
+        > .showcase-misc {
+        display: flex;
+    }
+
+    #showcase-content {
+        width: 100%;
+        background-color: var(--showcase-background-color);
+        border: 1px solid var(--showcase-border-color);
+        border-block-start: none;
+        border-end-start-radius: var(--showcase-border-radius);
+        border-end-end-radius: var(--showcase-border-radius);
+        min-height: 500px;
+    }
+
+    #showcase-content > * {
+        display: none;
+    }
+
+    .showcase-project {
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        height: 100%;
+
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .showcase-project p {
+        max-width: 80ch;
+        text-align: justify;
+    }
+
+    .reveal-on-scroll {
+        --reveal-from-side-offset: -3rem;
+
+        animation: reveal-from-side 0.3s ease-out forwards;
+    }
+
+    @media (min-width: 60rem) {
+        .select-container,
+        .select-container:has(option[value="web"]:checked)
+            ~ #showcase-content
+            > .showcase-web,
+        .select-container:has(option[value="ext"]:checked)
+            ~ #showcase-content
+            > .showcase-ext,
+        .select-container:has(option[value="misc"]:checked)
+            ~ #showcase-content
+            > .showcase-misc {
+            display: none;
+        }
+
+        .view-switcher {
+            display: flex;
+        }
+
+        .view-switcher:has(input[value="web"]:checked)
+            ~ #showcase-content
+            > .showcase-web,
+        .view-switcher:has(input[value="ext"]:checked)
+            ~ #showcase-content
+            > .showcase-ext,
+        .view-switcher:has(input[value="misc"]:checked)
+            ~ #showcase-content
+            > .showcase-misc {
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    const labels = document.querySelectorAll(
+        ".view-switcher > label",
+    ) as NodeListOf<HTMLLabelElement>;
+
+    labels.forEach((label) => {
+        const radio = label.firstElementChild as HTMLInputElement;
+
+        radio.addEventListener("change", (event: Event) => {
+            labels.forEach((label) => {
+                if (
+                    label === (event.target as HTMLInputElement).parentElement
+                ) {
+                    label.setAttribute("aria-selected", "true");
+                } else {
+                    label.setAttribute("aria-selected", "false");
+                }
+            });
+        });
+    });
+</script>
