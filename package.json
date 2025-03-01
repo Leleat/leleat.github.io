@@ -4,6 +4,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "check:lint": "eslint --no-error-on-unmatched-pattern src",
+    "check:format": "prettier --check --no-error-on-unmatched-pattern src",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

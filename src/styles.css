@@ -4,7 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     line-height: 1.5;
 }
 
@@ -54,7 +54,7 @@ button {
 }
 
 :not(pre.astro-code) > code {
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     color: #ff498f;
     background-color: #30252a;
     padding: 0 0.25rem;
@@ -82,19 +82,21 @@ h3 {
     margin-block-end: 1rem;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
     font-size: 1.25rem;
     font-weight: 600;
     margin-block-start: 1.5rem;
     margin-block-end: 1rem;
 }
 
-h1:has( > a),
-h2:has( > a),
-h3:has( > a),
-h4:has( > a),
-h5:has( > a),
-h6:has( > a) {
+h1:has(> a),
+h2:has(> a),
+h3:has(> a),
+h4:has(> a),
+h5:has(> a),
+h6:has(> a) {
     position: relative;
 
     & > a {
@@ -102,7 +104,7 @@ h6:has( > a) {
         text-decoration: none;
 
         &:hover::after {
-            content: '#';
+            content: "#";
             margin-inline-start: 1ch;
             color: oklch(from currentColor calc(l - 0.45) c h);
         }
@@ -159,12 +161,12 @@ pre.astro-code {
         font-weight: 600;
 
         &::before {
-            content: '📋';
+            content: "📋";
             margin-inline-end: 0.5rem;
         }
 
         &::after {
-            content: 'Copy';
+            content: "Copy";
         }
 
         &:focus-visible {
@@ -186,17 +188,17 @@ pre.astro-code {
             }
 
             &::after {
-                content: 'Copy button requires JavaScript';
+                content: "Copy button requires JavaScript";
             }
         }
 
         &.code-copied {
             &::before {
-                content: '✅';
+                content: "✅";
             }
 
             &::after {
-                content: 'Copied';
+                content: "Copied";
             }
         }
     }
