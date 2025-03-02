@@ -49,6 +49,26 @@ a {
     }
 }
 
+blockquote {
+    color: var(--color-text-dim);
+    background-color: var(--color-background-button);
+    margin-block: 1rem;
+    padding-inline-start: 3.25rem;
+    padding-inline-end: 1.5rem;
+    border-radius: 0.5rem;
+    padding-block: 0.75rem;
+    position: relative;
+}
+
+blockquote::before {
+    content: "“";
+    position: absolute;
+    color: var(--color-text);
+    font-size: 3rem;
+    top: 0.85rem;
+    left: 1.25rem;
+}
+
 button {
     border: none;
     background-color: transparent;
