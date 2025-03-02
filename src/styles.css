@@ -29,6 +29,7 @@
     --footer-height: 3.75rem;
     --content-hpadding: 1.5rem;
     --content-vpadding: 3.75rem;
+    view-transition-name: none;
 
     background-color: var(--color-background);
     color: var(--color-text);
