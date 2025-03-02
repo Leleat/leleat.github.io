@@ -137,6 +137,15 @@ h6:has(> a) {
     }
 }
 
+main img {
+    width: 100%;
+    max-height: 50rem;
+    object-fit: contain;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-background-button);
+}
+
 ul > li {
     list-style-type: "‣  ";
     margin-inline-start: 1rem;
