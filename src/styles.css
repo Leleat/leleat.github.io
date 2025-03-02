@@ -6,6 +6,11 @@
     padding: 0;
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     line-height: 1.5;
+
+    &::selection {
+        color: white;
+        background: #d0316e;
+    }
 }
 
 :root {
