@@ -37,6 +37,10 @@ const { posts, rawTag, tagDescription } = Astro.props;
 </BlogBaseLayout>
 
 <style>
+    @view-transition {
+        navigation: auto;
+    }
+
     p {
         color: var(--color-text-dim);
         margin-block: 0.5rem;

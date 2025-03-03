@@ -9,6 +9,7 @@ const { headings } = Astro.props;
 <aside>
     <h3>On This Page</h3>
     <div class="content" role="list">
+        <div class="toc-item-indicator"></div>
         {
             headings.map(({ slug, text }) => (
                 <a class="toc-item" href={`#${slug}`} role="listitem">
@@ -21,19 +22,27 @@ const { headings } = Astro.props;
 
 <script>
     const tocItems = Array.from(document.querySelectorAll(".toc-item"));
+    const tocItemIndicator = document.querySelector(
+        ".toc-item-indicator",
+    ) as HTMLElement;
+
+    tocItemIndicator.style.opacity = "1";
+
     const observer = new IntersectionObserver((entries) => {
         const visibleHeadings = entries.filter((e) => e.isIntersecting);
 
         if (visibleHeadings.length > 0) {
-            tocItems.forEach((item) => item.classList.remove("active"));
-
             const tocItem = tocItems.find((item) =>
                 visibleHeadings.some(
                     (h) => item.getAttribute("href") === `#${h.target.id}`,
                 ),
-            );
+            ) as HTMLElement;
 
-            tocItem!.classList.add("active");
+            const itemHeight = tocItem.offsetHeight;
+            const offsetTop = tocItem.offsetTop;
+
+            tocItemIndicator.style.transform = `translateY(${offsetTop}px)`;
+            tocItemIndicator.style.height = `${itemHeight}px`;
         }
     });
 
@@ -81,6 +90,7 @@ const { headings } = Astro.props;
             flex-direction: column;
             gap: var(--toc-itemspacing);
             padding-inline-start: var(--toc-hpadding);
+            position: relative;
         }
 
         .toc-item {
@@ -97,17 +107,27 @@ const { headings } = Astro.props;
                     left: calc(-1 * var(--toc-hpadding) / 2);
                 }
             }
+        }
 
-            &.active::after {
-                content: "";
-                background-color: var(--color-yellow);
-                border-radius: calc(infinity * 1px);
-                position: absolute;
-                top: -25%;
-                left: calc(-2rem - 2px);
-                width: 3px;
-                height: 150%;
-            }
+        .toc-item-indicator {
+            --size: 0.2rem;
+
+            position: absolute;
+            background-color: var(--color-yellow);
+            border-radius: calc(infinity * 1px);
+            width: var(--size);
+            top: 0;
+            opacity: 0;
+            left: calc(-1 * var(--size) / 2);
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .toc-item-indicator {
+            transition:
+                opacity 0.2s,
+                transform 0.2s,
+                height 0.2s;
         }
     }
 </style>

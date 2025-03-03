@@ -4,8 +4,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     line-height: 1.5;
+
+    &::selection {
+        color: white;
+        background: #d0316e;
+    }
 }
 
 :root {
@@ -24,6 +29,7 @@
     --footer-height: 3.75rem;
     --content-hpadding: 1.5rem;
     --content-vpadding: 3.75rem;
+    view-transition-name: none;
 
     background-color: var(--color-background);
     color: var(--color-text);
@@ -43,6 +49,26 @@ a {
     }
 }
 
+blockquote {
+    color: var(--color-text-dim);
+    background-color: var(--color-background-button);
+    margin-block: 1rem;
+    padding-inline-start: 3.25rem;
+    padding-inline-end: 1.5rem;
+    border-radius: 0.5rem;
+    padding-block: 0.75rem;
+    position: relative;
+}
+
+blockquote::before {
+    content: "“";
+    position: absolute;
+    color: var(--color-text);
+    font-size: 3rem;
+    top: 0.85rem;
+    left: 1.25rem;
+}
+
 button {
     border: none;
     background-color: transparent;
@@ -54,7 +80,7 @@ button {
 }
 
 :not(pre.astro-code) > code {
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     color: #ff498f;
     background-color: #30252a;
     padding: 0 0.25rem;
@@ -82,19 +108,21 @@ h3 {
     margin-block-end: 1rem;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
     font-size: 1.25rem;
     font-weight: 600;
     margin-block-start: 1.5rem;
     margin-block-end: 1rem;
 }
 
-h1:has( > a),
-h2:has( > a),
-h3:has( > a),
-h4:has( > a),
-h5:has( > a),
-h6:has( > a) {
+h1:has(> a),
+h2:has(> a),
+h3:has(> a),
+h4:has(> a),
+h5:has(> a),
+h6:has(> a) {
     position: relative;
 
     & > a {
@@ -102,11 +130,20 @@ h6:has( > a) {
         text-decoration: none;
 
         &:hover::after {
-            content: '#';
+            content: "#";
             margin-inline-start: 1ch;
             color: oklch(from currentColor calc(l - 0.45) c h);
         }
     }
+}
+
+main img {
+    width: 100%;
+    max-height: 50rem;
+    object-fit: contain;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-background-button);
 }
 
 ul > li {
@@ -159,12 +196,12 @@ pre.astro-code {
         font-weight: 600;
 
         &::before {
-            content: '📋';
+            content: "📋";
             margin-inline-end: 0.5rem;
         }
 
         &::after {
-            content: 'Copy';
+            content: "Copy";
         }
 
         &:focus-visible {
@@ -186,17 +223,17 @@ pre.astro-code {
             }
 
             &::after {
-                content: 'Copy button requires JavaScript';
+                content: "Copy button requires JavaScript";
             }
         }
 
         &.code-copied {
             &::before {
-                content: '✅';
+                content: "✅";
             }
 
             &::after {
-                content: 'Copied';
+                content: "Copied";
             }
         }
     }

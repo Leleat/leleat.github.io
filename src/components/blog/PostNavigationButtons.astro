@@ -1,4 +1,5 @@
 ---
+import CaretIcon from "../icons/caret.astro";
 import "../../global.js";
 
 const { prevPost, nextPost } = Astro.props;
@@ -8,7 +9,10 @@ const { prevPost, nextPost } = Astro.props;
     {
         prevPost ?
             <a class="prev-post-button" href={prevPost.url}>
-                <div class="prev-label">Previous</div>
+                <div class="prev-label">
+                    <CaretIcon class="prev-icon" aria-hidden="true" />
+                    Previous
+                </div>
                 <div>{prevPost.frontmatter.title}</div>
             </a>
         :   null
@@ -16,7 +20,9 @@ const { prevPost, nextPost } = Astro.props;
     {
         nextPost ?
             <a class="next-post-button" href={nextPost.url}>
-                <div class="next-label">Next</div>
+                <div class="next-label">
+                    Next <CaretIcon class="next-icon" aria-hidden="true" />
+                </div>
                 <div>{nextPost.frontmatter.title}</div>
             </a>
         :   null
@@ -24,16 +30,6 @@ const { prevPost, nextPost } = Astro.props;
 </div>
 
 <style>
-    .prev-label::before {
-        content: "⮜";
-        margin-inline-end: 0.75rem;
-    }
-
-    .next-label::after {
-        content: "⮞";
-        margin-inline-start: 0.75rem;
-    }
-
     .post-buttons {
         display: flex;
         flex-direction: column;
@@ -77,6 +73,16 @@ const { prevPost, nextPost } = Astro.props;
     .next-post-button {
         align-items: end;
         text-align: right;
+    }
+
+    :has(> .next-icon, > .prev-icon) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .prev-icon {
+        transform: rotate(180deg);
     }
 
     @media (min-width: 80rem) {

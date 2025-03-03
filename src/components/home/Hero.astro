@@ -60,6 +60,7 @@ const { class: className, ...rest } = Astro.props;
         min-height: calc(
             100vh - var(--navbar-height) - var(--content-vpadding) * 2
         );
+        top: calc(var(--navbar-height) / -2);
     }
 
     .background-gradient {
@@ -113,6 +114,7 @@ const { class: className, ...rest } = Astro.props;
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
                     21rem
             );
+            top: 0;
         }
     }
 
@@ -127,6 +129,7 @@ const { class: className, ...rest } = Astro.props;
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
                     18rem
             );
+            top: 0;
         }
     }
 
