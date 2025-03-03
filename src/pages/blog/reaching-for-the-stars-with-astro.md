@@ -12,7 +12,7 @@ Flashy ⭐⭐⭐ nonsense title aside, I've switched from Jekyll to Astro as my 
 
 Previously, my website consisted of only a blog built with [Jekyll](https://jekyllrb.com/) using the [chirpy theme](https://github.com/cotes2020/jekyll-theme-chirpy) without any customization from my end. The theme looks great but now I wanted to add a bit of a personal touch, create a homepage, and customize the styling.
 
-![Demo of chirpy theme](/src/assets/25-03-01-chirpy.png)
+![Demo of chirpy theme](../../assets/25-03-01-chirpy.png)
 
 Jekyll is written in Ruby. I don't know Ruby or its ecosystem. While everything I wanted to do right now would be feasible in Jekyll, I wanted to switch to a tool that _I_ can more easily work with, i.e., one that is JavaScript/TypeScript-based. Plus, having a fun small side project certainly was another motivating factor 🙃. So, I went and looked around to see what static site generators (SSG) exist. My requirements were that it is simple and lightweight (no JS by default), not be tied to a specific frontend framework, and little to zero-config. After a bit of research, I narrowed down my choice to [Astro](https://astro.build/) and [Eleventy](https://www.11ty.dev/). While I went with Astro, Eleventy definitely has some benefits over it.
 
@@ -24,7 +24,7 @@ But the deciding factor in favor of Astro was the documentation. Astro has a sim
 
 That said, one thing I do want to highlight about Eleventy's documentation is that they feature it very prominently on their homepage. It is _hard_ to miss... and it even sticks to the top of the screen when you scroll 😂
 
-![Elventy's documentation button](/src/assets/25-03-01-sticky-button.png)
+![Elventy's documentation button](../../assets/25-03-01-sticky-button.png)
 
 ## The Experience of Using Astro for the First Time
 
@@ -37,6 +37,10 @@ I didn't need to edit my markdown files to accommodate Astro. In fact, I could e
 Providing an RSS feed for my blog was easy as there is an official package and [guide](https://docs.astro.build/en/recipes/rss/). Deploying to GitHub Pages is just as simple since Astro provides a [workflow template and maintains an official GitHub Action](https://docs.astro.build/en/guides/deploy/github/).
 
 Now let's talk about issues I ran into when using Astro... there were none, which, I guess, isn't surprising. After all, I only used Astro to generate a homepage and a blog, which are the most basic things you can do with a SSG. So I wouldn't expect anyone to run into any issues when using any SSG for that use case. The only challenge was, that I needed to style everything myself, which is the price you pay when you don't use a theme and want to have full control.
+
+[Edit]
+Well, just after publishing this post. I've noticed an issue. There is a difference between the dev environment and the production code that runs. The images in the production were broken because I've used absolute paths when referencing them. In the dev environment that worked... 😅
+[/Edit]
 
 ## Future Plans
 
