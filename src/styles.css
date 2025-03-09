@@ -23,8 +23,8 @@
     --color-text-dim: #9d9d97;
     --focus-outline-size: 3px;
     --focus-outline-offset: 2px;
-    --max-width: 80rem;
-    --max-width-post-content: 90ch;
+    --max-inline-size: 80rem;
+    --max-inline-size-post-content: 90ch;
     --navbar-height: 3.875rem;
     --footer-height: 3.75rem;
     --content-hpadding: 1.5rem;
@@ -138,8 +138,8 @@ h6:has(> a) {
 }
 
 main img {
-    width: 100%;
-    height: auto;
+    inline-size: 100%;
+    block-size: auto;
     object-fit: contain;
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -164,7 +164,7 @@ pre.astro-code {
     margin: 1rem 0;
     counter-reset: step;
     position: relative;
-    max-height: 85vh;
+    max-block-size: 85vh;
 
     & > code {
         padding: 1rem;
@@ -176,7 +176,7 @@ pre.astro-code {
         color: #555;
         content: counter(step);
         counter-increment: step;
-        width: 3ch;
+        inline-size: 3ch;
         margin-inline-end: 2ch;
         text-align: right;
     }
@@ -186,7 +186,7 @@ pre.astro-code {
         top: 0;
         left: 0;
         padding: 0.75rem;
-        width: 100%;
+        inline-size: 100%;
         background-color: inherit;
         border-block-start: 3px solid transparent;
         border-inline-start: 3px solid transparent;

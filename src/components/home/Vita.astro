@@ -86,7 +86,7 @@ import "../../global.js";
 
 <style>
     .timeline {
-        --timeline-width: 2px;
+        --timeline-inline-size: 2px;
         --timeline-padding-inline-start: 0.5rem;
 
         display: flex;
@@ -100,7 +100,7 @@ import "../../global.js";
         &::before {
             content: "";
             position: absolute;
-            width: var(--timeline-width);
+            inline-size: var(--timeline-inline-size);
             background-color: var(--color-text-dark);
             top: 0;
             bottom: 0;
@@ -137,8 +137,8 @@ import "../../global.js";
         &::before {
             content: "";
             position: absolute;
-            width: 0.6rem;
-            height: 0.6rem;
+            inline-size: 0.6rem;
+            block-size: 0.6rem;
             background-color: var(--color-text);
             border-radius: 50%;
             outline: 0.75rem solid var(--color-background);

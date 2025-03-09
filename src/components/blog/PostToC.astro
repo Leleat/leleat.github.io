@@ -72,8 +72,8 @@ const { headings } = Astro.props;
             flex-direction: column;
             position: sticky;
             top: 2.25rem;
-            height: fit-content;
-            max-width: 100%;
+            block-size: fit-content;
+            max-inline-size: 100%;
             padding: var(--content-vpadding) 0;
         }
 
@@ -115,7 +115,7 @@ const { headings } = Astro.props;
             position: absolute;
             background-color: var(--color-yellow);
             border-radius: calc(infinity * 1px);
-            width: var(--size);
+            inline-size: var(--size);
             top: 0;
             opacity: 0;
             left: calc(-1 * var(--size) / 2);

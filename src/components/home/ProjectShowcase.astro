@@ -127,7 +127,7 @@ import "../../global.js";
         border-start-end-radius: var(--showcase-border-radius);
         color: var(--color-text);
         padding: 0.75rem 1rem;
-        width: 100%;
+        inline-size: 100%;
         text-align: center;
         font-weight: bold;
 
@@ -167,13 +167,13 @@ import "../../global.js";
     }
 
     #showcase-content {
-        width: 100%;
+        inline-size: 100%;
         background-color: var(--showcase-background-color);
         border: 1px solid var(--showcase-border-color);
         border-block-start: none;
         border-end-start-radius: var(--showcase-border-radius);
         border-end-end-radius: var(--showcase-border-radius);
-        min-height: 500px;
+        min-block-size: 500px;
     }
 
     #showcase-content > * {
@@ -184,14 +184,14 @@ import "../../global.js";
         justify-content: center;
         align-items: center;
         padding: 2rem;
-        height: 100%;
+        block-size: 100%;
 
         flex-direction: column;
         gap: 1rem;
     }
 
     .showcase-project p {
-        max-width: 80ch;
+        max-inline-size: 80ch;
         text-align: justify;
     }
 

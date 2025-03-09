@@ -46,8 +46,8 @@ const path = Astro.url.pathname;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        width: 100%;
+        block-size: 100vh;
+        inline-size: 100%;
     }
 
     .error {
@@ -55,7 +55,7 @@ const path = Astro.url.pathname;
         border-radius: 0.75rem;
         padding: 0.25rem 1.5rem;
         margin: 1rem;
-        max-width: 24rem;
+        max-inline-size: 24rem;
     }
 
     button {
