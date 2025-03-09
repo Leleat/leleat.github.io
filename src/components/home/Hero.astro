@@ -22,23 +22,6 @@ const { class: className, ...rest } = Astro.props;
 </section>
 
 <style>
-    @keyframes breathe {
-        0% {
-            transform: scale(1.1);
-            opacity: 0.3;
-        }
-
-        50% {
-            transform: scale(0.7);
-            opacity: 0.6;
-        }
-
-        100% {
-            transform: scale(1.1);
-            opacity: 0.3;
-        }
-    }
-
     a.hash-link {
         color: var(--color-yellow);
 
@@ -49,7 +32,7 @@ const { class: className, ...rest } = Astro.props;
 
     h1 + p {
         text-align: justify;
-        max-width: 80ch;
+        max-inline-size: 80ch;
     }
 
     section {
@@ -57,7 +40,7 @@ const { class: className, ...rest } = Astro.props;
         flex-direction: column;
         justify-content: center;
         position: relative;
-        min-height: calc(
+        min-block-size: calc(
             100vh - var(--navbar-height) - var(--content-vpadding) * 2
         );
         top: calc(var(--navbar-height) / -2);
@@ -72,8 +55,8 @@ const { class: className, ...rest } = Astro.props;
         z-index: -100;
         top: calc(-1 * var(--bg-size) / 2 + 150px);
         left: calc(-1 * var(--bg-size) / 2 + 50% + 50px);
-        width: var(--bg-size);
-        height: var(--bg-size);
+        inline-size: var(--bg-size);
+        block-size: var(--bg-size);
         filter: blur(99px);
         opacity: 0.3;
         background: conic-gradient(#e95f5f, #181719, #8b56d9);
@@ -86,15 +69,15 @@ const { class: className, ...rest } = Astro.props;
         color: var(--color-background);
         margin-block-start: 2rem;
         margin-block-end: 2rem;
-        width: fit-content;
+        inline-size: fit-content;
     }
 
     .title::after {
         content: "";
         position: absolute;
         display: block;
-        width: 120%;
-        height: 110%;
+        inline-size: 120%;
+        block-size: 110%;
         top: -22%;
         left: -10%;
         background-color: var(--color-yellow);
@@ -110,7 +93,7 @@ const { class: className, ...rest } = Astro.props;
 
         section {
             /* HACK: 21rem is roughly the size of the Contact Details element */
-            min-height: calc(
+            min-block-size: calc(
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
                     21rem
             );
@@ -125,17 +108,11 @@ const { class: className, ...rest } = Astro.props;
 
         section {
             /* HACK: 18rem is roughly the size of the Contact Details element */
-            min-height: calc(
+            min-block-size: calc(
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
                     18rem
             );
             top: 0;
-        }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        .background-gradient {
-            animation: 4s linear 0.5s infinite breathe both;
         }
     }
 </style>

@@ -50,11 +50,13 @@ import "../global.js";
         display: flex;
         flex-direction: column;
         gap: 2.5rem;
-        height: 100%;
+        block-size: 100%;
         margin: 0 auto;
         padding: var(--content-vpadding) var(--content-hpadding);
-        width: 100%;
-        min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+        inline-size: 100%;
+        min-block-size: calc(
+            100vh - var(--navbar-height) - var(--footer-height)
+        );
     }
 
     @keyframes slide-down {
@@ -83,13 +85,13 @@ import "../global.js";
 
     @media (min-width: 40rem) {
         .main {
-            max-width: var(--max-width-post-content);
+            max-inline-size: var(--max-inline-size-post-content);
         }
     }
 
     @media (min-width: 80rem) {
         .main {
-            max-width: var(--max-width);
+            max-inline-size: var(--max-inline-size);
         }
     }
 

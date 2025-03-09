@@ -9,18 +9,8 @@ import "../global.js";
         Copyright © {new Date().getFullYear()} Anh Tuan Le. &nbsp;
         <a href="/#contact" class="contact-details"> Contact details </a>.
         &nbsp;
-        <input type="checkbox" id="checkbox" />
         <span class="credits-container">
-            <label
-                class="credits-button"
-                for="checkbox"
-                role="button"
-                aria-label="Credits"
-                aria-haspopup="menu"
-                aria-expanded="false"
-                aria-controls="credits-popup"
-                tabindex="0"
-            >
+            <button class="credits-button" popovertarget="credits-popup">
                 <span class="credits-label"
                     >Credits
                     <CaretIcon
@@ -29,8 +19,8 @@ import "../global.js";
                         aria-hidden="true"
                     /></span
                 >
-            </label>
-            <ul id="credits-popup" class="credits-popup" role="menu">
+            </button>
+            <ul id="credits-popup" popover>
                 <li role="menuitem">
                     <a
                         href="https://icons.getbootstrap.com/icons/asterisk/"
@@ -219,7 +209,7 @@ import "../global.js";
         display: flex;
         justify-content: center;
         align-items: center;
-        height: var(--footer-height);
+        block-size: var(--footer-height);
     }
 
     small {
@@ -229,30 +219,6 @@ import "../global.js";
 
     .credits-container {
         position: relative;
-    }
-
-    #checkbox {
-        display: none;
-    }
-
-    #checkbox:checked {
-        & + span .credits-button {
-            color: var(--color-yellow);
-        }
-
-        & + span .credits-button .credits-label {
-            text-decoration: none;
-
-            & .caret-icon {
-                transform: rotate(-90deg);
-            }
-        }
-
-        & + span .credits-button + .credits-popup {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
     }
 
     .credits-button {
@@ -276,17 +242,27 @@ import "../global.js";
         }
     }
 
-    .credits-popup {
-        display: none;
-        position: absolute;
-        right: 0;
-        bottom: 1rem;
+    .credits-container:has(:popover-open) {
+        .credits-label {
+            color: var(--color-yellow);
+        }
+
+        .caret-icon {
+            transform: rotate(-90deg);
+            fill: var(--color-yellow);
+        }
+    }
+
+    [popover] {
+        inset: unset;
+        bottom: 3rem;
+        right: 3rem;
+        margin: 0;
         color: var(--color-text);
         background-color: var(--color-background);
         border: 1px solid var(--color-text-dark);
         border-radius: 0.5rem;
         padding: 1rem;
-        z-index: 10;
         white-space: nowrap;
         box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 
@@ -300,6 +276,12 @@ import "../global.js";
             color: var(--color-yellow);
             margin-inline-start: 1ch;
         }
+
+        &:popover-open {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
     }
 
     .contact-details {
@@ -309,48 +291,10 @@ import "../global.js";
             color: var(--color-yellow);
         }
     }
-</style>
 
-<script>
-    const creditsButton = document.querySelector(
-        ".credits-button",
-    ) as HTMLLabelElement;
-
-    creditsButton.addEventListener("click", (e) => {
-        creditsButton.setAttribute(
-            "aria-expanded",
-            creditsButton.getAttribute("aria-expanded") === "true" ?
-                "false"
-            :   "true",
-        );
-    });
-
-    creditsButton.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            creditsButton.click();
-        } else if (
-            event.key === "Escape" &&
-            creditsButton.getAttribute("aria-expanded") === "true"
-        ) {
-            event.preventDefault();
-            creditsButton.click();
+    @media (min-width: 60rem) {
+        [popover] {
+            right: unset;
         }
-    });
-
-    const links = document.querySelectorAll(
-        " .credits-popup a",
-    ) as NodeListOf<HTMLAnchorElement>;
-
-    links.forEach((link) => {
-        link.addEventListener("keydown", (event) => {
-            if (
-                event.key === "Escape" &&
-                creditsButton.getAttribute("aria-expanded") === "true"
-            ) {
-                event.preventDefault();
-                creditsButton.click();
-            }
-        });
-    });
-</script>
+    }
+</style>

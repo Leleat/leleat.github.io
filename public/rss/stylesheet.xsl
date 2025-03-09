@@ -34,7 +34,7 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
                         --color-text: #ddd;
                         --color-text-dark: #333;
                         --color-text-dim: #9d9d97;
-                        --max-width: 80ch;
+                        --max-inline-size: 80ch;
 
                         background-color: var(--color-background);
                         color: var(--color-text);
@@ -50,7 +50,7 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
                     }
 
                     .body {
-                        max-width: var(--max-width);
+                        max-inline-size: var(--max-inline-size);
                         margin: 0 auto;
                         padding: 2rem;
                     }
@@ -70,7 +70,7 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
                         margin-block-end: 2rem;
 
                         p {
-                            max-width: var(--max-width);
+                            max-inline-size: var(--max-inline-size);
                             margin: 0 auto;
                             padding: 0.75rem 1rem;
                         }

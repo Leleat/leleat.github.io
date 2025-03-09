@@ -5,60 +5,62 @@ const { post } = Astro.props;
 ---
 
 <a class="card" href={post.url}>
-    <span class="card-title">
-        {post.frontmatter.title}
-    </span>
-    <span class="card-description">
-        {
-            post
-                .rawContent()
-                .split("\n")
-                .find((l: string) => l.trim().length)
-        }
-    </span>
-    <div class="card-metadata">
-        <div>
-            {/* https://icons.getbootstrap.com/icons/calendar/ */}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-            >
-                <path
-                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
-                ></path>
-            </svg>
-            <span>
-                {new Date(post.frontmatter.pubDate).toLocaleDateString()}
-            </span>
+    <article>
+        <span class="card-title">
+            {post.frontmatter.title}
+        </span>
+        <span class="card-description">
+            {
+                post
+                    .rawContent()
+                    .split("\n")
+                    .find((l: string) => l.trim().length)
+            }
+        </span>
+        <div class="card-metadata">
+            <div>
+                {/* https://icons.getbootstrap.com/icons/calendar/ */}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"
+                    ></path>
+                </svg>
+                <span>
+                    {new Date(post.frontmatter.pubDate).toLocaleDateString()}
+                </span>
+            </div>
+            <div>
+                {/* https://icons.getbootstrap.com/icons/tags-fill/ */}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"
+                    ></path>
+                    <path
+                        d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043z"
+                    ></path>
+                </svg>
+                <span>
+                    {
+                        post.frontmatter.tags.length ?
+                            post.frontmatter.tags.join(", ")
+                        :   "No Tags"
+                    }
+                </span>
+            </div>
         </div>
-        <div>
-            {/* https://icons.getbootstrap.com/icons/tags-fill/ */}
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-            >
-                <path
-                    d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"
-                ></path>
-                <path
-                    d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043z"
-                ></path>
-            </svg>
-            <span>
-                {
-                    post.frontmatter.tags.length ?
-                        post.frontmatter.tags.join(", ")
-                    :   "No Tags"
-                }
-            </span>
-        </div>
-    </div>
+    </article>
 </a>
 
 <style
@@ -69,8 +71,8 @@ const { post } = Astro.props;
     }}
 >
     svg {
-        min-width: 1rem;
-        min-height: 1rem;
+        min-inline-size: 1rem;
+        min-block-size: 1rem;
     }
 
     .card {
@@ -88,7 +90,7 @@ const { post } = Astro.props;
             background-color: transparent;
             border: 1px solid var(--color-yellow);
 
-            & > * {
+            & article > * {
                 color: var(--color-yellow);
             }
         }

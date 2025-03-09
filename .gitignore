@@ -1,3 +1,6 @@
+# unpublished pages
+src/pages/blog/_*
+
 # build output
 dist/
 

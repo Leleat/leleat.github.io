@@ -2,22 +2,37 @@
 import "../global.js";
 ---
 
-<header class="navbar-container" {...Astro.props}>
-    <input type="checkbox" id="hamburger-checkbox" />
-    <label
+<header {...Astro.props}>
+    <button
         class="hamburger-button"
-        for="hamburger-checkbox"
         aria-label="Main Menu"
-        role="button"
-        aria-expanded="false"
-        tabindex="0"
+        popovertarget="navbar-popover"
     >
         <div class="menu-icon">
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
             <div class="hamburger-line"></div>
         </div>
-    </label>
+    </button>
+    <nav id="navbar-popover" popover>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/blog/">Blog</a>
+            </li>
+            <li>
+                <a href="https://matrix.to/#/@leleat:matrix.org">Matrix</a>
+            </li>
+            <li>
+                <a href="https://mastodon.social/@leleat">Mastodon</a>
+            </li>
+            <li>
+                <a href="https://github.com/Leleat">GitHub</a>
+            </li>
+        </ul>
+    </nav>
     <nav class="navbar">
         <ul class="left-box">
             <li>
@@ -120,8 +135,9 @@ import "../global.js";
         list-style-type: none;
     }
 
-    .navbar-container {
+    header {
         border-block-end: 1px solid var(--color-text-dark);
+        position: relative;
     }
 
     .hamburger-button {
@@ -132,10 +148,11 @@ import "../global.js";
         cursor: pointer;
         padding: 1.125rem;
         gap: 0.75rem;
-        height: var(--navbar-height);
+        block-size: var(--navbar-height);
         font-weight: 800;
         user-select: none;
         -webkit-user-select: none;
+        margin-inline-start: auto;
 
         &:hover {
             transform: translateY(-3px);
@@ -156,6 +173,47 @@ import "../global.js";
         }
     }
 
+    .navbar {
+        display: none;
+    }
+
+    #navbar-popover {
+        position: absolute;
+        inset: unset;
+        width: unset;
+        top: var(--navbar-height);
+        left: 1rem;
+        right: 1rem;
+        margin: 0;
+        border-radius: 0.75rem;
+        border: none;
+        box-shadow: 0 0 1rem oklch(from var(--color-rose) l c h);
+        background-color: var(--color-background);
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 1.5rem;
+
+            li {
+                padding-block: 1.5rem;
+                margin: 0;
+                border-block-end: 1px solid var(--color-text-dark);
+            }
+
+            li a {
+                color: var(--color-yellow);
+                display: block;
+                text-align: center;
+                font-size: 1rem;
+
+                &:hover {
+                    text-decoration: 1px dotted underline;
+                }
+            }
+        }
+    }
+
     .menu-icon {
         display: flex;
         flex-direction: column;
@@ -164,94 +222,10 @@ import "../global.js";
         justify-content: center;
 
         & .hamburger-line {
-            width: 1.5rem;
-            height: 3px;
+            inline-size: 1.5rem;
+            block-size: 3px;
             background-color: var(--color-text-dim);
             border-radius: calc(infinity * 1px);
-        }
-    }
-
-    #hamburger-checkbox {
-        display: none;
-
-        &:checked ~ .navbar {
-            display: flex;
-        }
-    }
-
-    .navbar {
-        --item-spacing: 2.25rem;
-        --navbar-button-padding: 0.75rem;
-
-        display: none;
-        flex-direction: column;
-        align-items: end;
-        text-align: right;
-        gap: 2.25rem;
-        font-weight: 800;
-        min-height: var(--navbar-height);
-        user-select: none;
-        -webkit-user-select: none;
-
-        & .left-box {
-            display: flex;
-            flex-direction: column;
-            gap: var(--item-spacing);
-            padding: 0;
-            margin: 0;
-
-            & a {
-                position: relative;
-                padding: var(--navbar-button-padding);
-
-                &::after {
-                    --underline-extension: 20%;
-
-                    content: "";
-                    width: calc(100% + var(--underline-extension));
-                    height: 0;
-                    position: absolute;
-                    bottom: 15%;
-                    left: calc(-1 * var(--underline-extension) / 2);
-                    z-index: -1;
-                    background-color: var(--color-yellow);
-                }
-            }
-
-            & a:hover {
-                color: var(--color-text-dark);
-
-                &::after {
-                    height: 70%;
-                }
-            }
-        }
-
-        & .right-box {
-            display: flex;
-            gap: var(--item-spacing);
-            margin: 0;
-            padding: 0;
-            margin-inline-end: var(--content-hpadding);
-            margin-block-end: 2rem;
-
-            & li {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            & a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0.25rem;
-
-                &:hover svg {
-                    transform: translateY(-3px);
-                    fill: var(--color-yellow);
-                }
-            }
         }
     }
 
@@ -260,35 +234,90 @@ import "../global.js";
             display: none;
         }
 
-        #hamburger-checkbox {
+        #navbar-popover {
             display: none;
-
-            &:checked ~ .navbar {
-                flex-direction: row;
-            }
         }
 
         .navbar {
-            position: relative;
-            max-width: calc(var(--max-width-post-content));
+            --item-spacing: 2.25rem;
+            --navbar-button-padding: 0.75rem;
+
             display: flex;
-            flex-direction: row;
             align-items: center;
             justify-content: space-between;
             margin: 0 auto;
+            position: relative;
+            text-align: right;
+            gap: 2.25rem;
+            font-weight: 600;
+            min-block-size: var(--navbar-height);
+            user-select: none;
+            -webkit-user-select: none;
 
-            & .left-box,
+            & .left-box {
+                display: flex;
+                gap: var(--item-spacing);
+                padding: 0;
+                margin: 0;
+
+                & a {
+                    position: relative;
+                    padding: var(--navbar-button-padding);
+
+                    &::after {
+                        --underline-extension: 20%;
+
+                        content: "";
+                        inline-size: calc(100% + var(--underline-extension));
+                        block-size: 0;
+                        position: absolute;
+                        bottom: 15%;
+                        left: calc(-1 * var(--underline-extension) / 2);
+                        z-index: -1;
+                        background-color: var(--color-yellow);
+                    }
+                }
+
+                & a:hover {
+                    color: var(--color-text-dark);
+
+                    &::after {
+                        block-size: 70%;
+                    }
+                }
+            }
+
             & .right-box {
-                flex-direction: row;
-                margin-block-end: 0;
+                display: flex;
+                gap: var(--item-spacing);
+                margin: 0;
+                padding: 0;
+                margin-inline-end: var(--content-hpadding);
+
+                & li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                & a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.25rem;
+
+                    &:hover svg {
+                        transform: translateY(-3px);
+                        fill: var(--color-yellow);
+                    }
+                }
             }
         }
     }
 
     @media (min-width: 80rem) {
         .navbar {
-            position: static;
-            max-width: var(--max-width);
+            max-inline-size: var(--max-inline-size);
         }
     }
 
@@ -310,31 +339,3 @@ import "../global.js";
         }
     }
 </style>
-
-<script>
-    const hamburgerButton = document.querySelector(
-        ".hamburger-button",
-    ) as HTMLLabelElement;
-
-    hamburgerButton.addEventListener("click", () => {
-        hamburgerButton.setAttribute(
-            "aria-expanded",
-            hamburgerButton.getAttribute("aria-expanded") === "true" ?
-                "false"
-            :   "true",
-        );
-    });
-
-    hamburgerButton.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            hamburgerButton.click();
-        } else if (
-            event.key === "Escape" &&
-            hamburgerButton.getAttribute("aria-expanded") === "true"
-        ) {
-            event.preventDefault();
-            hamburgerButton.click();
-        }
-    });
-</script>

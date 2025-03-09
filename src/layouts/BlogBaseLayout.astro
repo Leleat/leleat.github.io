@@ -40,19 +40,21 @@ const { title } = Astro.props;
         display: grid;
         gap: 3.25rem;
         justify-items: center;
-        min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
-        max-width: var(--max-width);
+        min-block-size: calc(
+            100vh - var(--navbar-height) - var(--footer-height)
+        );
+        max-inline-size: var(--max-inline-size);
         margin: 0 auto;
     }
 
     .main {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        block-size: 100%;
         margin: 0 auto;
         padding: var(--content-vpadding) var(--content-hpadding);
-        width: 100%;
-        max-width: var(--max-width-post-content);
+        inline-size: 100%;
+        max-inline-size: var(--max-inline-size-post-content);
         overflow-x: auto;
     }
 
