@@ -1,6 +1,6 @@
 # README
 
-This repo hosts the code for my personal website. It is built using [Astro](https://astro.build/) as a static site generator.
+This repo hosts the code for my personal website. It is custom built (i.e. no 3rd party themes etc.) using [Astro](https://astro.build/) as a static site generator.
 
 ## License
 
