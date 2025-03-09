@@ -11,37 +11,43 @@ const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
 
 <div class={className} {...rest}>
     <div class="dates">
-        <dl>
-            <dt>Published</dt>
-            <dd>
+        <p>
+            <span>Published</span>
+            <time datetime={pubDate}>
                 {new Date(pubDate).toLocaleDateString()}
-            </dd>
-        </dl>
+            </time>
+        </p>
         {
             editDate && (
-                <dl>
-                    <dt>Edited</dt>
-                    <dd>{new Date(editDate).toLocaleDateString()}</dd>
-                </dl>
+                <p>
+                    <span>Edited</span>
+                    <time datetime={editDate}>
+                        {new Date(editDate).toLocaleDateString()}
+                    </time>
+                </p>
             )
         }
     </div>
-    <dl class="author">
-        <dt>By</dt>
-        <dd>{author}</dd>
-    </dl>
+    <p class="author">
+        <span>By</span>
+        <span>{author}</span>
+    </p>
 </div>
 
 <style>
-    dl {
+    p,
+    span {
         display: flex;
         gap: 0.5rem;
         font-size: 0.9rem;
         color: var(--color-text-dim);
+        margin: 0;
     }
 
-    dd {
-        font-weight: bold;
+    time,
+    .author > span:last-child {
+        font-weight: 600;
+        font-size: inherit;
         color: var(--color-text);
     }
 

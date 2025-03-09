@@ -26,23 +26,26 @@ const modifiedIsoDate = new Date(mtime).toISOString();
 
 <BlogBaseLayout title={`${frontmatter.title} | Anh Tuan Le (@Leleat)`}>
     <PostToC slot="right-sidebar" headings={headings} />
-    <h1 id={frontmatter.url.split("/").at(-1)}>
-        <a href={`#${frontmatter.url.split("/").at(-1)}`}>{frontmatter.title}</a
-        >
-    </h1>
-    <PostMetadata
-        pubDate={frontmatter.pubDate}
-        editDate={(
-            modifiedIsoDate.split("T")[0] >
-            frontmatter.pubDate.split(/ |T/, 1)[0]
-        ) ?
-            modifiedIsoDate
-        :   undefined}
-        author={frontmatter.author}
-        class="postmetadata"
-    />
-    <slot />
-    <PostTagList tags={frontmatter.tags} class="tag-list" />
+    <article>
+        <h1 id={frontmatter.url.split("/").at(-1)}>
+            <a href={`#${frontmatter.url.split("/").at(-1)}`}>
+                {frontmatter.title}
+            </a>
+        </h1>
+        <PostMetadata
+            pubDate={frontmatter.pubDate}
+            editDate={(
+                modifiedIsoDate.split("T")[0] >
+                frontmatter.pubDate.split(/ |T/, 1)[0]
+            ) ?
+                modifiedIsoDate
+            :   undefined}
+            author={frontmatter.author}
+            class="postmetadata"
+        />
+        <slot />
+        <PostTagList tags={frontmatter.tags} class="tag-list" />
+    </article>
     <hr />
     <PostNavigationButtons prevPost={prevPost} nextPost={nextPost} />
     <hr />
@@ -50,6 +53,11 @@ const modifiedIsoDate = new Date(mtime).toISOString();
 </BlogBaseLayout>
 
 <style>
+    article {
+        display: flex;
+        flex-direction: column;
+    }
+
     hr {
         border-color: var(--color-text-dark);
         margin: 2rem 0;
