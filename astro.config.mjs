@@ -21,5 +21,5 @@ export default defineConfig({
         "/about": "/",
         "/contact": "/#contact",
     },
-    site: "https://astronaut.github.io",
+    site: "https://leleat.github.io",
 });
