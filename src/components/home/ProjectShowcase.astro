@@ -1,144 +1,226 @@
 ---
-import ConstructionIcon from "./ProjectShowcaseConstructionIcon.astro";
+import { Image } from "astro:assets";
+
+import ScreenshotAltEgo from "../../assets/scr-alt-ego.png";
+import ScreenshotHomepage from "../../assets/scr-homepage.png";
+import DesktopBackground from "../icons/blobs-l.svg";
 import "../../global.js";
 ---
 
 <section class="animate-on-scroll">
     <h2 id="showcase"><a href="#showcase">Project Showcase</a></h2>
     <p>
-        Here's a collection of some of my favorite projects I am or have been
-        working on. From fun experiments to things I'm actually using right now.
+        Here's a collection of some of my favorite <b>personal</b> projects I am
+        or have been working on. From fun experiments to things I'm actually using
+        right now.
     </p>
-    <div class="view-switcher" role="tablist" aria-labelledby="showcase">
+    <div
+        class="tabview-switcher"
+        aria-controls="tabview"
+        role="tablist"
+        aria-labelledby="showcase"
+        tabindex="0"
+    >
+        <label role="tab">
+            <input type="radio" name="tabs" value="ext" checked />
+            GNOME Extensions
+        </label>
         <label role="tab" aria-selected="true">
-            <input type="radio" name="tabs" value="web" checked />Web
-        </label>
-        <label role="tab">
-            <input type="radio" name="tabs" value="ext" />GNOME Extensions
-        </label>
-        <label role="tab">
-            <input type="radio" name="tabs" value="misc" />Misc
+            <input type="radio" name="tabs" value="web" />
+            Web Projects
         </label>
     </div>
-    <div class="select-container">
+    <div class="tabview-switcher-mobile">
         <select
-            aria-controls="showcase-content"
+            aria-controls="tabview"
             aria-labelledby="showcase"
             role="tablist"
         >
-            <option role="tab" value="web">Web</option>
             <option role="tab" value="ext">GNOME Extensions</option>
-            <option role="tab" value="misc">Miscellaneous</option>
+            <option role="tab" value="web">Web Projects</option>
         </select>
     </div>
-    <div id="showcase-content">
-        <div class="showcase-project showcase-web" role="tabpanel">
-            <ConstructionIcon />
-            <p>
-                I am still working on making this showcase look good... for now
-                I can only showcase is this very <a
-                    href="https://github.com/Leleat/leleat.github.io">website</a
-                >. It's custom build with Astro as a SSG and written (almost)
-                exclusively with HTML and CSS while being fully responsive with
-                a lot of animations and functionality! Try disabling JavaScript
-                and see if you can spot the difference. Spoiler: you'll probably
-                have a hard time without looking at the code 🙃.
-            </p>
-        </div>
-        <div class="showcase-project showcase-ext" role="tabpanel">
-            <ConstructionIcon /><p>
-                Fancy presentation coming soon... for now just checkout my
-                GitHub repos. <a
-                    href="https://github.com/Leleat/Tiling-Assistant"
-                    target="_blank"
-                    rel="noreferer">Tiling Assistant</a
-                > is a popular extension that adds advanced tiling features to the
-                GNOME desktop environment similiar to Windows. <a
-                    href="https://github.com/Leleat/floating-scroll"
-                    target="_blank"
-                    rel="noreferer">Floating Scroll</a
-                > implements an innovative window management concept (although, it
-                is still not in a every-day-usable state).
-            </p>
-        </div>
-        <div class="showcase-project showcase-misc" role="tabpanel">
-            <ConstructionIcon /><p>
-                Some interesting ideas for apps I had can be found at my <a
-                    href="/blog/tags/concept">blog (tags/concept)</a
+    <div id="tabview">
+        <p id="carousel-requires-js-banner">
+            Enable JavaScript to use this carousel
+        </p>
+        <div class="tab ext-tab" role="tabpanel">
+            <!--
+            The tab-content is supposed to contain the content for the tabs but for
+            my extension projects I wanted to create fake desktop to showcase
+            the behavior of the extensions. So I used the tab-content only as a
+            dummy and put the "desktop" outside of it. This way I can animate
+            the desktop between the tab switching.
+            -->
+            <div class="desktop">
+                <!-- https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/blob/gnome-42/backgrounds/blobs-l.svg -->
+                <!-- CC BY-SA 3.0: https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/blob/gnome-42/AUTHORS -->
+                <Image
+                    src={DesktopBackground}
+                    alt=""
+                    class="desktop-background-imgage"
+                />
+                <div class="window window-1"></div>
+                <div class="window window-2"></div>
+                <div class="window window-3"></div>
+            </div>
+            <div class="tab-content-box">
+                <div class="tab-content"></div>
+                <div class="tab-content"></div>
+            </div>
+            <div class="tab-description-box" tabindex="-1">
+                <div class="tab-description">
+                    <header>
+                        Tiling Assistant (<a
+                            href="https://github.com/Leleat/Tiling-Assistant"
+                            target="_blank"
+                            rel="noreferer">GitHub Repository</a
+                        >)
+                    </header>
+                    <p>
+                        A GNOME Shell extension that enhances the GNOME desktop
+                        with Windows-like snap assist, expanding its tiling
+                        layout and introducing additional features for a more
+                        efficient and customizable window management experience.
+                    </p>
+                </div>
+                <div class="tab-description">
+                    <header>
+                        Floating Scroll (<a
+                            href="https://github.com/Leleat/floating-scroll"
+                            target="_blank"
+                            rel="noreferer">GitHub Repository</a
+                        >)
+                    </header>
+                    <p>
+                        A WIP(!) GNOME Shell extension that implements a
+                        scrollable floating window manager combining the best
+                        features of floating and tiling window managers. It
+                        provides an efficient and clutter-free desktop
+                        experience.
+                    </p>
+                </div>
+            </div>
+            <div class="page-dot-box">
+                <button
+                    type="button"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    class="page-dot active"
                 >
-            </p>
+                </button>
+                <button
+                    type="button"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    class="page-dot"
+                >
+                </button>
+            </div>
+        </div>
+        <div class="tab web-tab" role="tabpanel">
+            <div class="tab-content-box">
+                <div class="tab-content">
+                    <Image
+                        src={ScreenshotHomepage}
+                        alt=""
+                        class="image homepage-image"
+                    />
+                </div>
+                <div class="tab-content">
+                    <Image src={ScreenshotAltEgo} alt="" class="image" />
+                </div>
+                <!--
+                <div class="tab-content">TODO</div>
+                -->
+            </div>
+            <div class="tab-description-box" tabindex="-1">
+                <div class="tab-description">
+                    <header>
+                        This Very Website (<a
+                            href="https://github.com/Leleat/leleat.github.io"
+                            target="_blank"
+                            rel="noreferer">GitHub Repository</a
+                        >)
+                    </header>
+                    <p>
+                        Here I showcase my skills, portfolio, and share my
+                        thoughts through my blog. Built from the ground up with
+                        HTML and CSS with almost no JavaScript to guarantee a
+                        great experience with even better performance.
+                    </p>
+                </div>
+                <div class="tab-description">
+                    <header>
+                        An Alternative Frontend for extensions.gnome.org (<a
+                            href="https://github.com/Leleat/alt-ego"
+                            target="_blank"
+                            rel="noreferer">GitHub Repository</a
+                        >)
+                    </header>
+                    <p>
+                        An unofficial, modernized interface for browsing GNOME
+                        extensions. Visit the repository for more information.
+                    </p>
+                </div>
+                <!--
+                <div class="tab-description">
+                    <header>
+                        Prototype for a New Kind of Keyboard-based Focus
+                        Navigation (<a href="" target="_blank" rel="noreferer"
+                            >GitHub Repository</a
+                        >)
+                    </header>
+                    <p>
+                        In complex apps focus navigation can be difficult and/or
+                        slow. This gamified prototype explores a new concept to
+                        address this problem. It's based on concepts from
+                        screenreaders and modal editors like vim. Checkout the
+                        repository.
+                    </p>
+                </div>
+                -->
+            </div>
+            <div class="page-dot-box">
+                <button
+                    type="button"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    class="page-dot active"
+                >
+                </button>
+                <button
+                    type="button"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    class="page-dot"
+                >
+                </button>
+                <!--
+                    <button type="button" aria-hidden="true" tabindex="-1" class="page-dot">
+                    </button>
+                    -->
+            </div>
         </div>
     </div>
 </section>
 
 <style>
-    h2 + p {
-        text-align: justify;
-    }
-
     section {
         --showcase-border-radius: 0.5rem;
         --showcase-border-color: var(--color-text-dark);
         --showcase-background-color: var(--color-background);
     }
 
-    .view-switcher {
+    h2 + p {
+        text-align: justify;
+    }
+
+    .tabview-switcher {
         display: none;
-        gap: 2rem;
-        justify-content: center;
-        background-color: var(--showcase-background-color);
-        border: 1px solid var(--showcase-border-color);
-        border-start-start-radius: var(--showcase-border-radius);
-        border-start-end-radius: var(--showcase-border-radius);
-        font-weight: bold;
-        font-size: smaller;
-        padding: 0.5rem 0;
-        margin-block-start: 2rem;
-
-        & input[type="radio"] {
-            display: none;
-        }
-
-        & label {
-            padding: 0.25rem 1.25rem;
-            border-radius: calc(infinity * 1px);
-            color: var(--color-text-dim);
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        & label:hover {
-            background-color: oklch(
-                from var(--showcase-background-color) calc(l + 0.08) c h
-            );
-        }
-
-        & label:has(input:checked) {
-            color: var(--color-text);
-            background-color: oklch(from white l c h / 0.1);
-        }
     }
 
-    select {
-        appearance: none;
-        background-color: var(--showcase-background-color);
-        border: 1px solid var(--showcase-border-color);
-        border-start-start-radius: var(--showcase-border-radius);
-        border-start-end-radius: var(--showcase-border-radius);
-        color: var(--color-text);
-        padding: 0.75rem 1rem;
-        inline-size: 100%;
-        text-align: center;
-        font-weight: bold;
-
-        &:hover {
-            background-color: oklch(
-                from var(--showcase-background-color) calc(l + 0.05) c h
-            );
-        }
-    }
-
-    .select-container {
+    .tabview-switcher-mobile {
         position: relative;
         margin-block-start: 2rem;
 
@@ -152,47 +234,281 @@ import "../../global.js";
             border: var(--size) solid transparent;
             border-color: var(--color-text) transparent transparent transparent;
         }
+
+        select {
+            appearance: none;
+            background-color: var(--showcase-background-color);
+            border: 1px solid var(--showcase-border-color);
+            border-start-start-radius: var(--showcase-border-radius);
+            border-start-end-radius: var(--showcase-border-radius);
+            color: var(--color-text);
+            padding: 0.75rem 1rem;
+            inline-size: 100%;
+            text-align: center;
+            font-weight: bold;
+
+            &:hover {
+                background-color: oklch(
+                    from var(--showcase-background-color) calc(l + 0.05) c h
+                );
+            }
+        }
     }
 
-    .select-container:has(option[value="web"]:checked)
-        ~ #showcase-content
-        > .showcase-web,
-    .select-container:has(option[value="ext"]:checked)
-        ~ #showcase-content
-        > .showcase-ext,
-    .select-container:has(option[value="misc"]:checked)
-        ~ #showcase-content
-        > .showcase-misc {
+    .tabview-switcher-mobile:has(option[value="web"]:checked)
+        ~ #tabview
+        > .web-tab,
+    .tabview-switcher-mobile:has(option[value="ext"]:checked)
+        ~ #tabview
+        > .ext-tab {
         display: flex;
     }
 
-    #showcase-content {
+    #tabview {
+        position: relative;
         inline-size: 100%;
+        block-size: 40rem;
         background-color: var(--showcase-background-color);
         border: 1px solid var(--showcase-border-color);
         border-block-start: none;
         border-end-start-radius: var(--showcase-border-radius);
         border-end-end-radius: var(--showcase-border-radius);
-        min-block-size: 500px;
     }
 
-    #showcase-content > * {
-        display: none;
-    }
-
-    .showcase-project {
+    #tabview #carousel-requires-js-banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        display: flex;
         justify-content: center;
         align-items: center;
-        padding: 2rem;
+        padding: 1rem;
+        margin: 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.85);
         block-size: 100%;
-
-        flex-direction: column;
-        gap: 1rem;
+        inline-size: 100%;
+        backdrop-filter: blur(5px);
+        font-size: 2rem;
+        font-weight: 600;
+        text-shadow: 0 0 10px var(--color-rose);
     }
 
-    .showcase-project p {
-        max-inline-size: 80ch;
-        text-align: justify;
+    .tab {
+        display: none;
+        position: relative;
+        block-size: 100%;
+        inline-size: 100%;
+    }
+
+    .tab .page-dot-box {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        block-size: fit-content;
+        border: 1px solid var(--showcase-border-color);
+        border-radius: calc(infinity * 1px);
+        background-color: oklch(
+            from var(--color-background) calc(l + 0.05) c h
+        );
+        padding: 0.75rem 0.5rem;
+        box-shadow: -3px 0 5px 2px rgba(0, 0, 0, 0.2);
+
+        .page-dot {
+            --size: 0.5rem;
+
+            background-color: oklch(
+                from var(--color-background) calc(l + 0.12) c h
+            );
+            border-radius: 50%;
+            inline-size: var(--size);
+            block-size: var(--size);
+        }
+
+        .page-dot.active {
+            background-color: var(--color-rose);
+        }
+    }
+
+    .tab .tab-description-box {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        border-end-start-radius: 0.5rem;
+        border-end-end-radius: 0.5rem;
+        padding-inline: 2rem;
+        inline-size: 100%;
+        block-size: 9rem;
+        backdrop-filter: blur(5px) brightness(0.9);
+        background: linear-gradient(
+            to top,
+            oklch(from var(--color-background) calc(l - 0.03) c h) 0%,
+            var(--color-background) 50%,
+            transparent 100%
+        );
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+        pointer-events: none;
+
+        .tab-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5rem;
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+
+            header {
+                font-weight: 600;
+                margin: 0;
+
+                * {
+                    pointer-events: all;
+                }
+
+                a {
+                    font-weight: normal;
+                }
+            }
+
+            p {
+                color: var(--color-text-dim);
+                margin: 0;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+
+                * {
+                    pointer-events: all;
+                }
+            }
+        }
+    }
+
+    .tab .tab-content-box {
+        block-size: 100%;
+        inline-size: 100%;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        scroll-snap-type: y mandatory;
+    }
+
+    .tab .tab-content-box .tab-content {
+        scroll-snap-align: center;
+        display: flex;
+        justify-content: center;
+        flex: 0 0 100%;
+        gap: 1rem;
+        block-size: 100%;
+
+        .image {
+            border-radius: 0;
+            block-size: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .web-tab .homepage-image {
+        object-position: 30% center;
+    }
+
+    .ext-tab .desktop {
+        --window-gap: 1rem;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        overflow: hidden;
+        pointer-events: none;
+
+        .desktop-background-imgage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            block-size: 100%;
+            object-fit: cover;
+            padding: 0;
+            border-start-start-radius: 0;
+            border-start-end-radius: 0;
+        }
+
+        .window {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.2);
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 5px;
+                left: calc(50% - 4ch);
+                background-color: rgba(255, 255, 255, 0.5);
+                color: var(--color-text-dim);
+                font-size: smaller;
+                font-weight: 600;
+            }
+        }
+
+        .window-1 {
+            inline-size: calc(50% - var(--window-gap) * 1.5);
+            block-size: calc(100% - var(--window-gap) * 2);
+            top: var(--window-gap);
+            left: var(--window-gap);
+
+            &.floating-scroll {
+                transform: translateX(-50%) translateY(40%);
+                block-size: 50%;
+            }
+
+            &::after {
+                content: "Window 1";
+            }
+        }
+
+        .window-2 {
+            inline-size: calc(50% - var(--window-gap) * 1.5);
+            block-size: calc(50% - var(--window-gap) * 1.5);
+            top: var(--window-gap);
+            left: calc(50% + var(--window-gap) / 2);
+
+            &.floating-scroll {
+                transform: translateX(calc(-50% - var(--window-gap) / 2))
+                    translateY(25%);
+                block-size: 60%;
+            }
+
+            &::after {
+                content: "Window 2";
+                color: var(--color-text-dark);
+            }
+        }
+
+        .window-3 {
+            inline-size: calc(50% - var(--window-gap) * 1.5);
+            block-size: calc(50% - var(--window-gap) * 1.5);
+            top: calc(50% + var(--window-gap) / 2);
+            left: calc(50% + var(--window-gap) / 2);
+
+            &.floating-scroll {
+                transform: translateX(50%) translateY(calc(-55%));
+            }
+
+            &::after {
+                content: "Window 3";
+            }
+        }
     }
 
     .reveal-on-scroll {
@@ -202,47 +518,135 @@ import "../../global.js";
     }
 
     @media (min-width: 60rem) {
-        .select-container,
-        .select-container:has(option[value="web"]:checked)
-            ~ #showcase-content
-            > .showcase-web,
-        .select-container:has(option[value="ext"]:checked)
-            ~ #showcase-content
-            > .showcase-ext,
-        .select-container:has(option[value="misc"]:checked)
-            ~ #showcase-content
-            > .showcase-misc {
+        .tabview-switcher-mobile,
+        .tabview-switcher-mobile:has(option[value="web"]:checked)
+            ~ #tabview
+            > .web-tab,
+        .tabview-switcher-mobile:has(option[value="ext"]:checked)
+            ~ #tabview
+            > .ext-tab {
             display: none;
         }
 
-        .view-switcher {
+        .tabview-switcher {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            background-color: var(--showcase-background-color);
+            border: 1px solid var(--showcase-border-color);
+            border-start-start-radius: var(--showcase-border-radius);
+            border-start-end-radius: var(--showcase-border-radius);
+            font-weight: bold;
+            font-size: smaller;
+            padding: 0.5rem 0;
+            margin-block-start: 2rem;
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            label {
+                padding: 0.25rem 1.25rem;
+                border-radius: 0.5rem;
+                color: var(--color-text-dim);
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            label:hover {
+                background-color: oklch(
+                    from var(--showcase-background-color) calc(l + 0.08) c h
+                );
+            }
+
+            label:has(input:checked) {
+                color: var(--color-text);
+                background-color: oklch(from white l c h / 0.1);
+            }
+
+            &:focus-visible {
+                outline: none;
+
+                label:has(input:checked) {
+                    outline: var(--focus-outline-size) solid var(--color-rose);
+                    outline-offset: var(--focus-outline-offset);
+                }
+            }
+        }
+
+        .tabview-switcher:has(input[value="web"]:checked) ~ #tabview > .web-tab,
+        .tabview-switcher:has(input[value="ext"]:checked)
+            ~ #tabview
+            > .ext-tab {
             display: flex;
         }
 
-        .view-switcher:has(input[value="web"]:checked)
-            ~ #showcase-content
-            > .showcase-web,
-        .view-switcher:has(input[value="ext"]:checked)
-            ~ #showcase-content
-            > .showcase-ext,
-        .view-switcher:has(input[value="misc"]:checked)
-            ~ #showcase-content
-            > .showcase-misc {
-            display: flex;
+        .tab .tab-content-box .tab-content .image {
+            object-fit: contain;
+        }
+
+        .ext-tab .desktop {
+            --window-gap: 2rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .window {
+            transition:
+                transform 0.2s ease-out,
+                block-size 0.2s ease-out;
         }
     }
 </style>
 
 <script>
-    const labels = document.querySelectorAll(
-        ".view-switcher > label",
-    ) as NodeListOf<HTMLLabelElement>;
+    document.querySelector("#carousel-requires-js-banner")!.remove();
 
-    labels.forEach((label) => {
+    const tabView = document.getElementById("tabview") as HTMLElement;
+    const tabViewSwitcher = document.querySelector(
+        ".tabview-switcher",
+    ) as HTMLElement;
+    const tabViewLabels = [...tabViewSwitcher.querySelectorAll("label")];
+    const tabItems = [...tabView.querySelectorAll(".tab-content")];
+    const tabDescriptions = [...tabView.querySelectorAll(".tab-description")];
+    const pageDots = tabView.querySelectorAll(
+        ".page-dot",
+    ) as NodeListOf<HTMLButtonElement>;
+    const desktopWindows = tabView.querySelectorAll(
+        ".window",
+    ) as NodeListOf<HTMLElement>;
+
+    /*
+     * Add keyboard nav for tab view
+     */
+
+    tabViewSwitcher.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+            const currentIndex = tabViewLabels.findIndex((label) =>
+                label.querySelector("input:checked"),
+            );
+            const nextIndex = Math.max(
+                0,
+                Math.min(
+                    tabViewLabels.length - 1,
+                    currentIndex + (event.key === "ArrowRight" ? 1 : -1),
+                ),
+            );
+
+            tabViewLabels[nextIndex]!.querySelector("input")!.click();
+            tabViewLabels[nextIndex]!.focus();
+        }
+    });
+
+    /*
+     * Sync aria-selected for tab label with active tab
+     */
+
+    tabViewLabels.forEach((label) => {
         const radio = label.firstElementChild as HTMLInputElement;
 
-        radio.addEventListener("change", (event: Event) => {
-            labels.forEach((label) => {
+        radio.addEventListener("change", (event) => {
+            tabViewLabels.forEach((label) => {
                 if (
                     label === (event.target as HTMLInputElement).parentElement
                 ) {
@@ -250,6 +654,81 @@ import "../../global.js";
                 } else {
                     label.setAttribute("aria-selected", "false");
                 }
+            });
+        });
+    });
+
+    /*
+     * Sync active tab with page dots
+     */
+
+    pageDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            tabItems[index].scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+            });
+        });
+    });
+
+    /**
+     * Sync tab descriptions with active tab, and animate desktop windows
+     */
+
+    let initialLoad = true;
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = tabItems.indexOf(entry.target);
+
+                    if (index === 0) {
+                        desktopWindows.forEach((w) =>
+                            w.classList.remove("floating-scroll"),
+                        );
+                    } else if (index === 1) {
+                        desktopWindows.forEach((w) =>
+                            w.classList.add("floating-scroll"),
+                        );
+                    }
+
+                    if (initialLoad) {
+                        initialLoad = false;
+                        return;
+                    }
+
+                    pageDots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add("active");
+                            tabDescriptions[i].scrollIntoView({
+                                behavior: "smooth",
+                                block: "nearest",
+                            });
+                        } else {
+                            dot.classList.remove("active");
+                        }
+                    });
+                }
+            });
+        },
+        { root: tabView, threshold: 0.5 },
+    );
+
+    tabItems.forEach((item) => observer.observe(item));
+
+    /**
+     * Sync active tab with tab descriptions
+     */
+
+    tabDescriptions.forEach((tabDescription, index) => {
+        const descendants = tabDescription.querySelectorAll("*");
+
+        descendants.forEach((d) => {
+            d.addEventListener("focus", () => {
+                tabItems[index].scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                });
             });
         });
     });
