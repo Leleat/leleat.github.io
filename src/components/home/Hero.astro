@@ -5,12 +5,25 @@ const { class: className, ...rest } = Astro.props;
 ---
 
 <section class={className} {...rest}>
-    <h1 class="title">Anh Tuan Le<div class="background-gradient"></div></h1>
+    <div class="terminal-prompt" aria-hidden="true">
+        <span>leleat@home $</span><span id="whoami-text"></span>
+        <span id="cursor">█</span>
+    </div>
+    <h1 class="title">
+        <pre
+            aria-label="Anh Tuan Le">
+ █████╗ ███╗   ██╗██╗  ██╗    ████████╗██╗   ██╗ █████╗ ███╗   ██╗    ██╗     ███████╗
+██╔══██╗████╗  ██║██║  ██║    ╚══██╔══╝██║   ██║██╔══██╗████╗  ██║    ██║     ██╔════╝
+███████║██╔██╗ ██║███████║       ██║   ██║   ██║███████║██╔██╗ ██║    ██║     █████╗
+██╔══██║██║╚██╗██║██╔══██║       ██║   ██║   ██║██╔══██║██║╚██╗██║    ██║     ██╔══╝
+██║  ██║██║ ╚████║██║  ██║       ██║   ╚██████╔╝██║  ██║██║ ╚████║    ███████╗███████╗
+╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝    ╚══════╝╚══════╝</pre>
+    </h1>
     <p>
-        I'm a (web) developer based in <b>Berlin</b> with a love for open-source
-        software. Explore my <a href="/#showcase" class="hash-link">Projects</a
-        >, discover my <a href="/#skills" class="hash-link">Skills</a>, or check
-        out my code and contributions on <a
+        I'm a web developer based in <b>Berlin</b> with a love for open-source software.
+        Explore my <a href="/#showcase" class="hash-link">Projects</a>, discover
+        my <a href="/#skills" class="hash-link">Skills</a>, or check out my code
+        and contributions on <a
             href="https://github.com/leleat"
             target="_blank"
             rel="noreferrer">GitHub</a
@@ -22,6 +35,21 @@ const { class: className, ...rest } = Astro.props;
 </section>
 
 <style>
+    .terminal-prompt {
+        font-size: 0.9rem;
+        margin-block-end: 2rem;
+        user-select: none;
+
+        :first-child {
+            color: var(--color-yellow);
+            margin-inline-end: 0.75rem;
+        }
+
+        :nth-child(2) {
+            color: var(--color-text-dim);
+        }
+    }
+
     a.hash-link {
         color: var(--color-yellow);
 
@@ -35,6 +63,24 @@ const { class: className, ...rest } = Astro.props;
         max-inline-size: 80ch;
     }
 
+    #cursor {
+        animation: blink 1s step-end 8;
+        user-select: none;
+        visibility: hidden;
+        color: var(--color-text-dim);
+    }
+
+    @keyframes blink {
+        0%,
+        50% {
+            opacity: 1;
+        }
+        51%,
+        100% {
+            opacity: 0;
+        }
+    }
+
     section {
         display: flex;
         flex-direction: column;
@@ -46,44 +92,19 @@ const { class: className, ...rest } = Astro.props;
         top: calc(var(--navbar-height) / -2);
     }
 
-    .background-gradient {
-        --bg-size: 32rem;
-
-        content: "";
-        position: absolute;
-        display: block;
-        z-index: -100;
-        top: calc(-1 * var(--bg-size) / 2 + 150px);
-        left: calc(-1 * var(--bg-size) / 2 + 50% + 50px);
-        inline-size: var(--bg-size);
-        block-size: var(--bg-size);
-        filter: blur(99px);
-        opacity: 0.3;
-        background: conic-gradient(#e95f5f, #181719, #8b56d9);
-    }
-
     .title {
         position: relative;
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--color-background);
-        margin-block-start: 2rem;
-        margin-block-end: 2rem;
+        margin-block-start: 0;
+        margin-block-end: 1rem;
         inline-size: fit-content;
     }
 
-    .title::after {
-        content: "";
-        position: absolute;
-        display: block;
-        inline-size: 120%;
-        block-size: 110%;
-        top: -22%;
-        left: -10%;
-        background-color: var(--color-yellow);
-        margin: 0.75rem auto;
-        z-index: -1;
-        box-shadow: 0 0 3rem var(--color-rose);
+    .title pre {
+        margin: 0;
+        font-family: monospace;
+        font-size: 0.5rem;
+        color: var(--color-yellow);
+        user-select: none;
     }
 
     @media (min-width: 60rem) {
@@ -91,11 +112,14 @@ const { class: className, ...rest } = Astro.props;
             transform: skewY(-2deg) skewX(-25deg);
         }
 
+        .title pre {
+            font-size: 0.7rem;
+        }
+
         section {
-            /* HACK: 21rem is roughly the size of the Contact Details element */
             min-block-size: calc(
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
-                    21rem
+                    28rem
             );
             top: 0;
         }
@@ -107,12 +131,74 @@ const { class: className, ...rest } = Astro.props;
         }
 
         section {
-            /* HACK: 18rem is roughly the size of the Contact Details element */
             min-block-size: calc(
                 100vh - var(--navbar-height) - var(--content-vpadding) * 2 -
-                    18rem
+                    23rem
             );
             top: 0;
         }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+        #cursor {
+            animation: none;
+        }
+    }
 </style>
+
+<script>
+    const whoamiText = "whoami";
+    const whoamiEl = document.getElementById("whoami-text");
+    const cursorEl = document.getElementById("cursor");
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    function typeWhoami(): Promise<void> {
+        return new Promise((resolve) => {
+            let index = 0;
+
+            function typeNextChar() {
+                if (index < whoamiText.length) {
+                    if (whoamiEl) {
+                        whoamiEl.textContent =
+                            whoamiText.slice(0, index + 1) + "█";
+                    }
+
+                    index++;
+                    setTimeout(typeNextChar, 150);
+                } else {
+                    if (whoamiEl) {
+                        whoamiEl.textContent = whoamiText;
+                    }
+
+                    resolve();
+                }
+            }
+
+            typeNextChar();
+        });
+    }
+
+    async function runAnimation() {
+        if (!whoamiEl || !cursorEl) {
+            return;
+        }
+
+        await typeWhoami();
+
+        cursorEl.style.visibility = "visible";
+    }
+
+    if (prefersReducedMotion) {
+        if (whoamiEl) {
+            whoamiEl.textContent = whoamiText;
+        }
+
+        if (cursorEl) {
+            cursorEl.style.visibility = "visible";
+        }
+    } else {
+        setTimeout(runAnimation, 400);
+    }
+</script>

@@ -98,8 +98,7 @@ import "../../global.js";
 
 <style>
     .timeline {
-        --timeline-inline-size: 2px;
-        --timeline-padding-inline-start: 0.5rem;
+        --timeline-inline-size: 1px;
 
         display: flex;
         flex-direction: column;
@@ -113,17 +112,10 @@ import "../../global.js";
             content: "";
             position: absolute;
             inline-size: var(--timeline-inline-size);
-            background-color: var(--color-text-dark);
-            top: 0;
-            bottom: 0;
-            left: var(--timeline-padding-inline-start);
-            mask: linear-gradient(
-                to bottom,
-                transparent 0%,
-                black 4rem,
-                black calc(100% - 4rem),
-                transparent 100%
-            );
+            background-color: var(--color-text);
+            top: 1.5rem;
+            bottom: 1.5rem;
+            left: 0.5rem;
             z-index: -1;
         }
     }
@@ -133,7 +125,8 @@ import "../../global.js";
         margin: 0;
         display: flex;
         flex-direction: column;
-        margin-inline-start: calc(2rem + var(--timeline-padding-inline-start));
+        /* 0.5rem comes `left` from .timeline::before */
+        margin-inline-start: calc(2rem + 0.5rem);
     }
 
     .timeline-item-date {
@@ -147,15 +140,12 @@ import "../../global.js";
         position: relative;
 
         &::before {
-            content: "";
+            content: "◉";
             position: absolute;
-            inline-size: 0.6rem;
-            block-size: 0.6rem;
-            background-color: var(--color-text);
-            border-radius: 50%;
-            outline: 0.75rem solid var(--color-background);
-            top: 1.25rem;
-            left: -2.25rem;
+            font-size: 2rem;
+            background-color: var(--color-background);
+            top: 0;
+            left: -2.5rem;
         }
     }
 

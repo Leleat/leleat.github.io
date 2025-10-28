@@ -4,7 +4,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    /* https://qwtel.com/posts/software/the-monospaced-system-ui-css-font-stack/ */
+    font-family:
+        ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+        "Roboto Mono", "Oxygen Mono", "Ubuntu Mono", "Source Code Pro",
+        "Fira Mono", "Droid Sans Mono", "Consolas", "Courier New", monospace;
     font-style: normal;
     line-height: 1.5;
 
@@ -15,7 +19,7 @@
 }
 
 :root {
-    --color-background: #181719;
+    --color-background: #09090a;
     --color-background-button: #252525;
     --color-rose: #d0316e;
     --color-yellow: #ffee6c;
@@ -24,8 +28,8 @@
     --color-text-dim: #9d9d97;
     --focus-outline-size: 3px;
     --focus-outline-offset: 2px;
-    --max-inline-size: 80rem;
-    --max-inline-size-post-content: 90ch;
+    --max-inline-size: 1376px;
+    --max-inline-size-post-content: 100ch;
     --navbar-height: 3.875rem;
     --footer-height: 3.75rem;
     --content-hpadding: 1.5rem;
@@ -130,12 +134,20 @@ h6:has(> a) {
         color: inherit;
         text-decoration: none;
 
-        &:hover::after {
+        &::before {
             content: "#";
-            margin-inline-start: 1ch;
-            color: oklch(from currentColor calc(l - 0.45) c h);
+            margin-inline-end: 1rem;
+            color: oklch(from currentColor calc(l - 0.35) c h);
+        }
+
+        &:hover::before {
+            color: inherit;
         }
     }
+}
+
+h1:has(> a) > a::before {
+    margin-inline-end: 0;
 }
 
 main img {
@@ -166,6 +178,7 @@ pre.astro-code {
     counter-reset: step;
     position: relative;
     max-block-size: 85vh;
+    border-radius: 0.25rem;
 
     & > code {
         padding: 1rem;
