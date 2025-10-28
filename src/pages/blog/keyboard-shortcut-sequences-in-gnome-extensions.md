@@ -3,6 +3,7 @@ layout: ../../layouts/BlogPostLayout.astro
 title: "Keyboard shortcut sequences in GNOME extensions"
 author: "Anh Tuan Le"
 pubDate: "2024-08-26 01:00:00 +0200"
+editDate: "2025-03-01 01:00:00 +0200"
 tags: ["gnome extension", "concept"]
 ---
 
