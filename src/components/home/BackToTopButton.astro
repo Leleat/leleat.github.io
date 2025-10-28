@@ -3,7 +3,7 @@ import "../../global.js";
 ---
 
 <section>
-    <a href="#" aria-label="Go to top">
+    <a href="#">
         <!-- https://icons.getbootstrap.com/icons/chevron-up/ -->
         <svg
             class="button-icon"
@@ -20,6 +20,7 @@ import "../../global.js";
             ></path>
         </svg>
         <div class="button-bg"></div>
+        <span>Back to top</span>
     </a>
 </section>
 
@@ -75,6 +76,8 @@ import "../../global.js";
     a {
         border-radius: calc(infinity * 1px);
         position: relative;
+        color: inherit;
+        text-decoration: none;
     }
 
     a .button-icon {
@@ -88,9 +91,9 @@ import "../../global.js";
     .button-bg {
         color: var(--color-text);
         border-radius: calc(infinity * 1px);
-        background-color: var(--color-background-button);
         block-size: 3rem;
         inline-size: 3rem;
+        margin-block-end: 1rem;
         box-shadow: 0 1px 0.25rem rgba(0, 0, 0, 0.1);
     }
 

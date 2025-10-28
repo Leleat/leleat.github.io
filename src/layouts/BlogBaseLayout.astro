@@ -40,8 +40,9 @@ const { title } = Astro.props;
         display: grid;
         gap: 3.25rem;
         justify-items: center;
+        /* TODO The 1.75rem comes from bad height of the navbar (extra margin) */
         min-block-size: calc(
-            100vh - var(--navbar-height) - var(--footer-height)
+            100vh - var(--navbar-height) - 1.75rem - var(--footer-height)
         );
         max-inline-size: var(--max-inline-size);
         margin: 0 auto;
