@@ -7,8 +7,6 @@ import PostToC from "../components/blog/PostToC.astro";
 import { getPublicPostsWithOldestFirst } from "../global.js";
 import BlogBaseLayout from "./BlogBaseLayout.astro";
 
-import * as fs from "node:fs";
-
 const { frontmatter, headings } = Astro.props;
 
 const publicPosts = getPublicPostsWithOldestFirst();
@@ -17,10 +15,6 @@ const currentPostIndex = publicPosts.findIndex(
 );
 const prevPost = publicPosts[currentPostIndex - 1];
 const nextPost = publicPosts[currentPostIndex + 1];
-
-const stats = fs.statSync(frontmatter.file);
-const { mtime } = stats;
-const modifiedIsoDate = new Date(mtime).toISOString();
 ---
 
 <BlogBaseLayout title={`${frontmatter.title} | Anh Tuan Le (@Leleat)`}>
@@ -33,12 +27,7 @@ const modifiedIsoDate = new Date(mtime).toISOString();
         </h1>
         <PostMetadata
             pubDate={frontmatter.pubDate}
-            editDate={(
-                modifiedIsoDate.split("T")[0] >
-                frontmatter.pubDate.split(/ |T/, 1)[0]
-            ) ?
-                modifiedIsoDate
-            :   undefined}
+            editDate={frontmatter.editDate}
             author={frontmatter.author}
             class="postmetadata"
         />
