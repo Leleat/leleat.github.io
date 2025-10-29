@@ -54,10 +54,10 @@ import "../global.js";
     <nav class="navbar">
         <ul class="left-box">
             <li>
-                <a href="/">Home</a>
+                <a href="/" aria-label="Home">> Home</a>
             </li>
             <li>
-                <a href="/blog/">Blog</a>
+                <a href="/blog/" aria-label="Blog">> Blog</a>
             </li>
         </ul>
         <ul class="right-box">
@@ -259,7 +259,6 @@ import "../global.js";
         }
 
         .navbar {
-            --item-spacing: 2.25rem;
             --navbar-button-padding: 0.75rem;
 
             display: flex;
@@ -276,7 +275,6 @@ import "../global.js";
 
             & .left-box {
                 display: flex;
-                gap: var(--item-spacing);
                 padding: 0;
                 margin: 0;
                 margin-inline-start: -1.5rem;
@@ -312,7 +310,6 @@ import "../global.js";
 
             & .right-box {
                 display: flex;
-                gap: var(--item-spacing);
                 margin: 0;
                 padding: 0;
 
