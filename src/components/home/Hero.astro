@@ -59,8 +59,7 @@ const { class: className, ...rest } = Astro.props;
     }
 
     h1 + p {
-        text-align: justify;
-        max-inline-size: 80ch;
+        max-inline-size: 72ch;
     }
 
     #cursor {
@@ -96,7 +95,8 @@ const { class: className, ...rest } = Astro.props;
         position: relative;
         margin-block-start: 0;
         margin-block-end: 1rem;
-        inline-size: fit-content;
+        overflow-x: auto;
+        scrollbar-width: none;
     }
 
     .title pre {
