@@ -28,7 +28,7 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
                     }
 
                     :root {
-                        --color-background: #181719;
+                        --color-background: #09090a;
                         --color-yellow: #ffee6c;
                         --color-rose: #d0316e;
                         --color-text: #ddd;
