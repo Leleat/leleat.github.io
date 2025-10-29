@@ -99,6 +99,8 @@ import "../../global.js";
 <style>
     .timeline {
         --timeline-inline-size: 1px;
+        --timeline-start: 0.5ch;
+        --timeline-padding-inline-start: 1.5rem;
 
         display: flex;
         flex-direction: column;
@@ -115,7 +117,7 @@ import "../../global.js";
             background-color: var(--color-text);
             top: 1.5rem;
             bottom: 1.5rem;
-            left: 0.5rem;
+            left: var(--timeline-start);
             z-index: -1;
         }
     }
@@ -125,8 +127,9 @@ import "../../global.js";
         margin: 0;
         display: flex;
         flex-direction: column;
-        /* 0.5rem comes `left` from .timeline::before */
-        margin-inline-start: calc(2rem + 0.5rem);
+        margin-inline-start: calc(
+            var(--timeline-start) + var(--timeline-padding-inline-start)
+        );
     }
 
     .timeline-item-date {
@@ -134,7 +137,6 @@ import "../../global.js";
     }
 
     .timeline-item-title {
-        padding-block: 0.5rem;
         margin-block: 0;
         background-color: var(--color-background);
         position: relative;
@@ -144,8 +146,9 @@ import "../../global.js";
             position: absolute;
             font-size: 2rem;
             background-color: var(--color-background);
-            top: 0;
-            left: -2.5rem;
+            top: -0.5rem;
+            left: calc(-1 * var(--timeline-padding-inline-start));
+            transform: translateX(calc(-50% + 1px));
         }
     }
 
@@ -155,7 +158,7 @@ import "../../global.js";
 
     @media (min-width: 80rem) {
         .timeline {
-            --timeline-padding-inline-start: 1.5rem;
+            --timeline-padding-inline-start: 2rem;
         }
     }
 </style>
