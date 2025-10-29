@@ -6,7 +6,7 @@ const { class: className, ...rest } = Astro.props;
 
 <section class={className} {...rest}>
     <div class="terminal-prompt" aria-hidden="true">
-        <span>leleat@home $</span><span id="whoami-text"></span>
+        <span>leleat@home</span><span>$ </span><span id="whoami-text"></span>
         <span id="cursor">█</span>
     </div>
     <h1 class="title">
@@ -36,17 +36,16 @@ const { class: className, ...rest } = Astro.props;
 
 <style>
     .terminal-prompt {
+        color: var(--color-text-dim);
         font-size: 0.9rem;
         margin-block-end: 2rem;
         user-select: none;
 
         :first-child {
-            color: var(--color-yellow);
+            color: #ff498f;
+            background-color: #30252a;
+            padding: 0.25rem 0.5rem;
             margin-inline-end: 0.75rem;
-        }
-
-        :nth-child(2) {
-            color: var(--color-text-dim);
         }
     }
 
