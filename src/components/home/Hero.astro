@@ -90,6 +90,35 @@ const { class: className, ...rest } = Astro.props;
         top: calc(var(--navbar-height) / -2);
     }
 
+    .terminal-prompt,
+    .title {
+        position: relative;
+        width: fit-content;
+        /* Phosphor glow + Chromatic aberration */
+        text-shadow:
+            0 0 1px currentColor,
+            0 0 2px currentColor,
+            0 0 4px rgba(255, 255, 255, 0.2),
+            1px 0 0 rgba(255, 0, 0, 1),
+            -1px 0 0 rgba(0, 255, 255, 1);
+
+        /* Scan lines */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent 0px,
+                transparent 1px,
+                rgba(0, 0, 0, 0.3) 1px,
+                rgba(0, 0, 0, 0.3) 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+    }
+
     .title {
         position: relative;
         margin-block-start: 0;
