@@ -6,9 +6,8 @@ import CaretIcon from "./icons/caret.astro";
 
 <footer>
     <small>
-        Copyright © {new Date().getFullYear()} Anh Tuan Le. &nbsp;
-        <a href="/#contact" class="contact-details"> Contact details </a>.
-        &nbsp;
+        <span>Copyright © {new Date().getFullYear()} Anh Tuan Le.</span>
+        <a href="/#contact" class="contact-details"> Contact details. </a>
         <span class="credits-container">
             <button class="credits-button" popovertarget="credits-popup">
                 <span class="credits-label"
@@ -216,15 +215,15 @@ import CaretIcon from "./icons/caret.astro";
         --color-text: #999;
 
         color: var(--color-text);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        block-size: var(--footer-height);
     }
 
     small {
         display: flex;
+        flex-wrap: wrap-reverse;
+        gap: 0.5rem;
         align-items: center;
+        justify-content: center;
+        padding: 1rem;
     }
 
     .credits-container {
