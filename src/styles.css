@@ -91,6 +91,7 @@ button {
     padding: 0 0.25rem;
     margin: 0 0.125rem;
     border-radius: 0.25rem;
+    overflow-wrap: anywhere;
 }
 
 h1 {

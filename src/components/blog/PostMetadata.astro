@@ -53,7 +53,9 @@ const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
 
     .dates {
         display: flex;
-        gap: 3rem;
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+        column-gap: 3rem;
     }
 
     .author {
