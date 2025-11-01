@@ -58,7 +58,7 @@ blockquote {
     color: var(--color-text-dim);
     background-color: var(--color-background-button);
     margin-block: 1rem;
-    padding-inline-start: 3.25rem;
+    padding-inline-start: 4rem;
     padding-inline-end: 1.5rem;
     border-radius: 0.5rem;
     padding-block: 0.75rem;
