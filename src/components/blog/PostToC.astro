@@ -4,18 +4,25 @@ interface Props {
 }
 
 const { headings } = Astro.props;
+const maxHeadingsLevel = 2;
 ---
 
 <aside>
     <h3>On This Page</h3>
     <div class="content" role="list">
-        <div class="toc-item-indicator"></div>
+        <div
+            class="toc-item-indicator"
+            data-max-headings-level={maxHeadingsLevel}
+        >
+        </div>
         {
-            headings.map(({ slug, text }) => (
-                <a class="toc-item" href={`#${slug}`} role="listitem">
-                    {text}
-                </a>
-            ))
+            headings
+                .filter((h) => h.depth < maxHeadingsLevel + 1)
+                .map(({ slug, text }) => (
+                    <a class="toc-item" href={`#${slug}`} role="listitem">
+                        {text}
+                    </a>
+                ))
         }
     </div>
 </aside>
@@ -46,9 +53,12 @@ const { headings } = Astro.props;
         }
     });
 
-    const headings = document.querySelectorAll(
-        "main h2, main h3, main h4, main h5, main h6",
-    );
+    const selector = [
+        ...Array(Number(tocItemIndicator.dataset.maxHeadingsLevel) - 1),
+    ]
+        .map((_, index) => `main h${index + 2 /* Start at h2*/}`)
+        .join(",");
+    const headings = document.querySelectorAll(selector);
 
     headings.forEach((h) => observer.observe(h));
 </script>
