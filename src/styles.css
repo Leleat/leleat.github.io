@@ -107,13 +107,7 @@ h2 {
     margin-block-end: 1rem;
 }
 
-h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-block-start: 1.5rem;
-    margin-block-end: 1rem;
-}
-
+h3,
 h4,
 h5,
 h6 {
@@ -121,6 +115,10 @@ h6 {
     font-weight: 600;
     margin-block-start: 1.5rem;
     margin-block-end: 1rem;
+}
+
+:is(h1, h2, h3, h4, h5, h6):has(+ :is(h1, h2, h3, h4, h5, h6)) {
+    margin-block-end: 0rem;
 }
 
 h1:has(> a),
