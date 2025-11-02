@@ -1,7 +1,7 @@
 ---
-import BlogBaseLayout from "../../layouts/BlogBaseLayout.astro";
-import PostCard from "../../components/blog/PostCard.astro";
-import { getPublicPostsWithNewestFirst } from "../../global.js";
+import PostCard from "@/components/blog/PostCard.astro";
+import { getPublicPostsWithNewestFirst } from "@/global.js";
+import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 const publicPosts = getPublicPostsWithNewestFirst();
 ---

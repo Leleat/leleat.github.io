@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPostLayout.astro
+layout: "@/layouts/BlogPostLayout.astro"
 title: "Reaching for the Stars with Astro"
 author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"

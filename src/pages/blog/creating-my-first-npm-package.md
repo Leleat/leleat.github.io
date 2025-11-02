@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPostLayout.astro
+layout: "@/layouts/BlogPostLayout.astro"
 title: "Creating my first npm Package"
 author: "Anh Tuan Le"
 pubDate: "2024-07-22 22:00:00 +0200"
