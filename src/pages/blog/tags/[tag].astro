@@ -1,10 +1,10 @@
 ---
-import PostCard from "../../../components/blog/PostCard.astro";
-import BlogBaseLayout from "../../../layouts/BlogBaseLayout.astro";
-import { getPublicPostsWithNewestFirst, getTagData } from "../../../global.js";
+import PostCard from "@/components/blog/PostCard.astro";
+import { getPostsWithNewestFirst, getTagData } from "@/global.js";
+import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 export async function getStaticPaths() {
-    const publicPosts = getPublicPostsWithNewestFirst();
+    const publicPosts = getPostsWithNewestFirst();
     const tags = [
         ...new Set(publicPosts.flatMap((post: any) => post.frontmatter.tags)),
     ].map((tag) => getTagData(tag));
