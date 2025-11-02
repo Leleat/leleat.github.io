@@ -4,12 +4,12 @@ import PostMetadata from "@/components/blog/PostMetadata.astro";
 import PostNavigationButtons from "@/components/blog/PostNavigationButtons.astro";
 import PostTagList from "@/components/blog/PostTagList.astro";
 import PostToC from "@/components/blog/PostToC.astro";
-import { getPublicPostsWithOldestFirst } from "@/global.js";
+import { getPostsWithOldestFirst } from "@/global.js";
 import BlogBaseLayout from "./BlogBaseLayout.astro";
 
 const { frontmatter, headings } = Astro.props;
 
-const publicPosts = getPublicPostsWithOldestFirst();
+const publicPosts = getPostsWithOldestFirst();
 const currentPostIndex = publicPosts.findIndex(
     (post) => (post as any).url === frontmatter.url,
 );

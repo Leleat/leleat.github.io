@@ -1,10 +1,10 @@
 import rss from "@astrojs/rss";
 import sanitizeHtml from "sanitize-html";
 
-import { getPublicPostsWithNewestFirst } from "../global.js";
+import { getPostsWithNewestFirst } from "../global.js";
 
 export async function GET(context) {
-    const posts = getPublicPostsWithNewestFirst();
+    const posts = getPostsWithNewestFirst();
     const items = await Promise.all(
         posts.map(async (post) => ({
             title: post.frontmatter.title,

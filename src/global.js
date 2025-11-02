@@ -1,14 +1,10 @@
 import "./styles.css";
 
-const isPublicPost = (post) =>
-    post.file.split("/").at(-1).startsWith("_") === false;
-const getPublicPosts = () =>
-    Object.values(
-        import.meta.glob("./pages/blog/*.md", { eager: true }),
-    ).filter((post) => isPublicPost(post));
+const getPosts = () =>
+    Object.values(import.meta.glob("./pages/blog/**/*.md", { eager: true }));
 
-export function getPublicPostsWithOldestFirst() {
-    return getPublicPosts().toSorted((a, b) => {
+export function getPostsWithOldestFirst() {
+    return getPosts().toSorted((a, b) => {
         const dateA = new Date(a.frontmatter.pubDate);
         const dateB = new Date(b.frontmatter.pubDate);
 
@@ -20,8 +16,8 @@ export function getPublicPostsWithOldestFirst() {
     });
 }
 
-export function getPublicPostsWithNewestFirst() {
-    return getPublicPostsWithOldestFirst().toReversed();
+export function getPostsWithNewestFirst() {
+    return getPostsWithOldestFirst().toReversed();
 }
 
 const sluggifyTag = (tag) => tag.toLowerCase().replace(/ |\//g, "-");

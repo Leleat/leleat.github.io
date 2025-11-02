@@ -1,9 +1,9 @@
 ---
 import PostCard from "@/components/blog/PostCard.astro";
-import { getPublicPostsWithNewestFirst } from "@/global.js";
+import { getPostsWithNewestFirst } from "@/global.js";
 import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
-const publicPosts = getPublicPostsWithNewestFirst();
+const publicPosts = getPostsWithNewestFirst();
 ---
 
 <BlogBaseLayout title="Blog | Anh Tuan Le (@Leleat)">

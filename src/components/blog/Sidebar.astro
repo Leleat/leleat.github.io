@@ -1,8 +1,8 @@
 ---
-import { getPublicPostsWithNewestFirst, getTagData } from "../../global.js";
+import { getPostsWithNewestFirst, getTagData } from "../../global.js";
 
 const showRecentPostsAmount = 5;
-const publicPosts = getPublicPostsWithNewestFirst();
+const publicPosts = getPostsWithNewestFirst();
 const tags = [
     ...new Set(publicPosts.flatMap((p: any) => p.frontmatter.tags)),
 ].toSorted();
