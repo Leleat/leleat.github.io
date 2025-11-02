@@ -1,4 +1,5 @@
 <!-- https://css-tricks.com/emoji-as-a-favicon/ -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <text y=".9em" font-size="90">👋</text>
+    <rect width="100" height="100" fill="#09090a" />
+    <text x="10" y="80" font-size="80" fill="#ddd">://</text>
 </svg>
