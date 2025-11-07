@@ -177,6 +177,13 @@ main article a > img {
     }
 }
 
+main article figcaption {
+    margin-block-start: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+    text-align: center;
+}
+
 ul > li {
     list-style-type: "‣  ";
     margin-inline-start: 1rem;

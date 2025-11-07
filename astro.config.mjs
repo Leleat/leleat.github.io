@@ -4,6 +4,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
 import rehypeCodeCopyButton from "./src/plugins/rehypeCodeCopyButton.js";
+import rehypeFigureCaption from "./src/plugins/rehypeFigureCaption.js";
 
 export default defineConfig({
     markdown: {
@@ -12,6 +13,7 @@ export default defineConfig({
         },
         smartypants: false,
         rehypePlugins: [
+            rehypeFigureCaption,
             rehypeSlug,
             [rehypeAutolinkHeadings, { behavior: "wrap" }],
             rehypeCodeCopyButton,
