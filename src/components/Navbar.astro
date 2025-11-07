@@ -210,6 +210,10 @@ import XLgIcon from "./icons/x-lg.astro";
         display: none;
     }
 
+    body:has(#navbar-popover:popover-open) {
+        overflow: hidden;
+    }
+
     #navbar-popover {
         position: absolute;
         width: unset;
@@ -259,7 +263,7 @@ import XLgIcon from "./icons/x-lg.astro";
 
             li {
                 padding-block: 1.25rem;
-                margin: 0;
+                margin: 0 auto;
             }
 
             li a {
@@ -293,6 +297,10 @@ import XLgIcon from "./icons/x-lg.astro";
     @media (min-width: 40rem) {
         .hamburger-button {
             display: none;
+        }
+
+        body:has(#navbar-popover:popover-open) {
+            overflow: auto;
         }
 
         #navbar-popover {
