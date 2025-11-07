@@ -164,16 +164,14 @@ main article img {
     inline-size: 100%;
     block-size: auto;
     object-fit: contain;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    background-color: var(--color-background-button);
 }
 
 main article a > img {
     cursor: pointer;
+    transition: 0.3s transform;
 
     &:hover {
-        background-color: var(--color-rose);
+        transform: scale(1.01);
     }
 }
 
