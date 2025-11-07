@@ -1,5 +1,6 @@
 ---
 import "../global.js";
+import XLgIcon from "./icons/x-lg.astro";
 ---
 
 <header {...Astro.props}>
@@ -15,41 +16,53 @@ import "../global.js";
         </div>
     </button>
     <nav id="navbar-popover" popover>
-        <ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="/blog/">Blog</a>
-            </li>
-            <li>
-                <a
-                    href="https://matrix.to/#/@leleat:matrix.org"
-                    target="_blank"
-                    rel="noreferrer"
+        <div class="popover-content">
+            <div class="popover-header">
+                <button
+                    class="close-button"
+                    aria-label="Close Menu"
+                    popovertarget="navbar-popover"
+                    popovertargetaction="hide"
                 >
-                    Matrix
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://mastodon.social/@leleat"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Mastodon
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/Leleat"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    GitHub
-                </a>
-            </li>
-        </ul>
+                    <XLgIcon size={20} />
+                </button>
+            </div>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/blog/">Blog</a>
+                </li>
+                <li>
+                    <a
+                        href="https://matrix.to/#/@leleat:matrix.org"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Matrix
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://mastodon.social/@leleat"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Mastodon
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="https://github.com/Leleat"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <nav class="navbar">
         <ul class="left-box">
@@ -199,33 +212,61 @@ import "../global.js";
 
     #navbar-popover {
         position: absolute;
-        inset: unset;
         width: unset;
-        top: var(--navbar-height);
-        left: 1rem;
-        right: 1rem;
-        margin: 0;
-        border-radius: 0.75rem;
-        border: none;
-        box-shadow: 0 0 1rem oklch(from var(--color-rose) l c h);
+        height: unset;
+        inset: 0;
         background-color: var(--color-background);
+
+        .popover-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .popover-header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0.5rem;
+
+            .close-button {
+                color: var(--color-text-dim);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0.5rem;
+                user-select: none;
+                -webkit-user-select: none;
+
+                &:hover {
+                    transform: translateY(-3px);
+                    color: var(--color-yellow);
+                }
+
+                &:focus-visible {
+                    outline: 2px solid var(--color-rose);
+                    outline-offset: 2px;
+                }
+            }
+        }
 
         ul {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             padding-inline: 1.5rem;
+            flex: 1;
 
             li {
-                padding-block: 1.5rem;
+                padding-block: 1.25rem;
                 margin: 0;
-                border-block-end: 1px solid var(--color-text-dark);
             }
 
             li a {
                 color: var(--color-yellow);
                 display: block;
                 text-align: center;
-                font-size: 1rem;
+                font-size: 1.25rem;
 
                 &:hover {
                     text-decoration: 1px dotted underline;
@@ -368,6 +409,12 @@ import "../global.js";
             & .hamburger-line {
                 transition: background-color 0.15s;
             }
+        }
+
+        .close-button {
+            transition:
+                transform 0.15s,
+                color 0.15s;
         }
 
         .navbar .left-box a::after {
