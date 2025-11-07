@@ -17,7 +17,7 @@ const { class: className, ...rest } = Astro.props;
 ███████║██╔██╗ ██║███████║       ██║   ██║   ██║███████║██╔██╗ ██║    ██║     █████╗
 ██╔══██║██║╚██╗██║██╔══██║       ██║   ██║   ██║██╔══██║██║╚██╗██║    ██║     ██╔══╝
 ██║  ██║██║ ╚████║██║  ██║       ██║   ╚██████╔╝██║  ██║██║ ╚████║    ███████╗███████╗
-╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝    ╚══════╝╚══════╝</pre>
+╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝    ╚══════╝╚══════╝    </pre>
     </h1>
     <p>
         I'm a web developer based in <b>Berlin</b> with a love for open-source software.
@@ -120,15 +120,18 @@ const { class: className, ...rest } = Astro.props;
     }
 
     .title {
+        --margin-inline: 1.5rem;
+
         position: relative;
         margin-block-start: 0;
         margin-block-end: 1rem;
+        margin-inline: calc(-1 * var(--margin-inline));
         overflow-x: auto;
         scrollbar-width: none;
     }
 
     .title pre {
-        margin: 0;
+        margin: 0 var(--margin-inline);
         font-size: 0.5rem;
         color: var(--color-yellow);
         user-select: none;
