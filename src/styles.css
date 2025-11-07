@@ -160,13 +160,21 @@ h1:has(> a) > a::before {
     margin-inline-end: 0;
 }
 
-main img {
+main article img {
     inline-size: 100%;
     block-size: auto;
     object-fit: contain;
     padding: 0.5rem;
     border-radius: 0.5rem;
     background-color: var(--color-background-button);
+}
+
+main article a > img {
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-rose);
+    }
 }
 
 ul > li {
