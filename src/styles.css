@@ -11,6 +11,7 @@
         "Fira Mono", "Droid Sans Mono", "Consolas", "Courier New", monospace;
     font-style: normal;
     line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
 
     &::selection {
         color: white;
