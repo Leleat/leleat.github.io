@@ -1,7 +1,38 @@
 import "./styles.css";
 
+function calculateReadTime(content) {
+    const lines = content.split("\n");
+    let inCodeBlock = false;
+    let textLines = [];
+
+    for (const line of lines) {
+        if (line.trim().startsWith("```")) {
+            inCodeBlock = !inCodeBlock;
+            continue;
+        }
+
+        if (!inCodeBlock) {
+            textLines.push(line);
+        }
+    }
+
+    const text = textLines.join(" ");
+    const words = text
+        .trim()
+        .split(/\s+/)
+        .filter((w) => w.length > 0);
+    const minutes = Math.max(1, Math.ceil(words.length / 200));
+
+    return `${minutes} min`;
+}
+
 const getPosts = () =>
-    Object.values(import.meta.glob("./pages/blog/**/*.md", { eager: true }));
+    Object.values(
+        import.meta.glob("./pages/blog/**/*.md", { eager: true }),
+    ).map((post) => ({
+        ...post,
+        readTime: calculateReadTime(post.rawContent()),
+    }));
 
 export function getPostsWithOldestFirst() {
     return getPosts().toSorted((a, b) => {
