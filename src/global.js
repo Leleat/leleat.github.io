@@ -21,7 +21,7 @@ function calculateReadTime(content) {
         .trim()
         .split(/\s+/)
         .filter((w) => w.length > 0);
-    const minutes = Math.max(1, Math.ceil(words.length / 200));
+    const minutes = Math.max(1, Math.round(words.length / 270));
 
     return `${minutes} min`;
 }
