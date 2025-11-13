@@ -13,6 +13,7 @@ const publicPosts = getPostsWithOldestFirst();
 const currentPostIndex = publicPosts.findIndex(
     (post) => (post as any).url === frontmatter.url,
 );
+const currentPost = publicPosts[currentPostIndex];
 const prevPost = publicPosts[currentPostIndex - 1];
 const nextPost = publicPosts[currentPostIndex + 1];
 ---
@@ -29,6 +30,7 @@ const nextPost = publicPosts[currentPostIndex + 1];
             pubDate={frontmatter.pubDate}
             editDate={frontmatter.editDate}
             author={frontmatter.author}
+            readTime={currentPost.readTime}
             class="postmetadata"
         />
         <slot />

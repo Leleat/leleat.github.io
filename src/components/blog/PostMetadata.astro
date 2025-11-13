@@ -3,17 +3,25 @@ interface Props {
     pubDate: string;
     editDate?: string;
     author: string;
+    readTime: string;
     class: string;
 }
 
-const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
+const {
+    pubDate,
+    editDate,
+    author,
+    readTime,
+    class: className,
+    ...rest
+} = Astro.props;
 ---
 
-<div class={className} {...rest}>
+<div class=`${className} box` {...rest}>
     <div class="dates">
         <p>
             <span>Published</span>
-            <time datetime={pubDate}>
+            <time class="dd" datetime={pubDate}>
                 {new Date(pubDate).toLocaleDateString()}
             </time>
         </p>
@@ -21,22 +29,31 @@ const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
             editDate && (
                 <p>
                     <span>Edited</span>
-                    <time datetime={editDate}>
+                    <time class="dd" datetime={editDate}>
                         {new Date(editDate).toLocaleDateString()}
                     </time>
                 </p>
             )
         }
     </div>
-    <p class="author">
+    <p>
         <span>By</span>
-        <span>{author}</span>
+        <span class="dd">{author}</span>
+    </p>
+    <p>
+        <span>Read</span>
+        <span class="dd">{readTime}</span>
     </p>
 </div>
 
 <style>
-    p,
-    span {
+    .box {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    p {
         display: flex;
         gap: 0.5rem;
         font-size: 0.9rem;
@@ -44,8 +61,7 @@ const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
         margin: 0;
     }
 
-    time,
-    .author > span:last-child {
+    .dd {
         font-weight: 600;
         font-size: inherit;
         color: var(--color-text);
@@ -56,9 +72,5 @@ const { pubDate, editDate, author, class: className, ...rest } = Astro.props;
         flex-wrap: wrap;
         row-gap: 0.5rem;
         column-gap: 3rem;
-    }
-
-    .author {
-        margin-block-start: 0.5rem;
     }
 </style>
