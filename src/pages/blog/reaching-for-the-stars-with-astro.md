@@ -3,6 +3,7 @@ layout: "@/layouts/BlogPostLayout.astro"
 title: "Reaching for the Stars with Astro"
 author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"
+editDate: "2025-03-02 00:00:01 +0200"
 tags: ["journal"]
 ---
 
