@@ -11,10 +11,11 @@ const { post } = Astro.props;
         </span>
         <span class="card-description">
             {
-                post
-                    .rawContent()
-                    .split("\n")
-                    .find((l: string) => l.trim().length)
+                post.frontmatter.description ??
+                    post
+                        .rawContent()
+                        .split("\n")
+                        .find((l: string) => l.trim().length)
             }
         </span>
         <div class="card-metadata">
