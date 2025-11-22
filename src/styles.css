@@ -169,11 +169,6 @@ main article img {
 
 main article a > img {
     cursor: pointer;
-    transition: 0.3s transform;
-
-    &:hover {
-        transform: scale(1.01);
-    }
 }
 
 main article figcaption {
