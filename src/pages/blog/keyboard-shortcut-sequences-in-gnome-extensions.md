@@ -1,6 +1,7 @@
 ---
 layout: "@/layouts/BlogPostLayout.astro"
 title: "Keyboard shortcut sequences in GNOME extensions"
+description: "Multi-stage keyboard shortcuts like Ctrl+Del → w exist in various apps. I prototyped this for GNOME extensions, where it's not natively supported."
 author: "Anh Tuan Le"
 pubDate: "2024-08-26 01:00:00 +0200"
 editDate: "2025-03-01 01:00:00 +0200"

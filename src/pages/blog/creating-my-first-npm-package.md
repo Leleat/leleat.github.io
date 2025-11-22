@@ -1,6 +1,7 @@
 ---
 layout: "@/layouts/BlogPostLayout.astro"
 title: "Creating my first npm Package"
+description: "I created my first npm package: create-gnome-extension, a scaffolding tool for GNOME extensions inspired by the web dev ecosystem. The development was fun—testing and publishing, less so."
 author: "Anh Tuan Le"
 pubDate: "2024-07-22 22:00:00 +0200"
 tags: ["gnome extension", "npm", "journal"]

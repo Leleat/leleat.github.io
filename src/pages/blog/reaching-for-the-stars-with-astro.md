@@ -1,6 +1,7 @@
 ---
 layout: "@/layouts/BlogPostLayout.astro"
 title: "Reaching for the Stars with Astro"
+description: "I rebuilt my Jekyll blog with Astro after comparing it against Eleventy... and immediately shipped a bug."
 author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"
 editDate: "2025-03-02 00:00:01 +0200"
