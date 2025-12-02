@@ -5,7 +5,8 @@ description: "I rebuilt my Jekyll blog with Astro after comparing it against Ele
 author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"
 editDate: "2025-03-02 00:00:01 +0200"
-tags: ["journal"]
+category: "diary"
+tags: []
 ---
 
 Flashy ⭐⭐⭐ nonsense title aside, I've switched from Jekyll to Astro as my static site generator and wanted to share my reasons behind the switch and my experience with it.

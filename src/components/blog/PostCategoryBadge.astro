@@ -1,0 +1,58 @@
+---
+import { getCategoryData } from "../../global.js";
+
+interface Props {
+    category: string;
+    class?: string;
+}
+
+const { category, class: className, ...rest } = Astro.props;
+const categoryData = getCategoryData(category || "Uncategorized");
+---
+
+<section class={className} {...rest}>
+    <!-- https://icons.getbootstrap.com/icons/folder-fill/ -->
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+    >
+        <path
+            d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q-.322.18-.602.373l.646 7.117a.995.995 0 0 0 .995.909h10.348a.996.996 0 0 0 .995-.91l.637-7a1 1 0 0 0-.342-.73 1 1 0 0 0-.652-.24H2.024q-.124 0-.253.024"
+        >
+        </path>
+    </svg>
+    <a href={`/blog/categories/${categoryData.slug}/`}>
+        {categoryData.raw}
+    </a>
+</section>
+
+<style>
+    section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    svg {
+        fill: var(--color-text-dim);
+        min-inline-size: 1rem;
+        min-block-size: 1rem;
+    }
+
+    a {
+        color: var(--color-text-dim);
+        border: 1px solid var(--color-text-dim);
+        border-radius: 0.5rem;
+        font-size: smaller;
+        text-decoration: none;
+        padding: 0.4rem 1rem;
+        cursor: default;
+
+        &:hover {
+            color: var(--color-yellow);
+            border: 1px solid var(--color-yellow);
+        }
+    }
+</style>

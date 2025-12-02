@@ -1,0 +1,61 @@
+---
+import PostCard from "@/components/blog/PostCard.astro";
+import { getCategoryData, getPostsWithNewestFirst } from "@/global.js";
+import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
+
+export async function getStaticPaths() {
+    const publicPosts = getPostsWithNewestFirst();
+    const categories = [
+        ...new Set(
+            publicPosts.map(
+                (post: any) => post.frontmatter.category || "Uncategorized",
+            ),
+        ),
+    ].map((category) => getCategoryData(category));
+
+    return categories.map((category) => {
+        const filteredPosts = publicPosts.filter(
+            (post: any) =>
+                (post.frontmatter.category || "Uncategorized") === category.raw,
+        );
+
+        return {
+            params: { category: category.slug },
+            props: {
+                posts: filteredPosts,
+                rawCategory: category.raw,
+                categoryDescription: category.description,
+            },
+        };
+    });
+}
+
+const { posts, rawCategory, categoryDescription } = Astro.props;
+---
+
+<BlogBaseLayout title={`Posts in ${rawCategory} | Anh Tuan Le (@Leleat)`}>
+    <h1
+        aria-describedby={categoryDescription ? `category-description` : (
+            undefined
+        )}
+    >
+        Posts in <code>{rawCategory}</code>
+    </h1>
+    {
+        categoryDescription && (
+            <p id="category-description">{categoryDescription}</p>
+        )
+    }
+    {posts.map((post) => <PostCard {post} />)}
+</BlogBaseLayout>
+
+<style>
+    @view-transition {
+        navigation: auto;
+    }
+
+    p {
+        color: var(--color-text-dim);
+        margin-block: 0.5rem;
+    }
+</style>

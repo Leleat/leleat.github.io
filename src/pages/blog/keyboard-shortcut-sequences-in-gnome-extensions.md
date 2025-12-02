@@ -5,7 +5,8 @@ description: "Multi-stage keyboard shortcuts like Ctrl+Del → w exist in variou
 author: "Anh Tuan Le"
 pubDate: "2024-08-26 01:00:00 +0200"
 editDate: "2025-03-01 01:00:00 +0200"
-tags: ["gnome extension", "concept"]
+category: "brainstorm"
+tags: ["gnome extension"]
 ---
 
 I've been prototyping what I call _keyboard shortcut sequences_ in a GNOME extension. I grew fond of them while using certain apps and wanted to document my results here.

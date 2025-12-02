@@ -1,11 +1,22 @@
 ---
-import { getPostsWithNewestFirst, getTagData } from "../../global.js";
+import { blogroll } from "../../data/blogroll.js";
+import {
+    getCategoryData,
+    getPostsWithNewestFirst,
+    getTagData,
+} from "../../global.js";
 
 const showRecentPostsAmount = 5;
 const publicPosts = getPostsWithNewestFirst();
 const tags = [
     ...new Set(publicPosts.flatMap((p: any) => p.frontmatter.tags)),
 ].toSorted();
+const categories = [
+    ...new Set(
+        publicPosts.map((p: any) => p.frontmatter.category || "Uncategorized"),
+    ),
+].toSorted();
+const recentBlogrollItems = blogroll.slice(0, 5);
 ---
 
 <aside>
@@ -39,6 +50,21 @@ const tags = [
             }
         </div>
     </section>
+    <section class="categories">
+        <h3>Categories</h3>
+        <div role="list">
+            {
+                categories.map((category) => (
+                    <a
+                        href={`/blog/categories/${getCategoryData(category).slug}/`}
+                        role="listitem"
+                    >
+                        {category}
+                    </a>
+                ))
+            }
+        </div>
+    </section>
     <section class="tags">
         <h3>Tags</h3>
         <div role="list">
@@ -54,6 +80,28 @@ const tags = [
             }
         </div>
     </section>
+    {
+        recentBlogrollItems.length > 0 && (
+            <section class="blogroll">
+                <h3>Across the Blog-Verse</h3>
+                <div role="list">
+                    {recentBlogrollItems.map((entry) => (
+                        <a
+                            href={entry.url}
+                            role="listitem"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {entry.title}
+                        </a>
+                    ))}
+                </div>
+                <a href="/blog/blogroll/" class="view-all-link">
+                    View all
+                </a>
+            </section>
+        )
+    }
 </aside>
 
 <style>
@@ -80,10 +128,12 @@ const tags = [
         }
 
         [role="list"] a {
-            display: block;
             margin-block-end: var(--sidebar-itemspacing);
             color: var(--color-text);
             text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
 
@@ -104,7 +154,7 @@ const tags = [
                 display: flex;
                 justify-content: start;
                 align-items: center;
-                gap: 0.75rem;
+                gap: var(--sidebar-itemspacing);
                 color: var(--color-text);
                 text-decoration: none;
                 inline-size: fit-content;
@@ -113,6 +163,18 @@ const tags = [
                     color: var(--color-yellow);
                     text-decoration: dotted underline;
                 }
+            }
+        }
+
+        .view-all-link {
+            margin-block-start: var(--sidebar-itemspacing);
+            color: var(--color-text-dim);
+            text-decoration: none;
+            font-size: smaller;
+
+            &:hover {
+                color: var(--color-yellow);
+                text-decoration: dotted underline;
             }
         }
     }
