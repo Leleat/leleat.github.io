@@ -1,8 +1,9 @@
 ---
+import { blogroll } from "../../data/blogroll.js";
 import {
+    getCategoryData,
     getPostsWithNewestFirst,
     getTagData,
-    getCategoryData,
 } from "../../global.js";
 
 const showRecentPostsAmount = 5;
@@ -15,6 +16,7 @@ const categories = [
         publicPosts.map((p: any) => p.frontmatter.category || "Uncategorized"),
     ),
 ].toSorted();
+const recentBlogrollItems = blogroll.slice(0, 5);
 ---
 
 <aside>
@@ -78,6 +80,28 @@ const categories = [
             }
         </div>
     </section>
+    {
+        recentBlogrollItems.length > 0 && (
+            <section class="blogroll">
+                <h3>Across the Blog-Verse</h3>
+                <div role="list">
+                    {recentBlogrollItems.map((entry) => (
+                        <a
+                            href={entry.url}
+                            role="listitem"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {entry.title}
+                        </a>
+                    ))}
+                </div>
+                <a href="/blog/blogroll/" class="view-all-link">
+                    View all
+                </a>
+            </section>
+        )
+    }
 </aside>
 
 <style>
@@ -128,7 +152,7 @@ const categories = [
                 display: flex;
                 justify-content: start;
                 align-items: center;
-                gap: 0.75rem;
+                gap: var(--sidebar-itemspacing);
                 color: var(--color-text);
                 text-decoration: none;
                 inline-size: fit-content;
@@ -137,6 +161,18 @@ const categories = [
                     color: var(--color-yellow);
                     text-decoration: dotted underline;
                 }
+            }
+        }
+
+        .view-all-link {
+            margin-block-start: var(--sidebar-itemspacing);
+            color: var(--color-text-dim);
+            text-decoration: none;
+            font-size: smaller;
+
+            &:hover {
+                color: var(--color-yellow);
+                text-decoration: dotted underline;
             }
         }
     }

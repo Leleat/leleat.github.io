@@ -1,0 +1,50 @@
+---
+import { blogroll } from "@/data/blogroll.js";
+import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
+---
+
+<BlogBaseLayout title="Blogroll | Anh Tuan Le (@Leleat)">
+    <h1>Across the Blog-Verse</h1>
+    <p class="description">A collection of posts and blogs I enjoy reading</p>
+
+    <ul class="blogroll-list">
+        {
+            blogroll.map((entry) => (
+                <li>
+                    <a href={entry.url} target="_blank" rel="noreferrer">
+                        {entry.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</BlogBaseLayout>
+
+<style>
+    @view-transition {
+        navigation: auto;
+    }
+
+    .description {
+        color: var(--color-text-dim);
+        margin-block: 0.5rem 2rem;
+    }
+
+    .blogroll-list {
+        list-style: disc;
+        padding-inline-start: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .blogroll-list a {
+        color: var(--color-text);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-yellow);
+            text-decoration: underline;
+        }
+    }
+</style>
