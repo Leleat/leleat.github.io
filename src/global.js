@@ -54,19 +54,9 @@ export function getPostsWithNewestFirst() {
 const sluggifyTag = (tag) => tag.toLowerCase().replace(/ |\//g, "-");
 const tags = [
     {
-        name: "concept",
-        description:
-            "Exploring new ideas that will never happen but are fun to think about",
-    },
-    {
         name: "gnome extension",
         description:
             "Stuff related to Extensions for the GNOME desktop environment",
-    },
-    {
-        name: "journal",
-        description:
-            "Writing down my personal experience to review what I've done or what I've learned... in a very unprofessional manner 😂",
     },
     { name: "npm", description: "" },
 ];
@@ -82,5 +72,46 @@ export function getTagData(tag) {
         raw: tag,
         slug: sluggifyTag(tag),
         description: tagData.description,
+    };
+}
+
+const categories = [
+    {
+        name: "TIL",
+        description: "Today I Learned",
+    },
+    {
+        name: "diary",
+        description: "Personal journal entries and reflections",
+    },
+    {
+        name: "brainstorm",
+        description: "Ideas and thought experiments",
+    },
+    {
+        name: "personal projects",
+        description: "Posts about my (side) projects",
+    },
+    {
+        name: "uncategorized",
+        description: "Posts without a specific category",
+    },
+];
+
+export function getCategoryData(category) {
+    const categoryData = categories.find((c) => c.name === category);
+
+    if (categoryData === undefined) {
+        return {
+            raw: "Uncategorized",
+            slug: "uncategorized",
+            description: "Posts without a specific category",
+        };
+    }
+
+    return {
+        raw: category,
+        slug: sluggifyTag(category),
+        description: categoryData.description,
     };
 }

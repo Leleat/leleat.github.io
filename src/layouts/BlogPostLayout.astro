@@ -4,6 +4,7 @@ import PostMetadata from "@/components/blog/PostMetadata.astro";
 import PostNavigationButtons from "@/components/blog/PostNavigationButtons.astro";
 import PostTagList from "@/components/blog/PostTagList.astro";
 import PostToC from "@/components/blog/PostToC.astro";
+import PostCategoryBadge from "@/components/blog/PostCategoryBadge.astro";
 import { getPostsWithOldestFirst } from "@/global.js";
 import BlogBaseLayout from "./BlogBaseLayout.astro";
 
@@ -34,6 +35,10 @@ const nextPost = publicPosts[currentPostIndex + 1];
             class="postmetadata"
         />
         <slot />
+        <PostCategoryBadge
+            category={frontmatter.category}
+            class="category-badge"
+        />
         <PostTagList tags={frontmatter.tags} class="tag-list" />
     </article>
     <hr />
@@ -58,8 +63,9 @@ const nextPost = publicPosts[currentPostIndex + 1];
         margin-block-end: 2rem;
     }
 
-    .tag-list {
+    .category-badge {
         margin-block-start: 4rem;
+        margin-block-end: 1rem;
     }
 </style>
 
