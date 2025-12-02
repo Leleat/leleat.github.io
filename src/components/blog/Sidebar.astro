@@ -128,10 +128,12 @@ const recentBlogrollItems = blogroll.slice(0, 5);
         }
 
         [role="list"] a {
-            display: block;
             margin-block-end: var(--sidebar-itemspacing);
             color: var(--color-text);
             text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
 
