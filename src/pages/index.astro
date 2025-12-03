@@ -18,6 +18,12 @@ import "../global.js";
         <meta name="description" content="Lele's personal website" />
         <link rel="icon" href="/favicon.svg" />
         <title>Anh Tuan Le (@Leleat)</title>
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Blog of Anh Tuan Le (@Leleat)"
+            href={new URL("rss.xml", Astro.site)}
+        />
     </head>
     <body>
         <Navbar id="navbar" />
