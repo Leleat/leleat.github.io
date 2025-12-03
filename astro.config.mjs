@@ -23,5 +23,5 @@ export default defineConfig({
         "/about": "/",
         "/contact": "/#contact",
     },
-    site: "https://leleat.github.io",
+    site: "https://neverready.app",
 });
