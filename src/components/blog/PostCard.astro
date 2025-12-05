@@ -145,7 +145,8 @@ const categoryData = getCategoryData(post.frontmatter.category);
     & .card-metadata {
         color: var(--color-text-dim);
         display: flex;
-        gap: 3rem;
+        flex-wrap: wrap;
+        gap: 1rem 3rem;
         font-size: smaller;
 
         & > * {
