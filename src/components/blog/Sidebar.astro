@@ -14,9 +14,8 @@ const tagsWithCounts = [
     .toSorted()
     .map((tag) => ({
         name: tag,
-        count: publicPosts.filter((p: any) =>
-            p.frontmatter.tags.includes(tag),
-        ).length,
+        count: publicPosts.filter((p: any) => p.frontmatter.tags.includes(tag))
+            .length,
     }));
 const categoriesWithCounts = [
     ...new Set(
@@ -64,6 +63,7 @@ const recentBlogrollItems = blogroll.slice(0, 5);
                 ))
             }
         </div>
+        <a href="/blog/archive/" class="view-all-link"> View all posts</a>
     </section>
     <section class="categories">
         <h3>Categories</h3>
@@ -186,6 +186,10 @@ const recentBlogrollItems = blogroll.slice(0, 5);
             color: var(--color-text-dim);
             text-decoration: none;
             font-size: smaller;
+
+            &::after {
+                content: " >" / "";
+            }
 
             &:hover {
                 color: var(--color-yellow);
