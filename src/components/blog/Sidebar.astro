@@ -6,7 +6,7 @@ import {
     getTagData,
 } from "../../global.js";
 
-const showRecentPostsAmount = 5;
+const showRecentPostsAmount = 4;
 const publicPosts = getPostsWithNewestFirst();
 const tagsWithCounts = [
     ...new Set(publicPosts.flatMap((p: any) => p.frontmatter.tags)),
@@ -30,7 +30,7 @@ const categoriesWithCounts = [
                 (p.frontmatter.category || "Uncategorized") === category,
         ).length,
     }));
-const recentBlogrollItems = blogroll.slice(0, 5);
+const recentBlogrollItems = blogroll.slice(0, 4);
 ---
 
 <aside>
