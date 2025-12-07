@@ -8,14 +8,29 @@ import {
 
 const showRecentPostsAmount = 5;
 const publicPosts = getPostsWithNewestFirst();
-const tags = [
+const tagsWithCounts = [
     ...new Set(publicPosts.flatMap((p: any) => p.frontmatter.tags)),
-].toSorted();
-const categories = [
+]
+    .toSorted()
+    .map((tag) => ({
+        name: tag,
+        count: publicPosts.filter((p: any) =>
+            p.frontmatter.tags.includes(tag),
+        ).length,
+    }));
+const categoriesWithCounts = [
     ...new Set(
         publicPosts.map((p: any) => p.frontmatter.category || "Uncategorized"),
     ),
-].toSorted();
+]
+    .toSorted()
+    .map((category) => ({
+        name: category,
+        count: publicPosts.filter(
+            (p: any) =>
+                (p.frontmatter.category || "Uncategorized") === category,
+        ).length,
+    }));
 const recentBlogrollItems = blogroll.slice(0, 5);
 ---
 
@@ -54,12 +69,12 @@ const recentBlogrollItems = blogroll.slice(0, 5);
         <h3>Categories</h3>
         <div role="list">
             {
-                categories.map((category) => (
+                categoriesWithCounts.map(({ name, count }) => (
                     <a
-                        href={`/blog/categories/${getCategoryData(category).slug}/`}
+                        href={`/blog/categories/${getCategoryData(name).slug}/`}
                         role="listitem"
                     >
-                        {category}
+                        {name} ({count})
                     </a>
                 ))
             }
@@ -69,12 +84,12 @@ const recentBlogrollItems = blogroll.slice(0, 5);
         <h3>Tags</h3>
         <div role="list">
             {
-                tags.map((tag) => (
+                tagsWithCounts.map(({ name, count }) => (
                     <a
-                        href={`/blog/tags/${getTagData(tag).slug}/`}
+                        href={`/blog/tags/${getTagData(name).slug}/`}
                         role="listitem"
                     >
-                        {tag}
+                        {name} ({count})
                     </a>
                 ))
             }
