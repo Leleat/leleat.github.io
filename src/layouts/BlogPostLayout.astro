@@ -38,8 +38,13 @@ const nextPost = publicPosts[currentPostIndex + 1];
         <PostCategoryBadge
             category={frontmatter.category}
             class="category-badge"
+            publicPosts={publicPosts}
         />
-        <PostTagList tags={frontmatter.tags} class="tag-list" />
+        <PostTagList
+            tags={frontmatter.tags}
+            class="tag-list"
+            publicPosts={publicPosts}
+        />
     </article>
     <hr />
     <PostNavigationButtons prevPost={prevPost} nextPost={nextPost} />

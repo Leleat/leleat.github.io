@@ -4,10 +4,16 @@ import { getCategoryData } from "../../global.js";
 interface Props {
     category: string;
     class?: string;
+    publicPosts: any[];
 }
 
-const { category, class: className, ...rest } = Astro.props;
+const { category, class: className, publicPosts, ...rest } = Astro.props;
 const categoryData = getCategoryData(category || "Uncategorized");
+const postCount = publicPosts.filter(
+    (p: any) =>
+        (p.frontmatter.category || "Uncategorized") ===
+        (category || "Uncategorized"),
+).length;
 ---
 
 <section class={className} {...rest}>
@@ -24,7 +30,7 @@ const categoryData = getCategoryData(category || "Uncategorized");
         </path>
     </svg>
     <a href={`/blog/categories/${categoryData.slug}/`}>
-        {categoryData.raw}
+        {categoryData.raw} ({postCount})
     </a>
 </section>
 

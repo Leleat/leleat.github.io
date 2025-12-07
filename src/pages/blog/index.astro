@@ -1,9 +1,14 @@
 ---
 import PostCard from "@/components/blog/PostCard.astro";
-import { getPostsWithNewestFirst } from "@/global.js";
+import {
+    getCategoryData,
+    getPostsWithNewestFirst,
+    groupPostsByCategory,
+} from "@/global.js";
 import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 const publicPosts = getPostsWithNewestFirst();
+const groupedPosts = groupPostsByCategory(publicPosts, 3);
 ---
 
 <BlogBaseLayout title="Blog | Anh Tuan Le (@Leleat)">
@@ -11,9 +16,33 @@ const publicPosts = getPostsWithNewestFirst();
     <p>
         I'm Lele or, in real life, Anh (he/him), a budding software developer.
         This blog is a place to share my ideas, experiments, and whatever tech
-        stuff I'm into at the moment.
+        stuff I'm into at the moment. <a href="/blog/archive">View all posts</a>
+        or browse by category.
     </p>
-    {publicPosts.map((post) => <PostCard {post} />)}
+    {
+        groupedPosts.map(({ category, posts, totalCount }) => {
+            const categoryData = getCategoryData(category);
+            return (
+                <section class="category-section">
+                    <h2>
+                        <a href={`/blog/categories/${categoryData.slug}/`}>
+                            {categoryData.raw} ({totalCount})
+                        </a>
+                    </h2>
+                    {categoryData.description && (
+                        <p class="category-description">
+                            {categoryData.description}
+                        </p>
+                    )}
+                    <div class="posts-list">
+                        {posts.map((post) => (
+                            <PostCard {post} />
+                        ))}
+                    </div>
+                </section>
+            );
+        })
+    }
 </BlogBaseLayout>
 
 <style>
@@ -24,5 +53,31 @@ const publicPosts = getPostsWithNewestFirst();
     p {
         color: var(--color-text-dim);
         margin-block: 0.5rem;
+    }
+
+    .category-section {
+        margin-block-end: 2rem;
+
+        h2 a {
+            color: var(--color-yellow);
+            font-size: 1.25rem;
+            text-decoration: underline dotted;
+
+            &::before {
+                content: none;
+            }
+
+            &:hover {
+                color: var(--color-accent);
+                text-decoration: none;
+            }
+        }
+
+        .category-description {
+            color: var(--color-text-dim);
+        }
+
+        .posts-list {
+        }
     }
 </style>

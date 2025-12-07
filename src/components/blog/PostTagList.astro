@@ -4,9 +4,10 @@ import { getTagData } from "../../global.js";
 interface Props {
     tags: string[];
     class: string;
+    publicPosts: any[];
 }
 
-const { tags, class: className, ...rest } = Astro.props;
+const { tags, class: className, publicPosts, ...rest } = Astro.props;
 ---
 
 <section class={className} {...rest}>
@@ -29,13 +30,17 @@ const { tags, class: className, ...rest } = Astro.props;
     <span class={tags.length > 0 ? "tags" : "no-tags"}>
         {
             tags.length > 0 ?
-                tags
-                    .toSorted()
-                    .map((tag) => (
+                tags.toSorted().map((tag) => {
+                    const count = publicPosts.filter((p: any) =>
+                        p.frontmatter.tags.includes(tag),
+                    ).length;
+
+                    return (
                         <a href={`/blog/tags/${getTagData(tag).slug}/`}>
-                            {tag}
+                            {tag} ({count})
                         </a>
-                    ))
+                    );
+                })
             :   "Post has no tags"
         }
     </span>

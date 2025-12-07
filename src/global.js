@@ -115,3 +115,26 @@ export function getCategoryData(category) {
         description: categoryData.description,
     };
 }
+
+export function groupPostsByCategory(posts, limitPerCategory) {
+    const categoryOrder = ["personal projects", "brainstorm", "TIL", "diary"];
+    const grouped = [];
+
+    categoryOrder.forEach((category) => {
+        const categoryPosts = posts
+            .filter((post) => post.frontmatter.category === category)
+            .slice(0, limitPerCategory);
+
+        if (categoryPosts.length > 0) {
+            grouped.push({
+                category,
+                posts: categoryPosts,
+                totalCount: posts.filter(
+                    (post) => post.frontmatter.category === category,
+                ).length,
+            });
+        }
+    });
+
+    return grouped;
+}
