@@ -5,7 +5,7 @@ description: "I created my first npm package: create-gnome-extension, a scaffold
 author: "Anh Tuan Le"
 pubDate: "2024-07-22 22:00:00 +0200"
 category: "diary"
-tags: ["gnome extension", "npm"]
+tags: ["gnome-extension", "npm"]
 ---
 
 Recently at work, I've started doing a bit of web development. What surprised me the most, in a pleasant way, was how nice the developer experience was. Everything is fairly straightforward to use, well-documented, and there are a lot of tools available. For instance, Vue and React provide scaffolding tools ([create-vue](https://www.npmjs.com/package/create-vue) and [create-react-app](https://www.npmjs.com/package/create-react-app), respectively) that set up your project quickly so you can hit the ground running. I thought to myself _Oh, that's nice, let's ~~steal~~ be inspired by the idea_ and created something similar for my own use case. Enter [create-gnome-extension](https://github.com/Leleat/create-gnome-extension), my first npm package.

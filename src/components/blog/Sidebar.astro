@@ -82,14 +82,14 @@ const recentBlogrollItems = blogroll.slice(0, 4);
     </section>
     <section class="tags">
         <h3>Tags</h3>
-        <div role="list">
+        <div role="list" class="tag-list">
             {
                 tagsWithCounts.map(({ name, count }) => (
                     <a
                         href={`/blog/tags/${getTagData(name).slug}/`}
                         role="listitem"
                     >
-                        {name} ({count})
+                        {name} <span class="tag-count">({count})</span>
                     </a>
                 ))
             }
@@ -194,6 +194,17 @@ const recentBlogrollItems = blogroll.slice(0, 4);
             &:hover {
                 color: var(--color-yellow);
                 text-decoration: dotted underline;
+            }
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0rem 1rem;
+
+            .tag-count {
+                color: var(--color-text-dim);
+                font-size: smaller;
             }
         }
     }

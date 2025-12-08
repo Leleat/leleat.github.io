@@ -5,4 +5,9 @@
  */
 
 /** @type {BlogrollItem[]} */
-export const blogroll = [];
+export const blogroll = [
+    {
+        title: "What to blog about | Simon Willison",
+        url: "https://simonwillison.net/2022/Nov/6/what-to-blog-about/",
+    },
+];
