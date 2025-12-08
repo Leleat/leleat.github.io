@@ -1,15 +1,27 @@
 ---
 import PostCard from "@/components/blog/PostCard.astro";
-import { getPostsWithNewestFirst } from "@/global.js";
+import { getPostsWithNewestFirst, groupPostsByYear } from "@/global.js";
 import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 const publicPosts = getPostsWithNewestFirst();
+const groupedPosts = groupPostsByYear(publicPosts);
 ---
 
 <BlogBaseLayout title="Archive | Blog of Anh Tuan Le (@Leleat)">
     <h1>Archive</h1>
     <p>All my posts in reverse chronological order.</p>
-    {publicPosts.map((post) => <PostCard {post} />)}
+    {
+        groupedPosts.map(({ year, posts }) => (
+            <section class="year-section">
+                <h2 class="year-heading">{year}</h2>
+                <div class="posts-list">
+                    {posts.map((post) => (
+                        <PostCard {post} />
+                    ))}
+                </div>
+            </section>
+        ))
+    }
 </BlogBaseLayout>
 
 <style>
@@ -19,6 +31,17 @@ const publicPosts = getPostsWithNewestFirst();
 
     p {
         color: var(--color-text-dim);
-        margin-block: 0.5rem;
+    }
+
+    .year-section {
+        margin-block-end: 1.5rem;
+    }
+
+    .year-heading {
+        font-size: 1.25rem;
+
+        &:first-of-type {
+            margin-block-start: 1.5rem;
+        }
     }
 </style>

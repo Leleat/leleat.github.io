@@ -139,3 +139,25 @@ export function groupPostsByCategory(posts, limitPerCategory) {
 
     return grouped;
 }
+
+export function groupPostsByYear(posts) {
+    const grouped = new Map();
+
+    posts.forEach((post) => {
+        const year = new Date(post.frontmatter.pubDate).getFullYear();
+
+        if (!grouped.has(year)) {
+            grouped.set(year, []);
+        }
+
+        grouped.get(year).push(post);
+    });
+
+    return Array.from(grouped.entries())
+        .map(([year, yearPosts]) => ({
+            year,
+            posts: yearPosts,
+            totalCount: yearPosts.length,
+        }))
+        .toSorted((a, b) => b.year - a.year);
+}
