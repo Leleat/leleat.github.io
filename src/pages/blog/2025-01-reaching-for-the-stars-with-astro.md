@@ -6,7 +6,7 @@ author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"
 editDate: "2025-03-02 00:00:01 +0200"
 category: "diary"
-tags: []
+tags: ["meta"]
 ---
 
 Flashy ⭐⭐⭐ nonsense title aside, I've switched from Jekyll to Astro as my static site generator and wanted to share my reasons behind the switch and my experience with it.
