@@ -58,6 +58,7 @@ const tags = [
         description:
             "Stuff related to Extensions for the GNOME desktop environment",
     },
+    { name: "meta", description: "" },
     { name: "npm", description: "" },
 ];
 
