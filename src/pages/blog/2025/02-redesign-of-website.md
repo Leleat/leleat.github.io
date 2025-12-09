@@ -10,9 +10,9 @@ tags: ["meta"]
 
 I've recently redesigned my website. I went for a more terminal-y look. Here are some screenshots showing the old and new look.
 
-![Old Homepage](../../assets/2025-12-redesign-02.png)
+![Old Homepage](../../../assets/2025-12-redesign-02.png)
 
-![New Homepage](../../assets/2025-12-redesign-01.png)
+![New Homepage](../../../assets/2025-12-redesign-01.png)
 
 Layout-wise, my blog used to be very simple: just a list of all my posts in reverse chronological order. Yesterday, I read a [blog post by Lalit Maganti](https://lalitm.com/post/homepage-redesign-light-mode-and-more/) about his own redesign, where he links to a [post by Evan Martin](https://neugierig.org/software/blog/2011/09/blog-format.html). In that post, Martin argues that having a reverse-chronological homepage doesn't really make sense when your writing covers unrelated topics. And I do see his point, which is why I decided to rethink the layout of my blog as well.
 
@@ -20,9 +20,9 @@ Earlier this week, I had already added categories after reading Simon Willison's
 
 So now, the page shows the three most recent posts in each category.
 
-![Old Blog](../../assets/2025-12-redesign-04.png)
+![Old Blog](../../../assets/2025-12-redesign-04.png)
 
-![New Blog](../../assets/2025-12-redesign-03.png)
+![New Blog](../../../assets/2025-12-redesign-03.png)
 
 I tried a multi-column layout, but because the category descriptions and post cards vary in length, posts and text were misaligned. I didn't like that, so I went with a single-column design instead. Since the landing page no longer lists all posts, I also added an archive, which is basically the old view: a full reverse-chronological list.
 

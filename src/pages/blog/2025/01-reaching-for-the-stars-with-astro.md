@@ -6,7 +6,7 @@ author: "Anh Tuan Le"
 pubDate: "2025-03-02 00:00:00 +0200"
 editDate: "2025-03-02 00:00:01 +0200"
 category: "diary"
-tags: []
+tags: ["meta"]
 ---
 
 Flashy ⭐⭐⭐ nonsense title aside, I've switched from Jekyll to Astro as my static site generator and wanted to share my reasons behind the switch and my experience with it.
@@ -15,7 +15,7 @@ Flashy ⭐⭐⭐ nonsense title aside, I've switched from Jekyll to Astro as my 
 
 Previously, my website consisted of only a blog built with [Jekyll](https://jekyllrb.com/) using the [chirpy theme](https://github.com/cotes2020/jekyll-theme-chirpy) without any customization from my end. The theme looks great but now I wanted to add a bit of a personal touch, create a homepage, and customize the styling.
 
-![Demo of chirpy theme](../../assets/25-03-01-chirpy.png)
+![Demo of chirpy theme](../../../assets/25-03-01-chirpy.png)
 
 Jekyll is written in Ruby. I don't know Ruby or its ecosystem. While everything I wanted to do right now would be feasible in Jekyll, I wanted to switch to a tool that _I_ can more easily work with, i.e., one that is JavaScript/TypeScript-based. Plus, having a fun small side project certainly was another motivating factor 🙃. So, I went and looked around to see what static site generators (SSG) exist. My requirements were that it is simple and lightweight (no JS by default), not be tied to a specific frontend framework, and little to zero-config. After a bit of research, I narrowed down my choice to [Astro](https://astro.build/) and [Eleventy](https://www.11ty.dev/). While I went with Astro, Eleventy definitely has some benefits over it.
 
@@ -27,7 +27,7 @@ But the deciding factor in favor of Astro was the documentation. Astro has a sim
 
 That said, one thing I do want to highlight about Eleventy's documentation is that they feature it very prominently on their homepage. It is _hard_ to miss... and it even sticks to the top of the screen when you scroll 😂
 
-![Elventy's documentation button](../../assets/25-03-01-sticky-button.png)
+![Elventy's documentation button](../../../assets/25-03-01-sticky-button.png)
 
 ## The Experience of Using Astro for the First Time
 
