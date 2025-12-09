@@ -53,6 +53,8 @@ export function getPostsWithNewestFirst() {
 
 const sluggifyTag = (tag) => tag.toLowerCase().replace(/ |\//g, "-");
 const tags = [
+    { name: "cli", description: "" },
+    { name: "git", description: "" },
     {
         name: "gnome-extension",
         description:
