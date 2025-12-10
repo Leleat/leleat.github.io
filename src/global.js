@@ -85,7 +85,7 @@ const categories = [
     },
     {
         name: "diary",
-        description: "Entries in my journal",
+        description: "Journal entries",
     },
     {
         name: "brainstorming",
@@ -93,7 +93,7 @@ const categories = [
     },
     {
         name: "projects",
-        description: "Showcasing my side projects",
+        description: "My side projects",
     },
     {
         name: "uncategorized",

@@ -24,10 +24,8 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             const categoryData = getCategoryData(category);
             return (
                 <section class="category-section">
-                    <h2>
-                        <a href={`/blog/categories/${categoryData.slug}/`}>
-                            {categoryData.raw} ({totalCount})
-                        </a>
+                    <h2 class="category-heading">
+                        {categoryData.raw} ({totalCount})
                     </h2>
                     {categoryData.description && (
                         <p class="category-description">
@@ -39,6 +37,12 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
                             <PostCard {post} />
                         ))}
                     </div>
+                    <a
+                        href={`/blog/categories/${categoryData.slug}/`}
+                        class="view-all-link"
+                    >
+                        View all
+                    </a>
                 </section>
             );
         })
@@ -56,19 +60,13 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
     }
 
     .category-section {
-        margin-block-end: 2rem;
+        margin-block-end: 1rem;
 
-        h2 a {
-            color: var(--color-yellow);
+        .category-heading {
             font-size: 1.25rem;
-            text-decoration: underline dotted;
 
-            &::before {
-                content: none;
-            }
-
-            &:hover {
-                text-decoration: none;
+            &:first-of-type {
+                margin-block-start: 1.5rem;
             }
         }
 
@@ -76,7 +74,11 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             color: var(--color-text-dim);
         }
 
-        .posts-list {
+        .view-all-link {
+            margin-block-start: 2.5rem;
+            font-size: smaller;
+            display: block;
+            text-align: center;
         }
     }
 </style>
