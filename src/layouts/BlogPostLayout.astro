@@ -15,8 +15,6 @@ const currentPostIndex = publicPosts.findIndex(
     (post) => (post as any).url === frontmatter.url,
 );
 const currentPost = publicPosts[currentPostIndex];
-const prevPost = publicPosts[currentPostIndex - 1];
-const nextPost = publicPosts[currentPostIndex + 1];
 ---
 
 <BlogBaseLayout title={`${frontmatter.title} | Anh Tuan Le (@Leleat)`}>
@@ -47,7 +45,7 @@ const nextPost = publicPosts[currentPostIndex + 1];
         />
     </article>
     <hr />
-    <PostNavigationButtons prevPost={prevPost} nextPost={nextPost} />
+    <PostNavigationButtons />
     <hr />
     <PostContactMe />
 </BlogBaseLayout>

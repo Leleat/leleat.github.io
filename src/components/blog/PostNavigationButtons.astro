@@ -1,32 +1,18 @@
 ---
-import CaretIcon from "../icons/caret.astro";
 import "../../global.js";
-
-const { prevPost, nextPost } = Astro.props;
+import CaretIcon from "../icons/caret.astro";
+import CollectionIcon from "../icons/collection.astro";
 ---
 
 <div class="post-buttons">
-    {
-        prevPost ?
-            <a class="prev-post-button" href={prevPost.url}>
-                <div class="prev-label">
-                    <CaretIcon class="prev-icon" aria-hidden="true" />
-                    Previous
-                </div>
-                <div>{prevPost.frontmatter.title}</div>
-            </a>
-        :   null
-    }
-    {
-        nextPost ?
-            <a class="next-post-button" href={nextPost.url}>
-                <div class="next-label">
-                    Next <CaretIcon class="next-icon" aria-hidden="true" />
-                </div>
-                <div>{nextPost.frontmatter.title}</div>
-            </a>
-        :   null
-    }
+    <a class="blog-button" href="/blog">
+        <CaretIcon class="prev-icon" aria-hidden="true" />
+        <span>Back to Blog</span>
+    </a>
+    <a class="archive-button" href="/blog/archive">
+        <CollectionIcon aria-hidden="true" />
+        <span>View All Posts</span>
+    </a>
 </div>
 
 <style>
@@ -36,11 +22,13 @@ const { prevPost, nextPost } = Astro.props;
         gap: 2rem;
     }
 
-    .prev-post-button,
-    .next-post-button {
+    .blog-button,
+    .archive-button {
         display: flex;
-        flex-direction: column;
-        gap: 0.375rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
         font-weight: 600;
         background-color: var(--color-background-button);
         border: 1px solid var(--color-background-button);
@@ -48,56 +36,29 @@ const { prevPost, nextPost } = Astro.props;
         border-radius: 0.75rem;
         color: var(--color-text);
         text-decoration: none;
-        cursor: default;
-
-        & :nth-child(2) {
-            font-weight: normal;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        cursor: pointer;
+        text-align: center;
 
         &:hover {
             color: var(--color-yellow);
             border: 1px solid var(--color-yellow);
             background-color: transparent;
-
-            & :nth-child(2) {
-                color: var(--color-yellow);
-            }
         }
-    }
-
-    .next-post-button {
-        align-items: end;
-        text-align: right;
-    }
-
-    :has(> .next-icon, > .prev-icon) {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
     }
 
     .prev-icon {
         transform: rotate(180deg);
     }
 
-    @media (min-width: 80rem) {
+    @media (min-width: 60rem) {
         .post-buttons {
             flex-direction: row;
         }
 
-        .prev-post-button,
-        .next-post-button {
+        .blog-button,
+        .archive-button {
             flex: 1 0 0;
             max-inline-size: 50%;
-        }
-
-        .next-post-button {
-            margin-inline-start: auto;
         }
     }
 </style>
