@@ -48,6 +48,7 @@
 
 a {
     color: var(--color-yellow);
+    overflow-wrap: break-word; /* For Chromium */
     text-decoration: dotted underline;
 
     &:hover {
