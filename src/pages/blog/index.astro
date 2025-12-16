@@ -24,8 +24,10 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             const categoryData = getCategoryData(category);
             return (
                 <section class="category-section">
-                    <h2 class="category-heading">
-                        {categoryData.raw} ({totalCount})
+                    <h2 class="category-heading" id={categoryData.slug}>
+                        <a
+                            href={`#${categoryData.slug}`}
+                        >{`${categoryData.raw} (${totalCount})`}</a>
                     </h2>
                     {categoryData.description && (
                         <p class="category-description">
@@ -62,7 +64,7 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
     .category-section {
         padding-block-start: 3rem;
         padding-block-end: 3rem;
-        border-block: 1px solid #333;
+        border-block: 1px solid var(--color-background-button);
 
         &:first-of-type {
             margin-block-start: 2.5rem;
@@ -77,10 +79,6 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             font-size: 1.25rem;
             margin-block-start: 0;
             margin-block-end: 1rem;
-        }
-
-        .category-description {
-            color: var(--color-text-dim);
         }
 
         .view-all-link {
