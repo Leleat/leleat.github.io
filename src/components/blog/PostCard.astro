@@ -97,14 +97,6 @@ const categoryData = getCategoryData(post.frontmatter.category);
         text-decoration: none;
         box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.05);
         position: relative;
-
-        &:hover {
-            background-color: transparent;
-
-            & article > * {
-                color: var(--color-yellow);
-            }
-        }
     }
 
     & .card-title {
@@ -146,6 +138,16 @@ const categoryData = getCategoryData(post.frontmatter.category);
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+    }
+
+    @media (hover: hover) {
+        .card:hover {
+            background-color: transparent;
+
+            & article > * {
+                color: var(--color-yellow);
+            }
         }
     }
 
