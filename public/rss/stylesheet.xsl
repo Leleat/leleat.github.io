@@ -28,12 +28,12 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
                     }
 
                     :root {
-                        --color-background: #09090a;
+                        --color-background: #111217;
                         --color-yellow: #ffee6c;
                         --color-rose: #d0316e;
-                        --color-text: #ddd;
-                        --color-text-dark: #333;
-                        --color-text-dim: #9d9d97;
+                        --color-text: #cfcfe6;
+                        --color-border: #333;
+                        --color-text-dim: #818393;
                         --max-inline-size: 80ch;
 
                         background-color: var(--color-background);
@@ -65,7 +65,7 @@ Based on https://github.com/genmon/aboutfeeds/blob/cd0788cb9f8cfa4edf7f88226586d
 
                     .info-box {
                         background-color: var(--color-yellow);
-                        color: var(--color-text-dark);
+                        color: var(--color-border);
                         text-align: center;
                         margin-block-end: 2rem;
 

@@ -91,9 +91,8 @@ const categoryData = getCategoryData(post.frontmatter.category);
         display: flex;
         flex-direction: column;
         background-color: oklch(from var(--color-background) l c h / 50%);
-        border: 1px solid var(--color-text);
         border-radius: 0.5rem;
-        padding: 1.5rem;
+        padding-block: 1.25rem;
         margin-block-start: 2rem;
         text-decoration: none;
         box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.05);
@@ -101,7 +100,6 @@ const categoryData = getCategoryData(post.frontmatter.category);
 
         &:hover {
             background-color: transparent;
-            border: 1px solid var(--color-yellow);
 
             & article > * {
                 color: var(--color-yellow);
@@ -110,22 +108,20 @@ const categoryData = getCategoryData(post.frontmatter.category);
     }
 
     & .card-title {
-        color: var(--color-text);
+        color: var(--color-titletext);
         font-size: 1.25rem;
         font-weight: 600;
         margin-block-end: 0.75rem;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     & .card-description {
-        color: var(--color-text-dim);
+        color: var(--color-text);
         margin-block-end: 1.5rem;
         display: -webkit-box;
-        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -155,8 +151,14 @@ const categoryData = getCategoryData(post.frontmatter.category);
 
     @media (min-width: 40rem) {
         .card {
+            padding: 1.5rem;
             padding-block-start: 2rem;
             margin-block-start: 3rem;
+            border: 1px solid var(--color-text);
+
+            &:hover {
+                border: 1px solid var(--color-yellow);
+            }
         }
 
         & .card-title {
@@ -167,10 +169,6 @@ const categoryData = getCategoryData(post.frontmatter.category);
             padding-inline: 0.5rem;
             margin-block-end: 0;
             -webkit-line-clamp: 1;
-        }
-
-        & .card-description {
-            -webkit-line-clamp: 3;
         }
     }
 

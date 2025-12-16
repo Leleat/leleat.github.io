@@ -24,8 +24,10 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             const categoryData = getCategoryData(category);
             return (
                 <section class="category-section">
-                    <h2 class="category-heading">
-                        {categoryData.raw} ({totalCount})
+                    <h2 class="category-heading" id={categoryData.slug}>
+                        <a
+                            href={`#${categoryData.slug}`}
+                        >{`${categoryData.raw} (${totalCount})`}</a>
                     </h2>
                     {categoryData.description && (
                         <p class="category-description">
@@ -55,30 +57,61 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
     }
 
     p {
-        color: var(--color-text-dim);
+        color: var(--color-text);
         margin-block: 0.5rem;
     }
 
     .category-section {
-        margin-block-end: 1.2rem;
+        padding-block-start: 3rem;
+        padding-block-end: 3rem;
+        border-block: 1px solid var(--color-background-button);
+
+        &:first-of-type {
+            margin-block-start: 2.5rem;
+        }
+
+        &:last-of-type {
+            border-block-end: none;
+            padding-block-end: 0;
+        }
 
         .category-heading {
             font-size: 1.25rem;
-
-            &:first-of-type {
-                margin-block-start: 2.5rem;
-            }
-        }
-
-        .category-description {
-            color: var(--color-text-dim);
+            margin-block-start: 0;
+            margin-block-end: 1rem;
         }
 
         .view-all-link {
-            margin-block-start: 2.5rem;
+            margin-block-start: 3rem;
             font-size: smaller;
             display: block;
-            text-align: center;
+            text-align: left;
+        }
+    }
+
+    @media (min-width: 40rem) {
+        .category-section {
+            border-bottom: none;
+            border-top: none;
+            padding-block: 0;
+            margin-block-end: 1.2rem;
+
+            &:first-of-type {
+                margin-block-start: 0;
+            }
+
+            &:first-of-type .category-heading {
+                margin-block-start: 2.5rem;
+            }
+
+            &:last-of-type {
+                margin-block-end: 0;
+            }
+
+            .view-all-link {
+                text-align: center;
+                margin-block-start: 2.5rem;
+            }
         }
     }
 </style>

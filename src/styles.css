@@ -20,20 +20,21 @@
 }
 
 :root {
-    --color-background: #09090a;
-    --color-background-button: #252525;
+    --color-background: #111217;
+    --color-background-button: #222227;
+    --color-border: #333333;
     --color-rose: #d0316e;
     --color-yellow: #ffee6c;
-    --color-text: #ddd;
-    --color-text-dark: #333;
-    --color-text-dim: #9d9d97;
+    --color-text: #cfcfe6;
+    --color-titletext: #ececf4;
+    --color-text-dim: #818393;
     --focus-outline-size: 3px;
     --focus-outline-offset: 2px;
     --max-inline-size: 1376px;
     --max-inline-size-post-content: 100ch;
     --navbar-height: 3.875rem;
     --footer-height: 3.75rem;
-    --content-hpadding: 1.5rem;
+    --content-hpadding: 1rem;
     --content-vpadding: 3.75rem;
     view-transition-name: none;
 
@@ -112,12 +113,14 @@ em {
 }
 
 h1 {
+    color: var(--color-titletext);
     font-size: 2rem;
     font-weight: 600;
     margin-block-end: 1rem;
 }
 
 h2 {
+    color: var(--color-titletext);
     font-size: 1.75rem;
     font-weight: 600;
     margin-block-start: 1.5rem;
@@ -128,6 +131,7 @@ h3,
 h4,
 h5,
 h6 {
+    color: var(--color-titletext);
     font-size: 1.25rem;
     font-weight: 600;
     margin-block-start: 1.5rem;
@@ -205,13 +209,13 @@ pre.astro-code {
     border-radius: 0.25rem;
 
     & > code {
-        padding: 1rem;
+        padding: 0.75rem;
         display: block;
     }
 
     & > code .line::before {
         display: inline-block;
-        color: #555;
+        color: #585665;
         content: counter(step);
         counter-increment: step;
         inline-size: 3ch;
@@ -229,7 +233,7 @@ pre.astro-code {
         border-block-start: 3px solid transparent;
         border-inline-start: 3px solid transparent;
         border-inline-end: 3px solid transparent;
-        border-block-end: 2px solid var(--color-text-dark);
+        border-block-end: 2px solid var(--color-border);
         color: var(--color-text);
         font-weight: 600;
 
@@ -248,7 +252,7 @@ pre.astro-code {
         }
 
         &:hover {
-            background-color: var(--color-text-dark);
+            background-color: #282834;
         }
 
         &[disabled] {
@@ -291,6 +295,12 @@ pre.astro-code {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (min-width: 40rem) {
+    :root {
+        --content-hpadding: 1.5rem;
     }
 }
 

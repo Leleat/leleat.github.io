@@ -9,7 +9,7 @@ import rehypeFigureCaption from "./src/plugins/rehypeFigureCaption.js";
 export default defineConfig({
     markdown: {
         shikiConfig: {
-            theme: "slack-dark",
+            theme: "kanagawa-wave",
         },
         smartypants: false,
         rehypePlugins: [

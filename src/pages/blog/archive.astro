@@ -13,7 +13,9 @@ const groupedPosts = groupPostsByYear(publicPosts);
     {
         groupedPosts.map(({ year, posts }) => (
             <section class="year-section">
-                <h2 class="year-heading">{year}</h2>
+                <h2 class="year-heading" id={year}>
+                    <a href={`#${year}`}>{year}</a>
+                </h2>
                 <div class="posts-list">
                     {posts.map((post) => (
                         <PostCard {post} />
@@ -29,19 +31,34 @@ const groupedPosts = groupPostsByYear(publicPosts);
         navigation: auto;
     }
 
-    p {
-        color: var(--color-text-dim);
-    }
-
     .year-section {
-        margin-block-end: 1.5rem;
+        padding-block-start: 3rem;
+        padding-block-end: 3rem;
+        border-block: 1px solid var(--color-background-button);
+
+        &:first-of-type {
+            margin-block-start: 2.5rem;
+        }
+
+        &:last-of-type {
+            border-block-end: none;
+            padding-block-end: 0;
+        }
     }
 
     .year-heading {
         font-size: 1.25rem;
+        margin-block-start: 0;
+        margin-block-end: 1rem;
+    }
 
-        &:first-of-type {
-            margin-block-start: 1.5rem;
+    @media (min-width: 40rem) {
+        .year-section {
+            border: none;
+
+            &:first-of-type {
+                margin-block-start: 0;
+            }
         }
     }
 </style>
