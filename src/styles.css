@@ -33,7 +33,7 @@
     --max-inline-size-post-content: 100ch;
     --navbar-height: 3.875rem;
     --footer-height: 3.75rem;
-    --content-hpadding: 1.5rem;
+    --content-hpadding: 1rem;
     --content-vpadding: 3.75rem;
     view-transition-name: none;
 
@@ -205,7 +205,7 @@ pre.astro-code {
     border-radius: 0.25rem;
 
     & > code {
-        padding: 1rem;
+        padding: 0.75rem;
         display: block;
     }
 
@@ -291,6 +291,12 @@ pre.astro-code {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@media (min-width: 40rem) {
+    :root {
+        --content-hpadding: 1.5rem;
     }
 }
 
