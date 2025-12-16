@@ -263,7 +263,7 @@ import XLgIcon from "./icons/x-lg.astro";
 
 <style>
     footer {
-        --color-text: #999;
+        --color-text: var(--color-text-dim);
 
         color: var(--color-text);
     }
@@ -409,7 +409,7 @@ import XLgIcon from "./icons/x-lg.astro";
             inset: unset;
             bottom: 3rem;
             right: 3rem;
-            border: 1px solid var(--color-text-dark);
+            border: 1px solid var(--color-border);
             border-radius: 0.5rem;
             padding: 1rem;
             white-space: nowrap;
