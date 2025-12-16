@@ -57,7 +57,11 @@ const recentBlogrollItems = blogroll.slice(0, 4);
         <div role="list">
             {
                 publicPosts.slice(0, showRecentPostsAmount).map((post: any) => (
-                    <a href={post.url} role="listitem">
+                    <a
+                        href={post.url}
+                        role="listitem"
+                        title={post.frontmatter.title}
+                    >
                         {post.frontmatter.title}
                     </a>
                 ))
@@ -106,6 +110,7 @@ const recentBlogrollItems = blogroll.slice(0, 4);
                             role="listitem"
                             target="_blank"
                             rel="noreferrer"
+                            title={entry.title}
                         >
                             {entry.title}
                         </a>
