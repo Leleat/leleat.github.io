@@ -1,17 +1,17 @@
 ---
 import "../../global.js";
-import CaretIcon from "../icons/caret.astro";
 import CollectionIcon from "../icons/collection.astro";
+import GridIcon from "../icons/grid-3x2.astro";
 ---
 
 <div class="post-buttons">
     <a class="blog-button" href="/blog">
-        <CaretIcon class="prev-icon" aria-hidden="true" />
-        <span>Back to Blog</span>
+        <GridIcon class="grid-icon" aria-hidden="true" />
+        <span>Browse Topics</span>
     </a>
     <a class="archive-button" href="/blog/archive">
         <CollectionIcon aria-hidden="true" />
-        <span>View All Posts</span>
+        <span>Browse All Posts</span>
     </a>
 </div>
 
@@ -46,7 +46,7 @@ import CollectionIcon from "../icons/collection.astro";
         }
     }
 
-    .prev-icon {
+    .grid-icon {
         transform: rotate(180deg);
     }
 
