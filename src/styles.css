@@ -205,7 +205,7 @@ pre.astro-code {
     margin: 1rem 0;
     counter-reset: step;
     position: relative;
-    max-block-size: 85vh;
+    max-block-size: 75vh;
     border-radius: 0.25rem;
 
     & > code {
