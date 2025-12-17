@@ -120,7 +120,7 @@ export function getCategoryData(category) {
 }
 
 export function groupPostsByCategory(posts, limitPerCategory) {
-    const categoryOrder = ["projects", "brainstorming", "TIL", "diary"];
+    const categoryOrder = ["projects", "diary", "brainstorming", "TIL"];
     const grouped = [];
 
     categoryOrder.forEach((category) => {
