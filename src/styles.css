@@ -20,14 +20,14 @@
 }
 
 :root {
-    --color-background: #111217;
-    --color-background-button: #222227;
+    --color-background: #121216;
+    --color-background-button: #1f1f23;
     --color-border: #333333;
     --color-rose: #d0316e;
     --color-yellow: #ffee6c;
     --color-text: #cfcfe6;
     --color-titletext: #ededf6;
-    --color-text-dim: #818393;
+    --color-text-dim: #898b9b;
     --focus-outline-size: 3px;
     --focus-outline-offset: 2px;
     --max-inline-size: 1376px;
@@ -205,7 +205,7 @@ pre.astro-code {
     margin: 1rem 0;
     counter-reset: step;
     position: relative;
-    max-block-size: 85vh;
+    max-block-size: 75vh;
     border-radius: 0.25rem;
 
     & > code {
