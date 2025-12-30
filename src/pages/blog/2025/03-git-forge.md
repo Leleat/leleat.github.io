@@ -4,6 +4,7 @@ title: "git-forge: Faster Issues and PRs From Your Terminal"
 description: "git-forge is a minimal, forge-agnostic CLI that brings issue and PR utilities directly into git"
 author: "Anh Tuan Le"
 pubDate: "2025-12-09T18:45:00.000Z"
+editDate: "2025-12-30T23:44:24.424Z"
 category: "projects"
 tags: ["cli", "git"]
 ---
@@ -77,5 +78,9 @@ For example, `git fcpissue` lets you fuzzy-search issues and then copies the URL
 git-forge tries to provide a common feature set across forges. But the forge APIs differ. For instance, GitHub's "issues" API returns both issues and PRs, so git-forge has to filter them client-side. That means requesting 100 items might give you fewer actual issues compared to GitLab, which separates them server-side. In practice, I think these quirks are minor.
 
 git-forge is currently written in TypeScript. It doesn't rely on external dependencies (other than dev dependencies), but it does require Node to run. Node may be a turn-off for some people, but it's what I'm most confident in and it let me focus on the functionality first. I plan to rewrite git-forge in Rust. It's partly to learn and practice Rust, partly to drop the node runtime dependency. The rewrite can focus entirely on the technical implementation without changing the feature set.
+
+[Edit]
+The [Rust rewrite](https://github.com/Leleat/git-forge/pull/12) is complete.
+[/Edit]
 
 If git-forge sounds interesting to you, you can find the project on [GitHub](https://github.com/Leleat/git-forge).
