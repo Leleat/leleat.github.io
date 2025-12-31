@@ -286,18 +286,6 @@ pre.astro-code {
     padding-inline-start: 2rem;
 }
 
-@keyframes reveal-from-side {
-    0% {
-        opacity: 0;
-        transform: translateX(var(--reveal-from-side-offset, 3rem));
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 @media (min-width: 40rem) {
     :root {
         --content-hpadding: 1.5rem;
