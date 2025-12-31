@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
-import ContactDetails from "../components/home/ContactDetails.astro";
 import BackToTopButton from "../components/home/BackToTopButton.astro";
+import ContactDetails from "../components/home/ContactDetails.astro";
 import Hero from "../components/home/Hero.astro";
 import ProjectShowcase from "../components/home/ProjectShowcase.astro";
 import SkillSet from "../components/home/SkillSet.astro";
@@ -107,30 +107,3 @@ import "../global.js";
         }
     }
 </style>
-
-<script>
-    if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
-        const items = document.querySelectorAll(
-            "main .animate-on-scroll",
-        ) as NodeListOf<HTMLElement>;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("reveal-on-scroll");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.6,
-            },
-        );
-
-        items.forEach((item) => {
-            item.style.opacity = "0";
-            observer.observe(item);
-        });
-    }
-</script>
