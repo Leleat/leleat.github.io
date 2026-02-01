@@ -37,34 +37,36 @@ const showToc =
         ".toc-item-indicator",
     ) as HTMLElement;
 
-    tocItemIndicator.style.opacity = "1";
+    if (tocItemIndicator) {
+        tocItemIndicator.style.opacity = "1";
 
-    const observer = new IntersectionObserver((entries) => {
-        const visibleHeadings = entries.filter((e) => e.isIntersecting);
+        const observer = new IntersectionObserver((entries) => {
+            const visibleHeadings = entries.filter((e) => e.isIntersecting);
 
-        if (visibleHeadings.length > 0) {
-            const tocItem = tocItems.find((item) =>
-                visibleHeadings.some(
-                    (h) => item.getAttribute("href") === `#${h.target.id}`,
-                ),
-            ) as HTMLElement;
+            if (visibleHeadings.length > 0) {
+                const tocItem = tocItems.find((item) =>
+                    visibleHeadings.some(
+                        (h) => item.getAttribute("href") === `#${h.target.id}`,
+                    ),
+                ) as HTMLElement;
 
-            const itemHeight = tocItem.offsetHeight;
-            const offsetTop = tocItem.offsetTop;
+                const itemHeight = tocItem.offsetHeight;
+                const offsetTop = tocItem.offsetTop;
 
-            tocItemIndicator.style.transform = `translateY(${offsetTop}px)`;
-            tocItemIndicator.style.height = `${itemHeight}px`;
-        }
-    });
+                tocItemIndicator.style.transform = `translateY(${offsetTop}px)`;
+                tocItemIndicator.style.height = `${itemHeight}px`;
+            }
+        });
 
-    const selector = [
-        ...Array(Number(tocItemIndicator.dataset.maxHeadingsLevel) - 1),
-    ]
-        .map((_, index) => `main h${index + 2 /* Start at h2*/}`)
-        .join(",");
-    const headings = document.querySelectorAll(selector);
+        const selector = [
+            ...Array(Number(tocItemIndicator.dataset.maxHeadingsLevel) - 1),
+        ]
+            .map((_, index) => `main h${index + 2 /* Start at h2*/}`)
+            .join(",");
+        const headings = document.querySelectorAll(selector);
 
-    headings.forEach((h) => observer.observe(h));
+        headings.forEach((h) => observer.observe(h));
+    }
 </script>
 
 <style>
