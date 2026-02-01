@@ -93,7 +93,7 @@ fn describe(status: Status) -> String {
 }
 ```
 
-Rust's module system was another pleasant surprise. I always found it awkward in JavaScript/TypeScript that `export` means "public to the entire codebase". Rust's approach feels better. It lets you cleanly separate modules within a project.
+Rust's module system was another pleasant surprise. I always found it awkward in JavaScript/TypeScript that `export` means "public to the entire codebase". You need to rely on conventions (e.g. create an `index.js` file to declare a "soft" public API), keep all module code in a giant file, or break the code out into a separate library.
 
 ```ts
 /* TypeScript */
@@ -110,9 +110,7 @@ import { internal_util_function } from "./internal_to_utils_module.ts";
 import { internal_util_function } from "../utils_module/internal_to_utils_module.ts";
 ```
 
-You need to rely on conventions (e.g. create an `index.js` file to declare a public API), keep all module code in a giant file, or break the code out into a separate library.
-
-Rust gives you more fine-grained control. Child modules automatically hide their implementation details from parents, while still being able to access parent code. So you can selectively (re)export things to create a public API. Here's the same example in Rust:
+Rust gives you more fine-grained control. It lets you cleanly separate modules within a project. Child modules automatically hide their implementation details from parent modules, while still being able to access parent code. So you can selectively (re)export things to create a proper public API. Here's the same example in Rust:
 
 ```rust
 /* Rust */
@@ -129,7 +127,7 @@ mod utils_module {
         fn some_func() {
             // internal_to_utils_module made internal_util_function pub
             // for the utils_module. So another_util_module can access it
-            // as well since it can access everything in the parent module.
+            // as well since it can access everything in utils_module.
             super::internal_to_utils_module::internal_util_function();
         }
     }
@@ -176,7 +174,7 @@ Rust's tooling is another plus. You get **built-in** linting, code formatting, d
 
 ## The End
 
-Of course, none of these features are unique to Rust. Functional languages, strongly typed languages, or _insert-language-x_ offer many of them. I just haven't used any of those languages before; they always felt too different, too niche, or too _something-else_. Rust as a whole feels approachable and familiar enough. It strikes a nice balance between what it offers and its tradeoffs. If my future experience with Rust is as enjoyable as it has been so far, it might become my go-to language for new projects. I would recommend Rust - not because of its performance or safety (after all, I am unfit to speak about that) - but because **Rust is simply a pleasant language to use**.
+Of course, none of these features are unique to Rust. Functional languages, strongly (and statically) typed languages, or _insert-language-x_ offer many of them. I just haven't used any of those languages before; they always felt too different, too niche, or too _something-else_. Rust as a whole feels approachable and familiar enough. It strikes a nice balance between what it offers and its tradeoffs. If my future experience with Rust is as enjoyable as it has been so far, it might become my go-to language for new projects. I would recommend Rust - not because of its performance or safety (after all, I am unfit to speak about that) - but because **Rust is simply a pleasant language to use**.
 
 ---
 
