@@ -62,6 +62,8 @@ const tags = [
     },
     { name: "meta", description: "" },
     { name: "npm", description: "" },
+    { name: "learning", description: "" },
+    { name: "rust", description: "" },
 ];
 
 export function getTagData(tag) {
