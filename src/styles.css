@@ -171,7 +171,9 @@ h1:has(> a) > a::before {
 }
 
 main article img {
-    inline-size: 100%;
+    display: block;
+    max-inline-size: 100%;
+    margin-inline: auto;
     block-size: auto;
     object-fit: contain;
 }

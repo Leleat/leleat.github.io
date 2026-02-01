@@ -8,7 +8,8 @@ import {
 import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 const publicPosts = getPostsWithNewestFirst();
-const groupedPosts = groupPostsByCategory(publicPosts, 3);
+const categoryLimit = 3;
+const groupedPosts = groupPostsByCategory(publicPosts, categoryLimit);
 ---
 
 <BlogBaseLayout title="Blog | Anh Tuan Le (@Leleat)">
@@ -29,22 +30,19 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
                             href={`#${categoryData.slug}`}
                         >{`${categoryData.raw} (${totalCount})`}</a>
                     </h2>
-                    {categoryData.description && (
-                        <p class="category-description">
-                            {categoryData.description}
-                        </p>
-                    )}
                     <div class="posts-list">
                         {posts.map((post) => (
                             <PostCard {post} />
                         ))}
                     </div>
-                    <a
-                        href={`/blog/categories/${categoryData.slug}/`}
-                        class="view-all-link"
-                    >
-                        Show more {categoryData.raw}
-                    </a>
+                    {totalCount > categoryLimit && (
+                        <a
+                            href={`/blog/categories/${categoryData.slug}/`}
+                            class="view-all-link"
+                        >
+                            Show more {categoryData.raw}
+                        </a>
+                    )}
                 </section>
             );
         })
@@ -81,8 +79,11 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
             margin-block-end: 1rem;
         }
 
+        .posts-list {
+            margin-block-end: 3rem;
+        }
+
         .view-all-link {
-            margin-block-start: 3rem;
             font-size: smaller;
             display: block;
             text-align: left;
