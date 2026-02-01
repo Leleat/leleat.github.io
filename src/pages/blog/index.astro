@@ -29,11 +29,6 @@ const groupedPosts = groupPostsByCategory(publicPosts, 3);
                             href={`#${categoryData.slug}`}
                         >{`${categoryData.raw} (${totalCount})`}</a>
                     </h2>
-                    {categoryData.description && (
-                        <p class="category-description">
-                            {categoryData.description}
-                        </p>
-                    )}
                     <div class="posts-list">
                         {posts.map((post) => (
                             <PostCard {post} />
