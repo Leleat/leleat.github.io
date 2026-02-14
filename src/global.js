@@ -53,6 +53,10 @@ export function getPostsWithNewestFirst() {
 
 const sluggifyTag = (tag) => tag.toLowerCase().replace(/ |\//g, "-");
 const tags = [
+    {
+        name: "brainstorming",
+        description: "Ideas, concepts, and experiments",
+    },
     { name: "cli", description: "" },
     { name: "git", description: "" },
     {
@@ -90,12 +94,8 @@ const categories = [
         description: "Journal entries",
     },
     {
-        name: "brainstorming",
-        description: "Ideas, concepts, and experiments",
-    },
-    {
         name: "projects",
-        description: "My side projects",
+        description: "Posts about things I have worked on",
     },
     {
         name: "uncategorized",
@@ -122,7 +122,7 @@ export function getCategoryData(category) {
 }
 
 export function groupPostsByCategory(posts, limitPerCategory) {
-    const categoryOrder = ["projects", "diary", "brainstorming", "TIL"];
+    const categoryOrder = ["projects", "diary", "TIL"];
     const grouped = [];
 
     categoryOrder.forEach((category) => {
