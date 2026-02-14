@@ -64,9 +64,9 @@ const tags = [
         description:
             "Stuff related to Extensions for the GNOME desktop environment",
     },
+    { name: "learning", description: "" },
     { name: "meta", description: "" },
     { name: "npm", description: "" },
-    { name: "learning", description: "" },
     { name: "rust", description: "" },
 ];
 
@@ -86,16 +86,16 @@ export function getTagData(tag) {
 
 const categories = [
     {
-        name: "TIL",
-        description: "Today I Learned",
-    },
-    {
         name: "diary",
         description: "Journal entries",
     },
     {
         name: "projects",
         description: "Posts about things I have worked on",
+    },
+    {
+        name: "TIL",
+        description: "Today I Learned",
     },
     {
         name: "uncategorized",
