@@ -9,6 +9,7 @@ import BlogBaseLayout from "@/layouts/BlogBaseLayout.astro";
 
 const publicPosts = getPostsWithNewestFirst();
 const categoryLimit = 3;
+const recentPostLimit = 2;
 const groupedPosts = groupPostsByCategory(publicPosts, categoryLimit);
 ---
 
@@ -17,9 +18,21 @@ const groupedPosts = groupPostsByCategory(publicPosts, categoryLimit);
     <p>
         I'm Lele or, in real life, Anh (he/him), a budding software developer.
         This blog is a place to share my ideas, experiments, and whatever tech
-        stuff I'm into at the moment. <a href="/blog/archive">View all posts</a>
-        or browse by category.
+        stuff I'm into at the moment. Browse all posts or by category.
     </p>
+    <section class="category-section">
+        <h2 class="category-heading" id="recent-posts">
+            <a href="#recent-posts">Recent Posts</a>
+        </h2>
+        <div class="posts-list">
+            {
+                publicPosts
+                    .slice(0, recentPostLimit)
+                    .map((post) => <PostCard {post} />)
+            }
+        </div>
+        <a href={`/blog/archive/`} class="view-all-link"> Show all Posts </a>
+    </section>
     {
         groupedPosts.map(({ category, posts, totalCount }) => {
             const categoryData = getCategoryData(category);
