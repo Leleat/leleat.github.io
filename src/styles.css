@@ -31,7 +31,7 @@
     --focus-outline-size: 3px;
     --focus-outline-offset: 2px;
     --max-inline-size: 1376px;
-    --max-inline-size-post-content: 100ch;
+    --max-inline-size-post-content: 80ch;
     --navbar-height: 3.875rem;
     --footer-height: 3.75rem;
     --content-hpadding: 1rem;
@@ -168,6 +168,11 @@ h6:has(> a) {
 
 h1:has(> a) > a::before {
     margin-inline-end: 0;
+}
+
+main article {
+    text-align: justify;
+    text-wrap: pretty;
 }
 
 main article img {
