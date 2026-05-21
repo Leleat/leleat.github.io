@@ -171,7 +171,6 @@ h1:has(> a) > a::before {
 }
 
 main article p {
-    text-align: justify;
     hyphens: auto;
     text-wrap: pretty;
 }
@@ -297,6 +296,10 @@ pre.astro-code {
 @media (min-width: 40rem) {
     :root {
         --content-hpadding: 1.5rem;
+    }
+
+    main article p {
+        text-align: justify;
     }
 }
 
