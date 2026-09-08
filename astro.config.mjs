@@ -1,4 +1,5 @@
 // @ts-check
+import { unified } from "@astrojs/markdown-remark";
 import { defineConfig } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -11,13 +12,15 @@ export default defineConfig({
         shikiConfig: {
             theme: "kanagawa-wave",
         },
-        smartypants: false,
-        rehypePlugins: [
-            rehypeFigureCaption,
-            rehypeSlug,
-            [rehypeAutolinkHeadings, { behavior: "wrap" }],
-            rehypeCodeCopyButton,
-        ],
+        processor: unified({
+            smartypants: false,
+            rehypePlugins: [
+                rehypeFigureCaption,
+                rehypeSlug,
+                [rehypeAutolinkHeadings, { behavior: "wrap" }],
+                rehypeCodeCopyButton,
+            ],
+        }),
     },
     redirects: {
         "/about": "/",
