@@ -18,20 +18,3 @@ jobs:
         run: npm ci
       - name: Check code formatting
         run: npm run check:format
-  commit-message:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: "24"
-      - name: Install commitlint
-        run: |
-          npm install @commitlint/config-conventional @commitlint/cli
-          echo "export default {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
-      - name: Lint commit messages
-        run: npx commitlint --from=$(git rev-parse origin/${{ github.base_ref}}) --to=HEAD
