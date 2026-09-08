@@ -30,8 +30,9 @@ import GridIcon from "../icons/grid-3x2.astro";
         justify-content: center;
         gap: 1rem;
         font-weight: 600;
-        background-color: var(--color-background-button);
-        border: 1px solid var(--color-background-button);
+        background-color: transparent;
+        border: 1px solid var(--color-text-dim);
+        box-shadow: 1px 1px 0 1px var(--color-text-dim);
         padding: 1.5rem;
         border-radius: 0.75rem;
         color: var(--color-text);
@@ -42,6 +43,7 @@ import GridIcon from "../icons/grid-3x2.astro";
         &:hover {
             color: var(--color-yellow);
             border: 1px solid var(--color-yellow);
+            box-shadow: 1px 1px 0 1px var(--color-yellow);
             background-color: transparent;
         }
     }

@@ -8,6 +8,7 @@ import rehypeCodeCopyButton from "./src/plugins/rehypeCodeCopyButton.js";
 import rehypeFigureCaption from "./src/plugins/rehypeFigureCaption.js";
 
 export default defineConfig({
+    compressHTML: true,
     markdown: {
         shikiConfig: {
             theme: "kanagawa-wave",
