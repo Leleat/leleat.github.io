@@ -24,6 +24,7 @@ import GridIcon from "../icons/grid-3x2.astro";
 
     .blog-button,
     .archive-button {
+        position: relative;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -41,9 +42,11 @@ import GridIcon from "../icons/grid-3x2.astro";
         text-align: center;
 
         &:hover {
+            top: -2px;
+            left: -1px;
             color: var(--color-yellow);
             border: 1px solid var(--color-yellow);
-            box-shadow: 1px 1px 0 1px var(--color-yellow);
+            box-shadow: 1px 2px 0 1px var(--color-yellow);
             background-color: transparent;
         }
     }
